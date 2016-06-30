@@ -1,0 +1,3 @@
+[submodule "assets/src/styles/vendor/hm-pattern-library"]
+	path = assets/src/styles/vendor/hm-pattern-library
+	url = git@github.com:humanmade/hm-pattern-library.git

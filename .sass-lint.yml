@@ -3,7 +3,7 @@ options:
 files:
   ignore:
     - 'dist/**/*'
-    - 'src/styles/vendor/**/*'
+    - 'assets/src/styles/vendor/**/*'
 rules:
   no-ids: 2
   no-important: 2

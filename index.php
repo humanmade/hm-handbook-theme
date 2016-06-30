@@ -18,4 +18,8 @@ get_header();
 
 ?>
 
+<div class="container">
+	<div style="background: red;">&nbsp;</div>
+</div>
+
 <?php get_footer(); ?>
