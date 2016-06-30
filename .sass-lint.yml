@@ -1,0 +1,31 @@
+options:
+  merge-default-rules: false
+files:
+  ignore:
+    - 'dist/**/*'
+    - 'src/styles/vendor/**/*'
+rules:
+  no-ids: 2
+  no-important: 2
+  no-vendor-prefixes: 2
+  no-url-protocols: 2
+  indentation:
+    - 2
+    - size: tab
+  single-line-per-selector: 1
+  one-declaration-per-line: 1
+  empty-line-between-blocks: 1
+  brace-style: 1
+  space-before-brace: 2
+  space-between-parens:
+    - 1
+    - include: true
+  trailing-semicolon: 2
+  space-after-colon: 2
+  space-after-comma: 2
+  space-around-operator: 2
+  attribute-quotes: 1
+  quotes:
+    - 2
+    - style: double
+  no-invalid-hex: 2
