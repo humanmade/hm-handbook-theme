@@ -26,16 +26,16 @@ namespace HM_Handbook;
 
 <body <?php body_class(); ?>>
 
-	<header id="site-header">
+	<header class="site-header">
 
 		<?php if ( is_front_page() ) : ?>
-			<h1 id="site-logo">
+			<h1 class="site-logo">
 				<a class="Logo" href="<?php echo esc_url( home_url() ); ?>/">
 					<?php bloginfo( 'name' ); ?>
 				</a>
 			</h1>
 		<?php else : ?>
-			<div id="site-logo">
+			<div class="site-logo">
 				<a class="Logo" href="<?php echo esc_url( home_url() ); ?>/">
 					<?php bloginfo( 'name' ); ?>
 				</a>

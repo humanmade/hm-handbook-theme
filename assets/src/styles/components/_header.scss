@@ -1,4 +1,4 @@
-#site-header {
+.site-header {
 	background-color: $hm-primary;
 	padding: 1em;
 
@@ -9,7 +9,7 @@
 	}
 }
 
-#site-logo {
+.site-logo {
 	margin: 0;
 	background-color: lighten( $hm-primary, 5% );
 }

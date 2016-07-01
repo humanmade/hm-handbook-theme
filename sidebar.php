@@ -7,7 +7,7 @@
 
 namespace HM_Handbook; ?>
 
-<nav id="site-sidebar">
+<nav class="site-sidebar">
 
 	<?php wp_nav_menu(); ?>
 

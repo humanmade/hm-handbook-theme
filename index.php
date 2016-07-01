@@ -18,11 +18,11 @@ get_header();
 
 ?>
 
-<div id="site-container">
+<div class="site-container">
 
 	<?php echo get_sidebar(); ?>
 
-	<main id="site-content">
+	<main class="site-content">
 
 		<?php while ( have_posts() ) : the_post(); ?>
 
