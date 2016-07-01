@@ -1,6 +1,10 @@
 // External
 @import "vendor/hm-pattern-library/src/styles/style";
 
+// Base
+@import "base/layout";
+
 // Components
 @import "components/header";
 @import "components/sidebar";
+@import "components/content";
