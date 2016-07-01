@@ -1,6 +1,9 @@
 #site-header {
 	background-color: $hm-primary;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+
+	@media ( min-width: $medium ) {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
 }

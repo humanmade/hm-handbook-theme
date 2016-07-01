@@ -4,7 +4,9 @@ html, body {
 }
 
 #site-container {
-	display: flex;
-	align-items: stretch;
-	height: 100%;
+	@media ( min-width: $medium ) {
+		display: flex;
+		align-items: stretch;
+		height: 100%;
+	}
 }

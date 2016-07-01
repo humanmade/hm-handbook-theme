@@ -1,5 +1,9 @@
 #site-sidebar {
 	background-color: $hm-light-beige;
-	width: 300px;
-	height: 100%;
+
+	@media ( min-width: $medium ) {
+		width: 20%;
+		max-width: 300px;
+		height: 100%;
+	}
 }
