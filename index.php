@@ -18,8 +18,10 @@ get_header();
 
 ?>
 
-<div class="container">
-	<div style="background: red;">&nbsp;</div>
+<div id="site-container">
+
+	<?php echo get_sidebar(); ?>
+
 </div>
 
 <?php get_footer(); ?>
