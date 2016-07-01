@@ -26,7 +26,7 @@ namespace HM_Handbook;
 
 <body <?php body_class(); ?>>
 
-	<header>
+	<header id="site-header">
 
 		<?php if ( is_front_page() ) : ?>
 			<h1>
