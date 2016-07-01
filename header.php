@@ -29,13 +29,13 @@ namespace HM_Handbook;
 	<header id="site-header">
 
 		<?php if ( is_front_page() ) : ?>
-			<h1>
+			<h1 id="site-logo">
 				<a class="Logo" href="<?php echo esc_url( home_url() ); ?>/">
 					<?php bloginfo( 'name' ); ?>
 				</a>
 			</h1>
 		<?php else : ?>
-			<div>
+			<div id="site-logo">
 				<a class="Logo" href="<?php echo esc_url( home_url() ); ?>/">
 					<?php bloginfo( 'name' ); ?>
 				</a>
