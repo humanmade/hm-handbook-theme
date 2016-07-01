@@ -1,0 +1,12 @@
+html, body {
+	height: 100%;
+	min-height: 100%;
+}
+
+.site-container {
+	@media ( min-width: $medium ) {
+		display: flex;
+		align-items: stretch;
+		height: 100%;
+	}
+}

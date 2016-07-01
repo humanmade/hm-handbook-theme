@@ -25,3 +25,23 @@ namespace HM_Handbook;
 </head>
 
 <body <?php body_class(); ?>>
+
+	<header class="site-header">
+
+		<?php if ( is_front_page() ) : ?>
+			<h1 class="site-logo">
+				<a class="Logo" href="<?php echo esc_url( home_url() ); ?>/">
+					<?php bloginfo( 'name' ); ?>
+				</a>
+			</h1>
+		<?php else : ?>
+			<div class="site-logo">
+				<a class="Logo" href="<?php echo esc_url( home_url() ); ?>/">
+					<?php bloginfo( 'name' ); ?>
+				</a>
+			</div>
+		 <?php endif; ?>
+
+		 <?php echo get_search_form(); ?>
+
+	</header>
