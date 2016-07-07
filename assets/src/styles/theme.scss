@@ -1,5 +1,7 @@
+$hm-images: "./../../../vendor/hm-pattern-library/dist/assets/images/";
+
 // External
-@import "vendor/hm-pattern-library/src/styles/style";
+@import "./../../../vendor/hm-pattern-library/src/styles/style";
 
 // Base
 @import "base/variables";
