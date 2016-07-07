@@ -1,0 +1,28 @@
+/**
+ * Prevent FOUC when typekit is loading.
+ * We need to target each individual element so the
+ * overall page layout loads, only the text itself pops in once loaded.
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+li {
+
+	.wf-loading  & {
+		visibility: hidden;
+		opacity: 0;
+		transition: opacity linear 0.05s;
+	}
+
+	.wf-active & {
+		visibility: visible;
+		opacity: 1;
+		transition: opacity linear 0.05s;
+	}
+
+}
