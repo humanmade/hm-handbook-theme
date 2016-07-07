@@ -1,0 +1,39 @@
+.article {
+
+	margin: $base-line-height auto $base-line-height;
+
+	@media #{ $mq-lg-up } {
+		margin-top: $base-line-height * 2;
+		margin-bottom: $base-line-height * 2;
+	}
+
+	.article-title {
+		margin-top: 0;
+
+		&:empty {
+			display: none;
+		}
+
+		a:link,
+		a:visited {
+			color: inherit;
+		}
+	}
+
+	&:first-child {
+		margin-top: 0;
+	}
+
+	& + .article {
+		border-top: 1px solid $border-color;
+		margin-top: 0;
+		padding-top: $base-line-height;
+
+		@media #{ $mq-lg-up } {
+			padding-top: $base-line-height * 2;
+		}
+
+	}
+
+}
+
