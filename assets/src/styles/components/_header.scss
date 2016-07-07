@@ -1,15 +1,51 @@
 .site-header {
-	background-color: $hm-primary;
-	padding: 1em;
 
-	@media ( min-width: $medium ) {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
+	@extend .util-Clearfix;
+	background-color: $hm-primary;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: left;
 }
 
 .site-logo {
+
+	width: 100%;
 	margin: 0;
-	background-color: lighten( $hm-primary, 5% );
+
+	a {
+		display: block;
+
+		@media #{ $mq-md-down } {
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+	}
+
+	@media #{ $mq-md-up } {
+		width: auto;
+	}
+
+}
+
+.site-search {
+
+	display: block;
+	width: 100%;
+
+	@media #{ $mq-md-up } {
+		width: auto;
+		flex: 1;
+	}
+
+	.StyleGuide_SearchContainer {
+		max-width: 900px;
+		float: right;
+
+		@media #{ $mq-md-down } {
+			padding-top: 0;
+		}
+	}
+
 }
