@@ -9,6 +9,8 @@
 
 namespace HM_Handbook;
 
+require_once( __DIR__ . '/inc/primary-nav.php' );
+
 add_action( 'after_setup_theme',  __NAMESPACE__ . '\\setup' );
 add_action( 'after_setup_theme',  __NAMESPACE__ . '\\content_width', 0 );
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_scripts' );
@@ -39,11 +41,10 @@ function setup() {
 	 */
 	add_theme_support( 'html5', [ 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ]	);
 
-	/*
-	 * Enable support for Post Formats.
-	 * See https://developer.wordpress.org/themes/functionality/post-formats/
+	/**
+	 * Register navigation menus.
 	 */
-	add_theme_support( 'post-formats', [] );
+	register_nav_menu( 'nav-primary', 'Main navigation' );
 
 }
 
@@ -52,9 +53,14 @@ function setup() {
  */
 function enqueue_scripts() {
 
-	wp_enqueue_script( 'hm-handbook', get_stylesheet_directory_uri() . '/assets/dist/scripts/theme.js', [ 'jquery', 'wp-util' ], '1.0', true );
-
+	wp_register_script( 'hm-pattern-lib', get_stylesheet_directory_uri() . '/vendor/hm-pattern-library/dist/assets/js/app.js', [], '1.0', true );
+	wp_enqueue_script( 'hm-handbook', get_stylesheet_directory_uri() . '/assets/dist/scripts/theme.js', [ 'hm-pattern-lib' ], '1.0', true );
 	wp_enqueue_style( 'hm-handbook', get_stylesheet_directory_uri() . '/assets/dist/styles/theme.css', [], '1.0' );
+
+	add_action( 'wp_head', function() {
+		echo '<script src="https://use.typekit.net/mwe8dvt.js"></script>';
+		echo '<script>try{Typekit.load({ async: true });}catch(e){}</script>';
+	} );
 
 }
 
