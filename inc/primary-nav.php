@@ -20,6 +20,10 @@ function nav_accordion_item_class( $classes, $item, $args ) {
 
 	if ( 'nav-primary' === $args->theme_location ) {
 		$classes[] = 'NavAccordion_Item';
+
+		if ( array_intersect( $classes, [ 'current-menu-item' ] ) ) {
+			$classes[] = 'NavAccordion_Item-Active';
+		}
 	}
 
 	return $classes;
