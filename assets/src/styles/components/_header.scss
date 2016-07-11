@@ -19,10 +19,11 @@
 	}
 
 	a {
+
 		display: block;
 		width: 240px;
-		height: 46.027397261px;
-		margin: 1.125rem 30px 1.5rem 30px;
+		height: 46px;
+		margin: #{ .75 * $base-line-height } auto $base-line-height;
 
 		@media #{ $mq-md-down } {
 			margin-left: auto;
@@ -42,7 +43,9 @@
 	}
 
 	@media #{ $mq-md-up } {
-		width: auto;
+		width: 20%;
+		max-width: 300px;
+		min-width: 250px;
 	}
 
 }
