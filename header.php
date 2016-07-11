@@ -29,16 +29,26 @@ namespace HM_Handbook;
 	<header class="site-header">
 
 		<?php if ( is_front_page() ) : ?>
-			<h1 class="site-logo">
-				<a class="HMLogo HMLogo-White" href="<?php echo esc_url( home_url() ); ?>/">
-					<?php bloginfo( 'name' ); ?>
-				</a>
-			</h1>
+			<div class="site-logo">
+
+				<div class="site-logo">
+					<a class="HMLogo HMLogo-White" href="<?php echo esc_url( home_url() ); ?>/">
+						Human Made Limited
+					</a>
+				</div>
+
+				<h1 class="site-title">Employee Handbook</h1>
+
+			</div>
 		<?php else : ?>
 			<div class="site-logo">
+
 				<a class="HMLogo HMLogo-White" href="<?php echo esc_url( home_url() ); ?>/">
 					<?php bloginfo( 'name' ); ?>
 				</a>
+
+				<div class="site-title"><?php bloginfo( 'name' ); ?></div>
+
 			</div>
 		<?php endif; ?>
 

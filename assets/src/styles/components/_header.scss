@@ -13,14 +13,32 @@
 	width: 100%;
 	margin: 0;
 
+	h1 {
+		margin: 0;
+		padding: 0;
+	}
+
 	a {
 		display: block;
+		position: relative;
+		top: $base-line-height / -3;
 
 		@media #{ $mq-md-down } {
 			margin-left: auto;
 			margin-right: auto;
 		}
 
+	}
+
+	.site-title  {
+		@include font-heading;
+		@include text-sm;
+		color: #FFF;
+		text-align: center;
+		margin-top: $base-line-height * -1;
+		margin-bottom: $base-line-height * -1;
+		position: relative;
+		top: $base-line-height / -4;
 	}
 
 	@media #{ $mq-md-up } {
