@@ -1,18 +1,18 @@
-const gulp          = require( 'gulp' );
-const webpack       = require( 'webpack' );
-const sourcemaps    = require( 'gulp-sourcemaps' );
-const watch         = require( 'gulp-watch' );
-const postcss       = require( 'gulp-postcss' );
-const autoprefixer  = require( 'autoprefixer' );
-const sass          = require( 'gulp-sass' );
-const sassLint      = require( 'gulp-sass-lint' );
+const gulp         = require( 'gulp' );
+const webpack      = require( 'webpack' );
+const sourcemaps   = require( 'gulp-sourcemaps' );
+const watch        = require( 'gulp-watch' );
+const postcss      = require( 'gulp-postcss' );
+const autoprefixer = require( 'autoprefixer' );
+const sass         = require( 'gulp-sass' );
+const sassLint     = require( 'gulp-sass-lint' );
 
 // All the configs for different tasks.
 const config = {
 	sass: {
 		outputStyle: 'compressed'
 	},
-	webpack: require( './webpack.config.js' ),
+	webpack: require( './.webpack-config.js' ),
 	imagemin: {
 		progressive: true,
 		svgoPlugins: [

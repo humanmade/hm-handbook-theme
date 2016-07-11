@@ -13,3 +13,120 @@ $hm-images: "./../../../vendor/hm-pattern-library/dist/assets/images/";
 @import "components/sidebar";
 @import "components/content";
 @import "components/article";
+
+// .NavAccordion_Item-Active > .NavAccordion_Anchor {
+// 	text-decoration: none;
+// 	position: relative;
+// 	&:before {
+// 		content: ' ';
+// 		display: block;
+// 		background: #e3dcd1;
+// 		width: 100%;
+// 		height: 100%;
+// 		position: absolute;
+// 		top: 0;
+// 		left: 0;
+// 	}
+// }
+
+
+.Diff-Added {
+	background: #daf2d6;
+	text-decoration: none;
+}
+
+.Diff-Removed {
+	background: lighten( $hm-primary, 35% );;
+}
+
+.article-showing-diff .article-content {
+	display: none;
+}
+
+.RevisionList_Container {
+	left: 100%;
+	top: 0;
+	width: 400px;
+	position: absolute;
+	margin: #{ $base-line-height / 4 } 0 0 0;
+	padding: 0 $gutter-width;
+}
+
+.RevisionList_Title {
+	@include text-sm;
+	color: #888;
+	margin: 0;
+}
+
+.RevisionList {
+
+	@include text-sm;
+	color: #888;
+	list-style: none;
+	position: relative;
+	margin: 0;
+	padding: 0 0 0 #{ $gutter-width / 2 };
+
+	&:after {
+		content: " ";
+		display: block;
+		border-left: 1px solid $border-color;
+		padding-left: $gutter-width / 2;
+		position: absolute;
+		top: $base-line-height / 2;
+		bottom: calc( #{ $base-line-height / 2 } + 2px );
+		left: $gutter-width / 2 - 1px;
+	}
+
+}
+
+.RevisionListItem {
+
+	cursor: pointer;
+	padding: #{ $base-line-height / 8 } 0 #{ $base-line-height / 8 } #{ $gutter-width / 2 };
+	position: relative;
+
+	&:hover {
+		color: #444;
+		text-decoration: underline;
+	}
+
+	&:after {
+		content: " ";
+		display: block;
+		width: 5px;
+		height: 5px;
+		background: $border-color;
+		border-radius: 100%;
+		position: absolute;
+		left: -3px;
+		top: 50%;
+		margin-top: -3px;
+		z-index: 1;
+	}
+
+	&:first-child:after,
+	&.RevisionListItem-Active:after {
+		width: 9px;
+		height: 9px;
+		margin-top: -5px;
+		left: -5px;
+	}
+
+	&.RevisionListItem-Active:after {
+		background-color: $hm-primary;
+	}
+
+	&.RevisionListItem-Active + .RevisionListItem:after {
+		background-color: $hm-medium-grey;
+	}
+}
+
+.article {
+	position: relative;
+}
+
+.article-diff {
+	background: none;
+	padding: 0;
+}
