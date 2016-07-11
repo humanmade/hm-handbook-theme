@@ -2,7 +2,7 @@ var React    = require( 'react' );
 var ReactDOM = require( 'react-dom' );
 var diff_match_patch = require("exports?diff_match_patch!./../vendor/diff_match_patch.js");
 
-var container;
+var pageHistory = { revisions: window.HMHandbookPageHistory };
 
 var PageHistoryDiff = React.createClass({
 
@@ -16,23 +16,14 @@ var PageHistoryDiff = React.createClass({
 	},
 
 	render: function() {
-
-		if ( this.props.diff.a && this.props.diff.b ) {
-
-			if ( container ) {
-				container.classList.add( 'article-showing-diff' );
-			}
-
-			var html = this.getDiffHTML();
-			return ( <div className="PageHistory_Diff" dangerouslySetInnerHTML={ { __html: html } } /> );
-		} else {
-			container.classList.remove( 'article-showing-diff' );
-			return( <div /> );
-		}
-
+		return ( <div className="PageHistory_Diff" dangerouslySetInnerHTML={ { __html: this.getDiffHTML() } } /> );
 	},
 
 	getDiffHTML: function() {
+
+		if ( ! this.props.diff.a || ! this.props.diff.b ) {
+			return '';
+		}
 
 		var html = [];
 		var dmp  = new diff_match_patch();
@@ -162,9 +153,6 @@ var PageHistory = React.createClass({
 	},
 
 	render: function() {
-
-		console.log( 'PageHistory render' );
-
 		return (
 			<div>
 				<PageHistoryDiff diff={ this.state.diff } />
@@ -175,7 +163,7 @@ var PageHistory = React.createClass({
 
 	handleSelectRevision: function( revision_a ) {
 
-		var currentIndex, revision_b;
+		var currentIndex, revision_b, container;
 
 		Array.prototype.forEach.call( this.props.revisions, function( revision, i ) {
 			if ( revision_a.id === revision.id )  {
@@ -193,13 +181,19 @@ var PageHistory = React.createClass({
 			diff: { a: revision_a, b: revision_b },
 		});
 
+		container = document.querySelectorAll( 'body.single-post .site-content .article, body.page .site-content .article' );
+
+		if ( container.length > 0 ) {
+			container[0].classList.add( 'article-showing-diff' );
+		}
+
 	}
 
 });
 
 var init = function() {
 
-	var el;
+	var container, el;
 
 	container = document.querySelectorAll( 'body.single-post .site-content .article, body.page .site-content .article' );
 
@@ -212,7 +206,7 @@ var init = function() {
 
 	container.appendChild( el );
 
-	ReactDOM.render( <PageHistory revisions={ window.HMHandbookPageHistory } />, el );
+	ReactDOM.render( <PageHistory revisions={ pageHistory.revisions } />, el );
 
 }
 

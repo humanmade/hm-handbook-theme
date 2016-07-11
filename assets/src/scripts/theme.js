@@ -1,7 +1,6 @@
-var pageHistory = require("./inc/history.js");
-
-
 ( function( document ) {
+
+	var pageHistory = require("./inc/history.js");
 
 	pageHistory.init();
 
