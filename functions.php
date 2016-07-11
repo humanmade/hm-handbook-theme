@@ -101,6 +101,6 @@ add_action( 'wp_enqueue_scripts', function() {
 
 	$revisions[ count( $revisions ) - 1 ]['action'] = 'create';
 
-	wp_localize_script( 'hm-handbook', 'HMHandbookRevisions', $revisions );
+	wp_localize_script( 'hm-handbook', 'HMHandbookPageHistory', $revisions );
 
 } );

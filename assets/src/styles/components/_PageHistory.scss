@@ -1,0 +1,99 @@
+
+.PageHistory_Diff-Added {
+	background: #daf2d6;
+	text-decoration: none;
+}
+
+.PageHistory_Diff-Removed {
+	background: lighten( $hm-primary, 35% );;
+}
+
+.article-showing-diff .article-content {
+	display: none;
+}
+
+.PageHistory_List_Container {
+	left: 100%;
+	top: 0;
+	max-width: 400px;
+	min-width: 300px;
+	position: absolute;
+	margin: #{ $base-line-height / 4 } 0 0 0;
+	padding: 0 $gutter-width;
+}
+
+.PageHistory_List_Title {
+	@include text-sm;
+	color: #888;
+	margin: 0;
+}
+
+.PageHistory_List {
+
+	@include text-sm;
+	color: #888;
+	list-style: none;
+	position: relative;
+	margin: 0;
+	padding: 0 0 0 #{ $gutter-width / 2 };
+
+	&:after {
+		content: " ";
+		display: block;
+		border-left: 1px solid $border-color;
+		padding-left: $gutter-width / 2;
+		position: absolute;
+		top: $base-line-height / 2;
+		bottom: calc( #{ $base-line-height / 2 } + 2px );
+		left: $gutter-width / 2 - 1px;
+	}
+
+}
+
+.PageHistory_List_Item {
+
+	cursor: pointer;
+	padding: #{ $base-line-height / 8 } 0 #{ $base-line-height / 8 } #{ $gutter-width / 2 };
+	position: relative;
+
+	&:hover {
+		color: #444;
+		text-decoration: underline;
+	}
+
+	&:after {
+		content: " ";
+		display: block;
+		width: 5px;
+		height: 5px;
+		background: $border-color;
+		border-radius: 100%;
+		position: absolute;
+		left: -3px;
+		top: 50%;
+		margin-top: -3px;
+		z-index: 1;
+	}
+
+	&:first-child:after,
+	&.PageHistory_List_Item-Active:after {
+		width: 9px;
+		height: 9px;
+		margin-top: -5px;
+		left: -5px;
+	}
+
+	&.PageHistory_List_Item-Active:after {
+		background-color: $hm-primary;
+	}
+
+	&.PageHistory_List_Item-Active + .PageHistory_List_Item:after {
+		background-color: $hm-medium-grey;
+	}
+}
+
+.PageHistory_Diff {
+	white-space: pre-wrap;
+	background: none;
+	padding: 0;
+}
