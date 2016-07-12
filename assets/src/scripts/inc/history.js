@@ -2,17 +2,16 @@ var React    = require( 'react' );
 var ReactDOM = require( 'react-dom' );
 var diff_match_patch = require("exports?diff_match_patch!./../vendor/diff_match_patch.js");
 
-var pageHistory = { revisions: window.HMHandbookPageHistory };
-
+/**
+ * Diff component.
+ */
 var PageHistoryDiff = React.createClass({
 
-	getInitialState: function() {
-		return {
-			diff: {
-				a: null,
-				b: null,
-			}
-		};
+	getDefaultProps: function() {
+	    return {
+	    	diff_a: null,
+	    	diff_b: null,
+	    }
 	},
 
 	render: function() {
@@ -21,7 +20,7 @@ var PageHistoryDiff = React.createClass({
 
 	getDiffHTML: function() {
 
-		if ( ! this.props.diff.a || ! this.props.diff.b ) {
+		if ( ! ( this.props.diff_a && this.props.diff_b ) ) {
 			return '';
 		}
 
@@ -29,8 +28,8 @@ var PageHistoryDiff = React.createClass({
 		var dmp  = new diff_match_patch();
 
 		var diff = dmp.diff_main(
-			this.props.diff.b.content.replace( /[\n|\r]{2,}/g, "\n\n" ),
-			this.props.diff.a.content.replace( /[\n|\r]{2,}/g, "\n\n" )
+			this.props.diff_b.content.replace( /[\n|\r]{2,}/g, "\n\n" ),
+			this.props.diff_a.content.replace( /[\n|\r]{2,}/g, "\n\n" )
 		);
 
 		dmp.diff_cleanupSemantic( diff );
@@ -70,29 +69,43 @@ var PageHistoryDiff = React.createClass({
 
 });
 
+/**
+ * History List.
+ */
 var PageHistoryList = React.createClass({
 
-	getInitialState: function() {
+	getDefaultProps: function() {
 		return {
 			revisions: [],
 		};
 	},
 
+	getInitialState: function() {
+		return {
+			revisions: this.props.revisions,
+		};
+	},
+
 	render: function() {
 
-		var self = this;
-
-		var listItemNodes = this.props.revisions.map( function( revision ) {
-			return (
-				<PageHistoryListItem key={ revision.id } id={ revision.id } action={ revision.action } author={ revision.author } date={ revision.date } content={ revision.content } onSelectRevision={ self.props.onSelectRevision }/>
-			);
-		});
+		const actions = {
+			selectRevision: this.props.actions.selectRevision,
+		};
 
 		return (
 			<div className="PageHistory_List_Container">
 				<h4 className="PageHistory_List_Title">Page History</h4>
 				<ul className="PageHistory_List">
-					{ listItemNodes }
+					{ this.state.revisions.map( function( revision ) {
+
+						if ( ! 'active' in revision ) {
+							revision.active = false;
+						}
+
+						return (
+							<PageHistoryListItem key={ revision.id } id={ revision.id } action={ revision.action } author={ revision.author } date={ revision.date } content={ revision.content } active={ revision.active } actions={ actions } />
+						);
+					}) }
 				</ul>
 			</div>
 		);
@@ -103,13 +116,14 @@ var PageHistoryList = React.createClass({
 
 var PageHistoryListItem = React.createClass({
 
-	getInitialState: function() {
+	getDefaultProps: function() {
 		return {
-			id: 0,
-			action: 'update',
-			author: '',
-			date: '',
-			active: false,
+			id:      0,
+			active:  false,
+			author:  '',
+			action:  'update',
+			date:    '',
+			content: '',
 		};
 	},
 
@@ -118,7 +132,7 @@ var PageHistoryListItem = React.createClass({
 		var verb       = 'create' === this.props.action ? 'created' : 'updated';
 		var classNames = [ 'PageHistory_List_Item' ];
 
-		if ( this.state.active ) {
+		if ( this.props.active ) {
 			classNames.push( 'PageHistory_List_Item-Active' );
 		}
 
@@ -130,15 +144,7 @@ var PageHistoryListItem = React.createClass({
 	},
 
 	handleSelectRevision: function(e) {
-
-		var els = document.getElementsByClassName( 'PageHistory_List_Item-Active' );
-
-		Array.prototype.forEach.call( els, function( el ) {
-			el.classList.remove( 'PageHistory_List_Item-Active' );
-		});
-
-		this.setState( { active: true } );
-		this.props.onSelectRevision( this.props );
+		this.props.actions.selectRevision( this.props );
 	},
 
 });
@@ -147,29 +153,46 @@ var PageHistory = React.createClass({
 
 	getInitialState: function() {
 		return {
-			revisions: [],
+			revisions: this.props.revisions,
 			diff: { a: null, b: null },
 		};
 	},
 
 	render: function() {
+
+		const actions = {
+			selectRevision: this.selectRevision,
+		};
+
 		return (
 			<div>
-				<PageHistoryDiff diff={ this.state.diff } />
-				<PageHistoryList revisions={ this.props.revisions } onSelectRevision={ this.handleSelectRevision } />
+				<PageHistoryDiff diff_a={ this.state.diff.a } diff_b={ this.state.diff.b } />
+				<PageHistoryList revisions={ this.state.revisions } actions={ actions } />
 			</div>
 		);
 	},
 
-	handleSelectRevision: function( revision_a ) {
+	/**
+	 * Get the revision to compare against.
+	 * This should always be the next most recent revision.
+	 */
+	getNextRevision: function( revision ) {
 
-		var currentIndex, revision_b, container;
+		var currentIndex, revision_b;
 
-		Array.prototype.forEach.call( this.props.revisions, function( revision, i ) {
-			if ( revision_a.id === revision.id )  {
+		if ( ! revision ) {
+			return null;
+		}
+
+		this.props.revisions.forEach( function( _revision, i ) {
+			if ( _revision.id === revision.id )  {
 				currentIndex = i;
 			}
 		} );
+
+		if ( 'undefined' === typeof currentIndex ) {
+			return null;
+		}
 
 		if ( currentIndex < this.props.revisions.length - 1 ) {
 			revision_b = this.props.revisions[ currentIndex + 1 ];
@@ -177,24 +200,67 @@ var PageHistory = React.createClass({
 			revision_b = this.props.revisions[ this.props.revisions.length - 1 ];
 		}
 
+		return revision_b;
+
+	},
+
+	selectRevision: function( revision ) {
+
+		// If trying to select again, clear.
+		if ( this.state.diff.a && revision.id === this.state.diff.a.id ) {
+			revision = null;
+		}
+
+		// Update active state for each revision.
+		var newRevisions = this.state.revisions.map( function( _revision ) {
+
+			if ( revision && revision.id === _revision.id ) {
+				_revision.active = true;
+			} else {
+				_revision.active = false;
+			}
+
+			return _revision;
+
+		} );
+
 		this.setState({
-			diff: { a: revision_a, b: revision_b },
+			revisions: newRevisions,
+			diff:      { a: revision, b: this.getNextRevision( revision ) },
 		});
 
-		container = document.querySelectorAll( 'body.single-post .site-content .article, body.page .site-content .article' );
+		// Defer until actually set.
+		window.setTimeout( function() {
+			this.toggleContainerClass();
+		}.bind( this ) );
 
-		if ( container.length > 0 ) {
+	},
+
+	toggleContainerClass: function() {
+
+		var container = document.querySelectorAll( 'body.single-post .site-content .article, body.page .site-content .article' );
+
+		if ( container.length < 1 ) {
+			return;
+		}
+
+		console.log( this.state.diff );
+
+		if  ( null === this.state.diff.a || null === this.state.diff.b ) {
+			container[0].classList.remove( 'article-showing-diff' );
+		} else {
 			container[0].classList.add( 'article-showing-diff' );
 		}
 
-	}
+	},
 
 });
 
 var init = function() {
 
-	var container, el;
+	var revisions, container, el;
 
+	revisions = window.HMHandbookPageHistory;
 	container = document.querySelectorAll( 'body.single-post .site-content .article, body.page .site-content .article' );
 
 	if ( ! container.length ) {
@@ -206,10 +272,9 @@ var init = function() {
 
 	container.appendChild( el );
 
-	ReactDOM.render( <PageHistory revisions={ pageHistory.revisions } />, el );
+	ReactDOM.render( <PageHistory revisions={ revisions } />, el );
 
 }
-
 
 module.exports = {
 	init: init,

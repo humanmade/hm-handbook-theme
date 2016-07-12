@@ -8,10 +8,6 @@
 	background: lighten( $hm-primary, 35% );;
 }
 
-.article-showing-diff .article-content {
-	display: none;
-}
-
 .PageHistory_List_Container {
 	left: 100%;
 	top: 0;
@@ -93,7 +89,23 @@
 }
 
 .PageHistory_Diff {
+	@include text-sm;
+	display: none; // Only shown when active.
 	white-space: pre-wrap;
-	background: none;
-	padding: 0;
+	background: $hm-light-grey;
+	padding: $base-line-height / 2 $gutter-width / 2;
+	font-family: $font-family-code;
+}
+
+
+.article-showing-diff {
+
+	.article-content {
+		display: none;
+	}
+
+	.PageHistory_Diff {
+		display: block;
+	}
+
 }
