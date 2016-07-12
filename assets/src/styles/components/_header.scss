@@ -11,10 +11,19 @@
 .site-logo {
 
 	width: 100%;
-	margin: 0;
+	margin: 0 auto;
 
-	a {
+	h1 {
+		margin: 0;
+		padding: 0;
+	}
+
+	.HMLogo {
+
 		display: block;
+		width: 240px;
+		height: 46px;
+		margin: #{ .75 * $base-line-height } auto $base-line-height;
 
 		@media #{ $mq-md-down } {
 			margin-left: auto;
@@ -23,8 +32,20 @@
 
 	}
 
+	.site-title  {
+		@include font-heading;
+		@include text-sm;
+		color: #FFF;
+		text-align: center;
+		position: relative;
+		top: calc( -1.5rem + 5px );
+		margin-bottom: -1.5rem;
+	}
+
 	@media #{ $mq-md-up } {
-		width: auto;
+		width: 20%;
+		max-width: 300px;
+		min-width: 250px;
 	}
 
 }
