@@ -2,7 +2,7 @@ module.exports =  {
 	cache: false,
 	devtool: 'source-map',
 	entry: {
-		theme: './assets/src/scripts/theme.js',
+		theme: './assets/src/scripts/theme.jsx',
 	},
 	output: {
 		path: 'assets/dist/scripts',
@@ -11,7 +11,14 @@ module.exports =  {
 	},
 	module: {
 		loaders: [
-		    { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }
+		    {
+		    	test: /\.jsx?$/,
+		    	exclude: /(node_modules|bower_components)/,
+		    	loader: "babel-loader",
+				query: {
+					presets: [ 'react', 'es2015' ],
+				}
+		    }
 		]
 	},
 	plugins: [],
