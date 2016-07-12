@@ -37,7 +37,7 @@ namespace HM_Handbook;
 					</a>
 				</div>
 
-				<h1 class="site-title">Employee Handbook</h1>
+				<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
 
 			</div>
 		<?php else : ?>
