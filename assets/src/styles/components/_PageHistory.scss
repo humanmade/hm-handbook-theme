@@ -1,4 +1,6 @@
 $border-color-light-grey: darken( $border-color, 10% );
+$mq-lg-up:   "screen and ( min-width: 75rem )";
+$mq-lg-down: "screen and ( max-width: 75rem )";
 
 .PageHistory_Diff-Added {
 	background: #daf2d6;
@@ -15,10 +17,14 @@ $border-color-light-grey: darken( $border-color, 10% );
 	max-width: 400px;
 	min-width: 300px;
 	position: absolute;
-	margin: #{ $base-line-height / 4 } $gutter-width 0;
+	margin: 0 $gutter-width;
 	padding: #{ $base-line-height / 2 } #{ $gutter-width / 2 };
 	background: $hm-light-grey;
 	border-radius: 2px;
+
+	@media #{ $mq-lg-up } {
+		margin: 0 #{ $gutter-width * 2 };
+	}
 }
 
 .PageHistory_List_Title {
