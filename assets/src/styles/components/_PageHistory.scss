@@ -1,3 +1,4 @@
+$border-color-light-grey: darken( $border-color, 10% );
 
 .PageHistory_Diff-Added {
 	background: #daf2d6;
@@ -14,20 +15,22 @@
 	max-width: 400px;
 	min-width: 300px;
 	position: absolute;
-	margin: #{ $base-line-height / 4 } 0 0 0;
-	padding: 0 $gutter-width;
+	margin: #{ $base-line-height / 4 } $gutter-width 0;
+	padding: #{ $base-line-height / 2 } #{ $gutter-width / 2 };
+	background: $hm-light-grey;
+	border-radius: 2px;
 }
 
 .PageHistory_List_Title {
 	@include text-sm;
-	color: #888;
-	margin: 0;
+	margin-top: 0;
+	margin-bottom: $base-line-height / 4;
 }
 
 .PageHistory_List {
 
 	@include text-sm;
-	color: #888;
+	color: $hm-medium-grey;
 	list-style: none;
 	position: relative;
 	margin: 0;
@@ -36,12 +39,11 @@
 	&:after {
 		content: " ";
 		display: block;
-		border-left: 1px solid $border-color;
-		padding-left: $gutter-width / 2;
+		border-left: 1px solid $border-color-light-grey;
 		position: absolute;
 		top: $base-line-height / 2;
 		bottom: calc( #{ $base-line-height / 2 } + 2px );
-		left: $gutter-width / 2 - 1px;
+		left: $gutter-width / 4 - 1px;
 	}
 
 }
@@ -62,12 +64,12 @@
 		display: block;
 		width: 5px;
 		height: 5px;
-		background: $border-color;
+		background: $border-color-light-grey;
 		border-radius: 100%;
 		position: absolute;
-		left: -3px;
-		top: 50%;
-		margin-top: -3px;
+		left: $gutter-width / -4 - 3px;
+		top: $base-line-height / 2;
+		margin-top: 0;
 		z-index: 1;
 	}
 
@@ -75,8 +77,8 @@
 	&.PageHistory_List_Item-Active:after {
 		width: 9px;
 		height: 9px;
-		margin-top: -5px;
-		left: -5px;
+		margin-top: -3px;
+		left: $gutter-width / -4 - 5px;
 	}
 
 	&.PageHistory_List_Item-Active:after {
