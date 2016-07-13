@@ -4,7 +4,7 @@ import PageHistory from './components/PageHistory/PageHistory.jsx';
 
 var revisions, containers;
 
-revisions = window.HMHandbookPageHistory;
+revisions = window.HMHandbookPageHistory.revisions;
 containers = document.querySelectorAll( 'body.single-post .site-content .article, body.page .site-content .article' );
 
 containers.forEach( function( containerEl ) {

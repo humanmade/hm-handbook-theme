@@ -83,13 +83,16 @@ export default class PageHistory extends React.Component {
 
 		this.setState({
 			revisions: newRevisions,
-			diff:      { a: revision, b: this.getNextRevision( revision ) },
+			diff:      {
+				a: revision.content,
+				b: this.getNextRevision( revision ).content
+			},
 		});
 
 		// Defer until actually set.
-		window.setTimeout( function() {
+		window.setTimeout( () => {
 			this.toggleContainerClass();
-		}.bind( this ) );
+		} );
 
 	}
 

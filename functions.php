@@ -90,17 +90,22 @@ add_action( 'wp_enqueue_scripts', function() {
 		$date   = new DateTime( $revision->post_modified_gmt );
 		$author = get_userdata( $revision->post_author );
 
-		return array(
-			'id'          => $revision->ID,
-			'content'     => $revision->post_content,
-			'date'        => $date->format( 'j M y @ H:i' ),
-			'author' => get_the_author_meta( 'display_name', $revision->post_author )
-		);
+		return [
+			'id'      => $revision->ID,
+			'content' => $revision->post_content,
+			'date'    => $date->format( 'j M y @ H:i' ),
+			'author'  => get_the_author_meta( 'display_name', $revision->post_author )
+		];
 
 	}, $revisions );
 
 	$revisions[ count( $revisions ) - 1 ]['action'] = 'create';
 
-	wp_localize_script( 'hm-handbook', 'HMHandbookPageHistory', $revisions );
+	wp_localize_script( 'hm-handbook', 'HMHandbookPageHistory', [
+		'strings' => [
+			'listTitle' => __( 'Page History' ),
+		],
+		'revisions' => $revisions,
+	] );
 
 } );
