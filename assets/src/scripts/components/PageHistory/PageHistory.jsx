@@ -1,6 +1,7 @@
 import React from 'react';
 import PageHistoryDiff from './PageHistoryDiff.jsx';
 import PageHistoryList from './PageHistoryList.jsx';
+import 'whatwg-fetch';
 
 export default class PageHistory extends React.Component {
 
