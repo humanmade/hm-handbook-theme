@@ -52,7 +52,10 @@ export default class PageHistoryList extends React.Component {
 
 					} ) }
 				</ul>
-				<button onClick={ () => { actions.onfetchRevisions() } } className={ loadMorebuttonClasses.join( ' ' ) } disabled={ this.props.hasMore ? null : 'disabled' }>Load More Revisions</button>
+				<button onClick={ () => { actions.onfetchRevisions() } } className={ loadMorebuttonClasses.join( ' ' ) } disabled={ this.props.hasMore ? null : 'disabled' }>
+					<span className={ this.props.loading ? 'Loading Loading-Active' : 'Loading' }></span>
+					Load More Revisions
+				</button>
 			</div>
 		);
 

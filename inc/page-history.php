@@ -64,7 +64,7 @@ function get_revisions_response( WP_REST_Request $request ) {
 		'post_parent'    => $request->get_param( 'id' ),
 		'post_type'      => 'revision',
 		'post_status'    => 'inherit',
-		'posts_per_page' => 10,
+		'posts_per_page' => 5,
 		'paged'          => $request->get_param( 'paged' ),
 	] );
 
