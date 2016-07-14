@@ -82,8 +82,8 @@ $mq-lg-down: "screen and ( max-width: 70rem )";
 	}
 
 	& + .Btn {
-		margin-top: $base-line-height / 2;
-		margin-bottom: 0;
+		margin: 0;
+		padding: 0;
 	}
 
 }

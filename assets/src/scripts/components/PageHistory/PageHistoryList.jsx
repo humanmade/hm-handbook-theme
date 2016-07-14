@@ -29,10 +29,10 @@ export default class PageHistoryList extends React.Component {
 		containerClasses = [	'PageHistory_List_Container' ];
 		containerClasses.push( this.state.expanded ? 'PageHistory_List_Container-Expanded' : 'PageHistory_List_Container-Collapsed' );
 
-		toggleButtonClasses = [ 'Btn Btn-Tertiary Btn-Small Btn-Toggle' ];
+		toggleButtonClasses = [ 'Btn Btn-Small Btn-Toggle' ];
 		toggleButtonClasses.push( this.state.expanded ? ' Btn-StateExpanded' : null );
 
-		loadMorebuttonClasses = [ 'Btn Btn-Tertiary Btn-Small' ];
+		loadMorebuttonClasses = [ 'Btn Btn-Small Btn-Link' ];
 		loadMorebuttonClasses.push( this.props.loading ? 'Btn-Loading' : null );
 
 		return (
@@ -54,7 +54,7 @@ export default class PageHistoryList extends React.Component {
 				</ul>
 				<button onClick={ () => { actions.onfetchRevisions() } } className={ loadMorebuttonClasses.join( ' ' ) } disabled={ this.props.hasMore ? null : 'disabled' }>
 					<span className={ this.props.loading ? 'Loading Loading-Active' : 'Loading' }></span>
-					Load More Revisions
+					{ PageHistoryStrings.loadMore }
 				</button>
 			</div>
 		);

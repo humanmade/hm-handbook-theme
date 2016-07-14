@@ -14,7 +14,8 @@ add_action( 'wp_enqueue_scripts', function() {
 
 	wp_localize_script( 'hm-handbook', 'HMHandbookPageHistory', [
 		'strings' => [
-			'listTitle' => __( 'Page History' ),
+			'listTitle' => __( 'Page History', 'hm-handbook' ),
+			'loadMore'  => __( 'Load more revisions', 'hm-handbook' ),
 		],
 		'post_id'   => get_the_ID(),
 		'api_base'  => home_url( '/wp-json/hm-handbook/v1/' ),
