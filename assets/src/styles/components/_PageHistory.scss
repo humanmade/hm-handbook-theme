@@ -1,6 +1,6 @@
 $border-color-light-grey: darken( $border-color, 10% );
-$mq-lg-up:   "screen and ( min-width: 75rem )";
-$mq-lg-down: "screen and ( max-width: 75rem )";
+$mq-lg-up:   "screen and ( min-width: 70rem )";
+$mq-lg-down: "screen and ( max-width: 70rem )";
 
 .PageHistory_Diff-Added {
 	background: #daf2d6;
@@ -24,6 +24,24 @@ $mq-lg-down: "screen and ( max-width: 75rem )";
 
 	@media #{ $mq-lg-up } {
 		margin: 0 #{ $gutter-width * 2 };
+	}
+
+}
+
+.PageHistory_List_Container-Collapsed {
+	height: 3rem;
+	.PageHistory_List,
+	.PageHistory_List + .Btn {
+		display: none;
+	}
+}
+
+.PageHistory_List_Container-Expanded {
+	height: auto;
+	transition: max-height ease-in-out 0.1s;
+	.PageHistory_List,
+	.PageHistory_List + .Btn {
+		display: block;
 	}
 }
 
@@ -50,6 +68,11 @@ $mq-lg-down: "screen and ( max-width: 75rem )";
 		top: $base-line-height / 2;
 		bottom: calc( #{ $base-line-height / 2 } + 2px );
 		left: $gutter-width / 4 - 1px;
+	}
+
+	& + .Btn {
+		margin-top: $base-line-height / 2;
+		margin-bottom: 0;
 	}
 
 }
@@ -114,6 +137,66 @@ $mq-lg-down: "screen and ( max-width: 75rem )";
 
 	.PageHistory_Diff {
 		display: block;
+	}
+
+}
+
+.Btn-Toggle {
+
+	background: none;
+	position: absolute;
+	top: $base-line-height / 4;
+	right: $base-line-height / 4;
+	margin: 0;
+	text-indent: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+	padding: 0;
+	width: 2.25rem;
+	height: 2.25rem;
+
+	&:before {
+		position: absolute;
+		content: " ";
+		background: rgba( $hm-warm-grey, .75 );
+		border-radius: 100%;
+		top: 50%;
+		left: 50%;
+		width: 18px;
+		height: 18px;
+		margin-left: -9px;
+		margin-top: -9px;
+		text-indent: 0;
+	}
+
+	&:after {
+		position: absolute;
+		content: " ";
+		background: url( "#{ $hm-images }/icons/icon-plus-white.svg" ) no-repeat center center;
+		background-size: 100% 100%;
+		top: 50%;
+		left: 50%;
+		width: 8px;
+		height: 8px;
+		margin-left: -4px;
+		margin-top: -4px;
+		text-indent: 0;
+	}
+
+	&:hover,
+	&:focus {
+
+		background: none;
+		outline: none;
+
+		&:before {
+			background: darken( $hm-warm-grey, 40% );
+		}
+	}
+
+
+	&.Btn-StateExpanded:after {
+		background-image: url( "#{ $hm-images }/icons/icon-minus-white.svg" );
 	}
 
 }

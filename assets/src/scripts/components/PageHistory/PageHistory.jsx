@@ -10,23 +10,67 @@ export default class PageHistory extends React.Component {
 
 		this.state = {
 			revisions: this.props.revisions,
-			diff: { a: null, b: null },
+			diff:      { a: null, b: null },
+			page:      1,
+			hasMore:   true,
+			loading:   false,
 		};
 
 	}
 
 	render() {
 
-		const actions = {
-			onSelectRevision: revision => { this.onSelectRevision( revision ) }
+		var actions = {
+			onSelectRevision: revision => { this.onSelectRevision( revision ) },
+			onFetchRevisions: () => { this.onfetchRevisions() },
 		};
 
 		return (
 			<div>
 				<PageHistoryDiff diff_a={ this.state.diff.a } diff_b={ this.state.diff.b } />
-				<PageHistoryList revisions={ this.state.revisions } actions={ actions } />
+				<PageHistoryList revisions={ this.state.revisions } loading={ this.state.loading } hasMore={ this.state.hasMore } actions={ actions } />
 			</div>
 		);
+	}
+
+	onfetchRevisions() {
+
+		if ( ! this.state.hasMore ) {
+			return;
+		}
+
+		var id     = window.HMHandbookPageHistory.post_id;
+		var base   = window.HMHandbookPageHistory.api_base;
+		var nonce  = window.HMHandbookPageHistory.api_nonce;
+		var page   = this.state.page;
+
+		var url = base + 'posts/' + id + '/revisions/?paged=' + page;
+
+		var request = new Request( url, {
+			headers: new Headers({
+				'X-WP-Nonce': nonce
+			})
+		});
+
+		this.setState( { loading: true } );
+
+		fetch( request ).then( response => {
+			return response.json();
+		}).then( json => {
+
+			this.setState( {
+				revisions: this.state.revisions.concat( json.revisions ),
+				page:      this.state.page += 1,
+				loading:   false,
+				hasMore:   json.hasMore,
+			} );
+
+			window.setTimeout( () => {
+				console.log( json );
+			} );
+
+		} );
+
 	}
 
 	/**
@@ -41,7 +85,7 @@ export default class PageHistory extends React.Component {
 			return null;
 		}
 
-		this.props.revisions.forEach( function( _revision, i ) {
+		this.state.revisions.forEach( function( _revision, i ) {
 			if ( _revision.id === revision.id )  {
 				currentIndex = i;
 			}
@@ -51,10 +95,10 @@ export default class PageHistory extends React.Component {
 			return null;
 		}
 
-		if ( currentIndex < this.props.revisions.length - 1 ) {
-			revision_b = this.props.revisions[ currentIndex + 1 ];
+		if ( currentIndex < this.state.revisions.length - 1 ) {
+			revision_b = this.state.revisions[ currentIndex + 1 ];
 		} else {
-			revision_b = this.props.revisions[ this.props.revisions.length - 1 ];
+			revision_b = this.state.revisions[ this.state.revisions.length - 1 ];
 		}
 
 		return revision_b;
@@ -81,11 +125,13 @@ export default class PageHistory extends React.Component {
 
 		} );
 
+		var revision_b = this.getNextRevision( revision );
+
 		this.setState({
 			revisions: newRevisions,
 			diff:      {
 				a: revision.content,
-				b: this.getNextRevision( revision ).content
+				b: revision_b.content
 			},
 		});
 
@@ -112,4 +158,14 @@ export default class PageHistory extends React.Component {
 
 	}
 
+}
+
+
+PageHistoryDiff.propTypes = {
+	revisions: React.PropTypes.array,
+};
+
+
+PageHistory.defaultProps = {
+	revisions: []
 }

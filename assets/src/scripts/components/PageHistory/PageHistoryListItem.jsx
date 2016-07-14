@@ -13,7 +13,7 @@ export default class PageHistoryListItem extends React.Component {
 
 		return (
 			<li className={ classNames.join( ' ' ) } onClick={ e => { this.props.actions.onSelectRevision( this.props ) } }>
-				{ this.props.author } { verb } { this.props.date }
+				{ this.props.date } &ndash; { this.props.author }
 			</li>
 		);
 

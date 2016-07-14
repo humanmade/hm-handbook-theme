@@ -9,9 +9,8 @@
 
 namespace HM_Handbook;
 
-use \DateTime;
-
 require_once( __DIR__ . '/inc/primary-nav.php' );
+require_once( __DIR__ . '/inc/page-history.php' );
 
 add_action( 'after_setup_theme',  __NAMESPACE__ . '\\setup' );
 add_action( 'after_setup_theme',  __NAMESPACE__ . '\\content_width', 0 );
@@ -76,36 +75,3 @@ function enqueue_scripts() {
 function content_width() {
 	$GLOBALS['content_width'] = 640;
 }
-
-add_action( 'wp_enqueue_scripts', function() {
-
-	if ( ! is_singular() ) {
-		return;
-	}
-
-	$revisions = array_values( wp_get_post_revisions( get_the_ID() ) );
-
-	$revisions = array_map( function( $revision ) {
-
-		$date   = new DateTime( $revision->post_modified_gmt );
-		$author = get_userdata( $revision->post_author );
-
-		return [
-			'id'      => $revision->ID,
-			'content' => $revision->post_content,
-			'date'    => $date->format( 'j M y @ H:i' ),
-			'author'  => get_the_author_meta( 'display_name', $revision->post_author )
-		];
-
-	}, $revisions );
-
-	$revisions[ count( $revisions ) - 1 ]['action'] = 'create';
-
-	wp_localize_script( 'hm-handbook', 'HMHandbookPageHistory', [
-		'strings' => [
-			'listTitle' => __( 'Page History' ),
-		],
-		'revisions' => $revisions,
-	] );
-
-} );
