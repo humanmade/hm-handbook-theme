@@ -21,9 +21,9 @@ export default class PageHistory extends React.Component {
 	render() {
 
 		var actions = {
-			onSelectRevision: revision => { this.onSelectRevision( revision ) },
+			onSelectRevision: ( revision ) => { this.onSelectRevision( revision ) },
 			onFetchRevisions: () => { this.onfetchRevisions() },
-			onClearDiff: () => { this.onClearDiff() },
+			onClearDiff:      () => { this.onClearDiff() },
 		};
 
 		return (
@@ -36,7 +36,7 @@ export default class PageHistory extends React.Component {
 
 	onfetchRevisions() {
 
-		if ( ! this.state.hasMore ) {
+		if ( ! this.state.hasMore || this.state.loading ) {
 			return;
 		}
 
@@ -48,6 +48,7 @@ export default class PageHistory extends React.Component {
 		var url = base + 'posts/' + id + '/revisions/?paged=' + page;
 
 		var request = new Request( url, {
+			credentials: 'include',
 			headers: new Headers({
 				'X-WP-Nonce': nonce
 			})

@@ -4,6 +4,7 @@ namespace HM_Handbook;
 
 use \DateTime;
 use \WP_Query;
+use \WP_REST_Request;
 
 add_action( 'wp_enqueue_scripts', function() {
 
@@ -15,10 +16,9 @@ add_action( 'wp_enqueue_scripts', function() {
 		'strings' => [
 			'listTitle' => __( 'Page History' ),
 		],
-		// 'revisions' => $revisions,
 		'post_id'   => get_the_ID(),
-		// 'api_base'  => home_url( '/wp-json/wp/v2/' ),
-		'api_base'  => home_url( '/wp-json/hm-handbook/v1/' ),
+		'api_base'  => home_url( '/wp-json/wp/v2/' ),
+		// 'api_base'  => home_url( '/wp-json/hm-handbook/v1/' ),
 		'api_nonce' => wp_create_nonce( 'wp_rest' ),
 	] );
 
@@ -31,7 +31,6 @@ add_action( 'rest_api_init', function () {
 		[
 			'methods' => 'GET',
 			'callback' => __NAMESPACE__ . '\\get_revisions_response',
-			'permission_callback' => '__return_true',
 			'args' => [
 				'id' => [
 					'sanitize_callback' => 'absint',
@@ -51,7 +50,14 @@ add_action( 'rest_api_init', function () {
 
 } );
 
-function get_revisions_response( $request ) {
+/**
+ * Get post revisions API request response.
+ *
+ * @param  \WP_REST_Request $request Request
+ *
+ * @return \WP_REST_Response Response
+ */
+function get_revisions_response( WP_REST_Request $request ) {
 
 	$revisions = [];
 
@@ -72,7 +78,7 @@ function get_revisions_response( $request ) {
 			'id'      => $revision->ID,
 			'content' => $revision->post_content,
 			'date'    => $date->format( 'j M y @ H:i' ),
-			'author'  => get_the_author_meta( 'display_name', $revision->post_author )
+			'author'  => get_the_author_meta( 'display_name', $revision->post_author ),
 		];
 
 	};

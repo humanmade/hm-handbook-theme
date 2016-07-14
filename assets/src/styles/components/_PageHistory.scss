@@ -47,6 +47,11 @@ $mq-lg-down: "screen and ( max-width: 70rem )";
 	.PageHistory_List,
 	.PageHistory_List + .Btn {
 		display: block;
+
+		&[disabled] {
+			display: none;
+		}
+
 	}
 
 }
