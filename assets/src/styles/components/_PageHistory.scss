@@ -12,17 +12,24 @@ $mq-lg-down: "screen and ( max-width: 70rem )";
 }
 
 .PageHistory_List_Container {
-	left: 100%;
-	top: 0;
+
+
 	max-width: 400px;
 	min-width: 300px;
-	position: absolute;
-	margin: 0 $gutter-width;
+	position: relative;
+	margin: $base-line-height 0;
 	padding: #{ $base-line-height / 2 } #{ $gutter-width / 2 };
 	background: $hm-light-grey;
 	border-radius: 2px;
 
 	@media #{ $mq-lg-up } {
+		position: absolute;
+		left: 100%;
+		top: 0;
+		margin: 0 $gutter-width;
+	}
+
+	@media ( min-width: 1600px ) {
 		margin: 0 #{ $gutter-width * 2 };
 	}
 
