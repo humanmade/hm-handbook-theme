@@ -17,8 +17,7 @@ add_action( 'wp_enqueue_scripts', function() {
 			'listTitle' => __( 'Page History' ),
 		],
 		'post_id'   => get_the_ID(),
-		'api_base'  => home_url( '/wp-json/wp/v2/' ),
-		// 'api_base'  => home_url( '/wp-json/hm-handbook/v1/' ),
+		'api_base'  => home_url( '/wp-json/hm-handbook/v1/' ),
 		'api_nonce' => wp_create_nonce( 'wp_rest' ),
 	] );
 

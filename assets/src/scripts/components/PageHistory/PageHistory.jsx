@@ -41,12 +41,13 @@ export default class PageHistory extends React.Component {
 			return;
 		}
 
+		this.setState( { loading: true } );
+
 		var id     = window.HMHandbookPageHistory.post_id;
 		var base   = window.HMHandbookPageHistory.api_base;
 		var nonce  = window.HMHandbookPageHistory.api_nonce;
 		var page   = this.state.page;
-
-		var url = base + 'posts/' + id + '/revisions/?paged=' + page;
+		var url    = base + 'posts/' + id + '/revisions/?paged=' + page;
 
 		var request = new Request( url, {
 			credentials: 'include',
@@ -54,8 +55,6 @@ export default class PageHistory extends React.Component {
 				'X-WP-Nonce': nonce
 			})
 		});
-
-		this.setState( { loading: true } );
 
 		fetch( request ).then( response => {
 			return response.json();
@@ -84,7 +83,7 @@ export default class PageHistory extends React.Component {
 			return null;
 		}
 
-		this.state.revisions.forEach( function( _revision, i ) {
+		this.state.revisions.forEach( ( _revision, i ) => {
 			if ( _revision.id === revision.id )  {
 				currentIndex = i;
 			}
@@ -112,7 +111,7 @@ export default class PageHistory extends React.Component {
 		}
 
 		// Update active state for each revision.
-		var newRevisions = this.state.revisions.map( function( _revision ) {
+		var newRevisions = this.state.revisions.map( ( _revision ) => {
 
 			if ( revision && revision.id === _revision.id ) {
 				_revision.active = true;
