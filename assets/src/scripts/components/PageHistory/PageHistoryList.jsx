@@ -35,21 +35,10 @@ export default class PageHistoryList extends React.Component {
 		loadMorebuttonClasses = [ 'Btn Btn-Tertiary Btn-Small' ];
 		loadMorebuttonClasses.push( this.props.loading ? 'Btn-Loading' : null );
 
-		// toggleExpandedState = () => {
-
-		// 	this.setState( { expanded: ! this.state.expanded } );
-
-		// 	// Load initial revisions on first expand.
-		// 	// if ( this.props.revisions.length < 1 && this.props.hasMore ) {
-		// 		// actions.onfetchRevisions();
-		// 	// }
-
-		// }
-
 		return (
 			<div ref="list" className={ containerClasses.join( ' ' ) }>
 
-				<button onClick={ () => { this.setState( { expanded: ! this.state.expanded } ); this.maybeLoadRevisions(); } } className={ toggleButtonClasses.join( ' ' ) }>&#9660;</button>
+				<button onClick={ () => { this.onToggleExpanded() } } className={ toggleButtonClasses.join( ' ' ) }>&#9660;</button>
 
 				<h4 className="PageHistory_List_Title">{ PageHistoryStrings.listTitle }</h4>
 				<ul className="PageHistory_List">
@@ -63,10 +52,29 @@ export default class PageHistoryList extends React.Component {
 
 					} ) }
 				</ul>
-				<button onClick={ () => { actions.onfetchRevisions() } } className={ loadMorebuttonClasses.join( ' ' ) } disabled={ this.props.hasMore ? null : 'disabled' }>Load Revisions</button>
+				<button onClick={ () => { actions.onfetchRevisions() } } className={ loadMorebuttonClasses.join( ' ' ) } disabled={ this.props.hasMore ? null : 'disabled' }>Load More Revisions</button>
 			</div>
 		);
 
+	}
+
+	onToggleExpanded() {
+
+		this.setState( {
+			expanded: ! this.state.expanded
+		} );
+
+		window.setTimeout( () => {
+			this.maybeLoadRevisions();
+			this.maybeClearDiff();
+		});
+
+	}
+
+	maybeClearDiff() {
+		if ( ! this.state.expanded ) {
+			this.props.actions.onClearDiff();
+		}
 	}
 
 	/**

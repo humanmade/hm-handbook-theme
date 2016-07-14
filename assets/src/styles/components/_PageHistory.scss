@@ -29,20 +29,26 @@ $mq-lg-down: "screen and ( max-width: 70rem )";
 }
 
 .PageHistory_List_Container-Collapsed {
+
 	height: 3rem;
+	overflow: hidden;
+
 	.PageHistory_List,
 	.PageHistory_List + .Btn {
 		display: none;
 	}
+
 }
 
 .PageHistory_List_Container-Expanded {
+
 	height: auto;
-	transition: max-height ease-in-out 0.1s;
+
 	.PageHistory_List,
 	.PageHistory_List + .Btn {
 		display: block;
 	}
+
 }
 
 .PageHistory_List_Title {

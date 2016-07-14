@@ -23,6 +23,7 @@ export default class PageHistory extends React.Component {
 		var actions = {
 			onSelectRevision: revision => { this.onSelectRevision( revision ) },
 			onFetchRevisions: () => { this.onfetchRevisions() },
+			onClearDiff: () => { this.onClearDiff() },
 		};
 
 		return (
@@ -63,10 +64,6 @@ export default class PageHistory extends React.Component {
 				page:      this.state.page += 1,
 				loading:   false,
 				hasMore:   json.hasMore,
-			} );
-
-			window.setTimeout( () => {
-				console.log( json );
 			} );
 
 		} );
@@ -136,6 +133,18 @@ export default class PageHistory extends React.Component {
 		});
 
 		// Defer until actually set.
+		window.setTimeout( () => {
+			this.toggleContainerClass();
+		} );
+
+	}
+
+	onClearDiff() {
+
+		this.setState({
+			diff: { a: null, b: null },
+		})
+
 		window.setTimeout( () => {
 			this.toggleContainerClass();
 		} );
