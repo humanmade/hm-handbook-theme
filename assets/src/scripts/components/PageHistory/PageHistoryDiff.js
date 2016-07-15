@@ -7,19 +7,17 @@ import DiffMatchPatch from 'diff-match-patch';
 export default class PageHistoryDiff extends React.Component {
 
 	render() {
-		return (
-			<div className="PageHistory_Diff">
-				{ this.getDiff().map( ( part, i ) => {
-					if ( 1 === part[0] ) {
-						return <ins key={ i } className="PageHistory_Diff-Added">{ part[1] }</ins>
-					} else if ( -1 === part[0] ) {
-						return <del key={ i } className="PageHistory_Diff-Removed">{ part[1] }</del>
-					} else {
-						return <span key={ i } className="PageHistory_Diff-NoChange">{ part[1] }</span>
-					}
-				} ) }
-			</div>
-		);
+		return <div className="PageHistory_Diff">
+			{ this.getDiff().map( ( part, i ) => {
+				if ( 1 === part[0] ) {
+					return <ins key={ i } className="PageHistory_Diff-Added">{ part[1] }</ins>
+				} else if ( -1 === part[0] ) {
+					return <del key={ i } className="PageHistory_Diff-Removed">{ part[1] }</del>
+				} else {
+					return <span key={ i } className="PageHistory_Diff-NoChange">{ part[1] }</span>
+				}
+			} ) }
+		</div>
 	}
 
 	getDiff() {
@@ -51,4 +49,4 @@ PageHistoryDiff.propTypes = {
 PageHistoryDiff.defaultProps = {
 	diff_a: '',
 	diff_b: '',
-}
+};

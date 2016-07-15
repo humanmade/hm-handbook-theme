@@ -2,7 +2,7 @@ module.exports =  {
 	cache: false,
 	devtool: 'source-map',
 	entry: {
-		theme: './assets/src/scripts/theme.jsx',
+		theme: './assets/src/scripts/theme.js',
 	},
 	output: {
 		path: 'assets/dist/scripts',

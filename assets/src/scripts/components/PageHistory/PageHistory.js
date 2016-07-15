@@ -1,14 +1,14 @@
 import React from 'react';
-import PageHistoryDiff from './PageHistoryDiff.jsx';
-import PageHistoryList from './PageHistoryList.jsx';
+import PageHistoryDiff from './PageHistoryDiff.js';
+import PageHistoryList from './PageHistoryList.js';
+import PageHistorySettings from './PageHistorySettings.js';
+
 import 'whatwg-fetch';
 
 export default class PageHistory extends React.Component {
 
 	constructor( props ) {
-
-	    super( props );
-
+		super( props );
 		this.state = {
 			revisions: this.props.revisions,
 			diff:      { a: null, b: null },
@@ -16,7 +16,6 @@ export default class PageHistory extends React.Component {
 			hasMore:   true,
 			loading:   false,
 		};
-
 	}
 
 	render() {
@@ -27,12 +26,11 @@ export default class PageHistory extends React.Component {
 			onClearDiff:      () => { this.onClearDiff() },
 		};
 
-		return (
-			<div>
-				<PageHistoryDiff diff_a={ this.state.diff.a } diff_b={ this.state.diff.b } />
-				<PageHistoryList revisions={ this.state.revisions } loading={ this.state.loading } hasMore={ this.state.hasMore } actions={ actions } />
-			</div>
-		);
+		return <div>
+			<PageHistoryDiff diff_a={ this.state.diff.a } diff_b={ this.state.diff.b } />
+			<PageHistoryList revisions={ this.state.revisions } loading={ this.state.loading } hasMore={ this.state.hasMore } actions={ actions } />
+		</div>
+
 	}
 
 	onfetchRevisions() {
@@ -43,11 +41,10 @@ export default class PageHistory extends React.Component {
 
 		this.setState( { loading: true } );
 
-		var id     = window.HMHandbookPageHistory.post_id;
-		var base   = window.HMHandbookPageHistory.api_base;
-		var nonce  = window.HMHandbookPageHistory.api_nonce;
+		var base   = PageHistorySettings.api_base;
+		var nonce  = PageHistorySettings.api_base;
 		var page   = this.state.page;
-		var url    = base + 'posts/' + id + '/revisions/?paged=' + page;
+		var url    = base + 'posts/' + this.props.post_id + '/revisions/?paged=' + page;
 
 		var request = new Request( url, {
 			credentials: 'include',
@@ -65,9 +62,9 @@ export default class PageHistory extends React.Component {
 				page:      this.state.page += 1,
 				loading:   false,
 				hasMore:   json.hasMore,
-			} );
+			});
 
-		} );
+		});
 
 	}
 
@@ -87,7 +84,7 @@ export default class PageHistory extends React.Component {
 			if ( _revision.id === revision.id )  {
 				currentIndex = i;
 			}
-		} );
+		});
 
 		if ( 'undefined' === typeof currentIndex ) {
 			return null;
@@ -112,16 +109,9 @@ export default class PageHistory extends React.Component {
 
 		// Update active state for each revision.
 		var newRevisions = this.state.revisions.map( ( _revision ) => {
-
-			if ( revision && revision.id === _revision.id ) {
-				_revision.active = true;
-			} else {
-				_revision.active = false;
-			}
-
+			_revision.active = revision && revision.id === _revision.id;
 			return _revision;
-
-		} );
+		});
 
 		var revision_b = this.getNextRevision( revision );
 
@@ -136,7 +126,7 @@ export default class PageHistory extends React.Component {
 		// Defer until actually set.
 		window.setTimeout( () => {
 			this.toggleContainerClass();
-		} );
+		});
 
 	}
 
@@ -148,7 +138,7 @@ export default class PageHistory extends React.Component {
 
 		window.setTimeout( () => {
 			this.toggleContainerClass();
-		} );
+		});
 
 	}
 
@@ -172,10 +162,11 @@ export default class PageHistory extends React.Component {
 
 
 PageHistoryDiff.propTypes = {
+	post_id: React.PropTypes.number.isRequired,
 	revisions: React.PropTypes.array,
 };
 
 
 PageHistory.defaultProps = {
-	revisions: []
-}
+	revisions: [],
+};
