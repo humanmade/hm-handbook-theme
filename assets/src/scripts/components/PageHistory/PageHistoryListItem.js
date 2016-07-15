@@ -16,9 +16,7 @@ export default class PageHistoryListItem extends React.Component {
 				{ this.props.date } &ndash; { this.props.author }
 			</li>
 		);
-
 	}
-
 }
 
 PageHistoryListItem.defaultProps = {

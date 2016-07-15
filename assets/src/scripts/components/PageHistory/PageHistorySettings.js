@@ -3,8 +3,6 @@ var defaultStrings = {
 	loadMore: 'Load more revisions',
 };
 
-var localizedStrings = ( 'window' in HMHandbookPageHistory ) ? window.HMHandbookPageHistory.strings : {};
-
 export default {
 	strings: Object.assign( defaultStrings, window.HMHandbookPageHistory.strings ),
 	api_base: window.HMHandbookPageHistory.api_base,

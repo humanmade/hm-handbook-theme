@@ -36,9 +36,7 @@ export default class PageHistoryDiff extends React.Component {
 		dmp.diff_cleanupSemantic( diff );
 
 		return diff;
-
 	}
-
 };
 
 PageHistoryDiff.propTypes = {

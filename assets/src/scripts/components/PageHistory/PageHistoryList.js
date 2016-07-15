@@ -8,13 +8,10 @@ import PageHistorySettings from './PageHistorySettings.js';
 export default class PageHistoryList extends React.Component {
 
 	constructor( props ) {
-
 		super( props );
-
 		this.state = {
 			expanded:  false,
 		};
-
 	}
 
 	render() {
@@ -58,7 +55,6 @@ export default class PageHistoryList extends React.Component {
 				</button>
 			</div>
 		);
-
 	}
 
 	onToggleExpanded() {
@@ -76,9 +72,7 @@ export default class PageHistoryList extends React.Component {
 		if ( ! this.state.expanded ) {
 			this.props.actions.onClearDiff();
 		}
-
 	}
-
 }
 
 PageHistoryList.propTypes = {
@@ -86,7 +80,6 @@ PageHistoryList.propTypes = {
 	loading:   React.PropTypes.bool,
 	hasMore:   React.PropTypes.bool,
 };
-
 
 PageHistoryList.defaultProps = {
 	revisions: [],

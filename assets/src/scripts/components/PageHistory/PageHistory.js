@@ -56,14 +56,12 @@ export default class PageHistory extends React.Component {
 		fetch( request ).then( response => {
 			return response.json();
 		}).then( json => {
-
 			this.setState( {
 				revisions: this.state.revisions.concat( json.revisions ),
 				page:      this.state.page += 1,
 				loading:   false,
 				hasMore:   json.hasMore,
 			});
-
 		});
 
 	}
@@ -97,7 +95,6 @@ export default class PageHistory extends React.Component {
 		}
 
 		return revision_b;
-
 	}
 
 	onSelectRevision( revision ) {
@@ -125,7 +122,6 @@ export default class PageHistory extends React.Component {
 
 		// Defer until actually set.
 		this.toggleContainerClass();
-
 	}
 
 	onClearDiff() {
@@ -135,28 +131,22 @@ export default class PageHistory extends React.Component {
 		})
 
 		this.toggleContainerClass();
-
 	}
 
 	toggleContainerClass() {
-
 		if  ( null === this.state.diff.a || null === this.state.diff.b ) {
 			this.props.containerEl.classList.remove( 'article-showing-diff' );
 		} else {
 			this.props.containerEl.classList.add( 'article-showing-diff' );
 		}
-
 	}
-
 }
-
 
 PageHistory.propTypes = {
 	post_id: React.PropTypes.number.isRequired,
 	revisions: React.PropTypes.array,
 	containerEl: React.PropTypes.object, // DOM element.
 };
-
 
 PageHistory.defaultProps = {
 	revisions: [],
