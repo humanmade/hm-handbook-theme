@@ -42,7 +42,7 @@ export default class PageHistory extends React.Component {
 		this.setState( { loading: true } );
 
 		var base   = PageHistorySettings.api_base;
-		var nonce  = PageHistorySettings.api_base;
+		var nonce  = PageHistorySettings.api_nonce;
 		var page   = this.state.page;
 		var url    = base + 'posts/' + this.props.post_id + '/revisions/?paged=' + page;
 
@@ -124,9 +124,7 @@ export default class PageHistory extends React.Component {
 		});
 
 		// Defer until actually set.
-		window.setTimeout( () => {
-			this.toggleContainerClass();
-		});
+		this.toggleContainerClass();
 
 	}
 
@@ -136,9 +134,7 @@ export default class PageHistory extends React.Component {
 			diff: { a: null, b: null },
 		})
 
-		window.setTimeout( () => {
-			this.toggleContainerClass();
-		});
+		this.toggleContainerClass();
 
 	}
 
@@ -161,7 +157,7 @@ export default class PageHistory extends React.Component {
 }
 
 
-PageHistoryDiff.propTypes = {
+PageHistory.propTypes = {
 	post_id: React.PropTypes.number.isRequired,
 	revisions: React.PropTypes.array,
 };

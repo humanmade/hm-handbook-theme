@@ -52,9 +52,9 @@ export default class PageHistoryList extends React.Component {
 
 					})}
 				</ul>
-				<button onClick={ () => actions.onfetchRevisions() } className={ loadMorebuttonClasses.join( ' ' ) } disabled={ this.props.hasMore }>
+				<button onClick={ () => actions.onfetchRevisions() } className={ loadMorebuttonClasses.join( ' ' ) } disabled={ ! this.props.hasMore }>
 					<span className={ this.props.loading ? 'Loading Loading-Active' : 'Loading' }></span>
-					{ PageHistorySettings.settings.loadMore }
+					{ PageHistorySettings.strings.loadMore }
 				</button>
 			</div>
 		);
@@ -67,27 +67,16 @@ export default class PageHistoryList extends React.Component {
 			expanded: ! this.state.expanded
 		} );
 
-		window.setTimeout( () => {
-			this.maybeLoadRevisions();
-			this.maybeClearDiff();
-		});
-
-	}
-
-	maybeClearDiff() {
-		if ( ! this.state.expanded ) {
-			this.props.actions.onClearDiff();
-		}
-	}
-
-	/**
-	 * Load revisions if have more and there are none.
-	 * Used on first expansion of component.
-	 */
-	maybeLoadRevisions() {
+		// Load revisions if have more and there are none.
+		// Used on first expansion of component.
 		if ( this.props.revisions.length < 1 && this.props.hasMore ) {
 			this.props.actions.onFetchRevisions();
 		}
+
+		if ( ! this.state.expanded ) {
+			this.props.actions.onClearDiff();
+		}
+
 	}
 
 }
