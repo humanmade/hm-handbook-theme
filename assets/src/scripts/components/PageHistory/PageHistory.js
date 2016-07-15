@@ -140,16 +140,10 @@ export default class PageHistory extends React.Component {
 
 	toggleContainerClass() {
 
-		var container = document.querySelectorAll( 'body.single-post .site-content .article, body.page .site-content .article' );
-
-		if ( container.length < 1 ) {
-			return;
-		}
-
 		if  ( null === this.state.diff.a || null === this.state.diff.b ) {
-			container[0].classList.remove( 'article-showing-diff' );
+			this.props.containerEl.classList.remove( 'article-showing-diff' );
 		} else {
-			container[0].classList.add( 'article-showing-diff' );
+			this.props.containerEl.classList.add( 'article-showing-diff' );
 		}
 
 	}
@@ -160,6 +154,7 @@ export default class PageHistory extends React.Component {
 PageHistory.propTypes = {
 	post_id: React.PropTypes.number.isRequired,
 	revisions: React.PropTypes.array,
+	containerEl: React.PropTypes.object, // DOM element.
 };
 
 

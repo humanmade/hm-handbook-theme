@@ -10,5 +10,5 @@ for ( var i = 0; i < containers.length; i++ ) {
 	let el = document.createElement( 'DIV' );
 	let id = parseInt( window.HMHandbookPageHistory.post_id, 10 );
 	containers[ i ].appendChild( el );
-	ReactDOM.render( <PageHistory post_id={ id } />, el );
+	ReactDOM.render( <PageHistory post_id={ id } containerEl={ containers[ i ] } />, el );
 }
