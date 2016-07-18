@@ -12,8 +12,6 @@ $mq-lg-down: "screen and ( max-width: 70rem )";
 }
 
 .PageHistory_List_Container {
-
-
 	max-width: 400px;
 	min-width: 300px;
 	position: relative;
@@ -33,6 +31,15 @@ $mq-lg-down: "screen and ( max-width: 70rem )";
 		margin: 0 #{ $gutter-width * 2 };
 	}
 
+}
+
+.PageHistory_List_Container {
+	.PageHistory_List + .Btn .Loading {
+		background-image: url( "#{ $hm-images }/icons/icon-spinner-black.svg" );
+		background-size: 50%;
+		margin-right: 7px;
+		opacity: 0.3;
+	}
 }
 
 .PageHistory_List_Container-Collapsed {
