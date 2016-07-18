@@ -59,8 +59,10 @@ export default class PageHistoryList extends React.Component {
 
 	onToggleExpanded() {
 
+		var newState = ! this.state.expanded;
+
 		this.setState( {
-			expanded: ! this.state.expanded
+			expanded: newState
 		} );
 
 		// Load revisions if have more and there are none.
@@ -69,7 +71,7 @@ export default class PageHistoryList extends React.Component {
 			this.props.actions.onFetchRevisions();
 		}
 
-		if ( ! this.state.expanded ) {
+		if ( ! newState ) {
 			this.props.actions.onClearDiff();
 		}
 	}

@@ -128,7 +128,6 @@ export default class PageHistory extends React.Component {
 	}
 
 	toggleContainerClass() {
-
 		window.setTimeout( () => {
 			if  ( null === this.state.diff.a || null === this.state.diff.b ) {
 				this.props.containerEl.classList.remove( 'article-showing-diff' );
