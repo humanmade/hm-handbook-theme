@@ -12,7 +12,7 @@ const config = {
 	sass: {
 		outputStyle: 'compressed'
 	},
-	webpack: require( './.webpack-config.js' ),
+	webpack: require( './webpack.config.js' ),
 	imagemin: {
 		progressive: true,
 		svgoPlugins: [
@@ -65,4 +65,4 @@ gulp.task('watch', function() {
 });
 
 // Tasks
-gulp.task( 'default', [ 'styles', 'lint' ] );
+gulp.task( 'default', [ 'styles', 'js', 'lint' ] );
