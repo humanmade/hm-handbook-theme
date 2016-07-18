@@ -5,6 +5,7 @@ namespace HM_Handbook;
 use \DateTime;
 use \WP_Query;
 use \WP_REST_Request;
+use \WP_Error;
 
 add_action( 'wp_enqueue_scripts', function() {
 
@@ -27,10 +28,11 @@ add_action( 'wp_enqueue_scripts', function() {
 add_action( 'rest_api_init', function () {
 	register_rest_route(
 		'hm-handbook/v1',
-		'/posts/(?P<id>\d+)/revisions',
+		'/revisions/(?P<id>\d+)',
 		[
 			'methods' => 'GET',
 			'callback' => __NAMESPACE__ . '\\get_revisions_response',
+			'permission_callback' => __NAMESPACE__ . '\\revisions_request_permissions_callback',
 			'args' => [
 				'id' => [
 					'sanitize_callback' => 'absint',
@@ -87,5 +89,37 @@ function get_revisions_response( WP_REST_Request $request ) {
 		'revisions' => $revisions,
 		'hasMore'   => $request->get_param( 'paged' ) < $query->max_num_pages,
 	) );
+
+}
+
+/**
+ * Request permissions callback.
+ *
+ * Revisions of published posts are public. Otherwise they fall back to the edit_post cap.
+ *
+ * @param WP_REST_Request $request Full data about the request.
+ * @return WP_Error|boolean
+ */
+function revisions_request_permissions_callback( $request ) {
+
+	$post_id = $request->get_param( 'id' );
+
+	if ( 'publish' === get_post_status( $post_id ) ) {
+		return true;
+	}
+
+	$parent = apply_filters( 'rest_the_post', get_post( $post_id ), $post_id );
+
+	if ( ! $parent ) {
+		return true;
+	}
+
+	$parent_post_type_obj = get_post_type_object( $parent->post_type );
+
+	if ( ! current_user_can( $parent_post_type_obj->cap->edit_post, $parent->ID ) ) {
+		return new WP_Error( 'rest_cannot_read', __( 'Sorry, you cannot view revisions of this post.' ), array( 'status' => rest_authorization_required_code() ) );
+	}
+
+	return true;
 
 }

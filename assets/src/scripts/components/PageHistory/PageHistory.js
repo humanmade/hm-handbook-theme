@@ -41,20 +41,19 @@ export default class PageHistory extends React.Component {
 
 		this.setState( { loading: true } );
 
-		var base   = PageHistorySettings.api_base;
-		var nonce  = PageHistorySettings.api_nonce;
-		var page   = this.state.page;
-		var url    = base + 'posts/' + this.props.post_id + '/revisions/?paged=' + page;
+		var url = PageHistorySettings.api_base + 'revisions/' + this.props.post_id + '/?paged=' + this.state.page;
 
 		var request = new Request( url, {
 			credentials: 'include',
 			headers: new Headers({
-				'X-WP-Nonce': nonce
+				'X-WP-Nonce': PageHistorySettings.api_nonce
 			})
 		});
 
 		fetch( request ).then( response => {
-			return response.json();
+			if ( response.ok ) {
+				return response.json();
+			}
 		}).then( json => {
 			this.setState( {
 				revisions: this.state.revisions.concat( json.revisions ),
@@ -99,11 +98,6 @@ export default class PageHistory extends React.Component {
 
 	onSelectRevision( revision ) {
 
-		// If trying to select again, clear.
-		if ( this.state.diff.a && revision.id === this.state.diff.a.id ) {
-			revision = null;
-		}
-
 		// Update active state for each revision.
 		var newRevisions = this.state.revisions.map( ( _revision ) => {
 			_revision.active = revision && revision.id === _revision.id;
@@ -134,20 +128,25 @@ export default class PageHistory extends React.Component {
 	}
 
 	toggleContainerClass() {
-		if  ( null === this.state.diff.a || null === this.state.diff.b ) {
-			this.props.containerEl.classList.remove( 'article-showing-diff' );
-		} else {
-			this.props.containerEl.classList.add( 'article-showing-diff' );
-		}
+
+		window.setTimeout( () => {
+			if  ( null === this.state.diff.a || null === this.state.diff.b ) {
+				this.props.containerEl.classList.remove( 'article-showing-diff' );
+			} else {
+				this.props.containerEl.classList.add( 'article-showing-diff' );
+			}
+		} );
 	}
 }
 
 PageHistory.propTypes = {
 	post_id: React.PropTypes.number.isRequired,
+	post_type: React.PropTypes.string,
 	revisions: React.PropTypes.array,
 	containerEl: React.PropTypes.object, // DOM element.
 };
 
 PageHistory.defaultProps = {
 	revisions: [],
+	post_type: 'post',
 };
