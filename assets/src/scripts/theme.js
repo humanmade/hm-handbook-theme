@@ -2,6 +2,7 @@
 
 	var searchField      = document.getElementById( 'site-search' );
 	var resultsContainer = document.getElementById( 'site-search-results' );
+	var searchBar        = document.querySelector( '.SearchBar' );
 
 	if ( ! searchField || ! resultsContainer ) {
 		return;
@@ -27,6 +28,11 @@
 		content.classList.add( 'SearchBar_Result_Text' );
 		content.appendChild( document.createTextNode( result.content ) );
 		a.appendChild( content );
+
+		// Ensure the width of search results is fixed.
+		// Prevents styling issue as we animate the width of the container.
+		var width = searchBar.offsetWidth - 30;
+		li.style = 'width:' + width + 'px;';
 
 		return li;
 
@@ -67,6 +73,8 @@
 
 	}
 
+	var container = document.getElementById( 'site-search-results' );
+
 	searchField.addEventListener( "keyup", function() {
 
 		if ( searchField.value.length < 2 ) {
@@ -77,4 +85,4 @@
 
 	} );
 
-} )()
+} )();
