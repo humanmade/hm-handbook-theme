@@ -1,9 +1,19 @@
 <?php
 
-namespace HM_Handbook;
+namespace HM_Handbook\Search;
 
 use \WP_REST_Server;
 use \WP_REST_Request;
+use \WP_Query;
+
+add_action( 'wp_enqueue_scripts', function() {
+
+	wp_localize_script( 'hm-handbook', 'HMHandbookSearchSettings', [
+		'api_endpoint' => rest_url( 'hm-handbook/v1/search' ),
+		'api_nonce'    => wp_create_nonce( 'wp_rest' ),
+	] );
+
+}, 20 );
 
 add_action( 'rest_api_init', function() {
 
@@ -19,10 +29,38 @@ add_action( 'rest_api_init', function() {
 
 } );
 
+class Result {
+	public $title;
+	public $excerpt;
+	public $site;
+	public $author;
+	public $date;
+	public $url;
+	public $type;
+}
 
 function search_request_callback( WP_Rest_Request $request ) {
 
 	$query = $request->get_param( 'query' );
+
+	if ( function_exists( 'hmn_hmes_search_items' ) ) {
+		$data = elastic_search_request( $query );
+	} else {
+		$data = fallback_search_request( $query );
+	}
+
+	return rest_ensure_response( $data );
+
+}
+
+/**
+ * Do the elastic search request.
+ *
+ * @param string $query Query string.
+ *
+ * @return array Array of HM_Handbook\Search\Result objects.
+ */
+function elastic_search_request( $query ) {
 
 	$args  = array();
 	$match = preg_match_all( '~(\S+): ?(\S+)~i', $query, $matches );
@@ -64,19 +102,20 @@ function search_request_callback( WP_Rest_Request $request ) {
 
 		$args['sites']  = array_map( function( $site ) {
 
-			if ( ! is_numeric( $site ) ) {
+				if ( ! is_numeric( $site ) ) {
 
-				foreach( hm_hub_get_sites() as $site_obj ) {
+					foreach ( hm_hub_get_sites() as $site_obj ) {
 
-					if ( explode( '.', $site_obj['domain'] )[0] === $site ) {
-						$site = $site_obj['blog_id'];
+						if ( explode( '.', $site_obj['domain'] )[0] === $site ) {
+							$site = $site_obj['blog_id'];
+						}
 					}
 				}
-			}
 
-			return $site;
+				return $site;
 
-		}, $args['sites'] );
+			}, $args['sites']
+		);
 	}
 
 	$query = trim( $query );
@@ -104,7 +143,7 @@ function search_request_callback( WP_Rest_Request $request ) {
 	$data['query'] = $query;
 	$data['results'] = array();
 
-	foreach ($items as $item) {
+	foreach ( $items as $item ) {
 		switch ( $item['_type'] ) {
 			case 'post':
 				$data['results'][] = normalize_post( $item );
@@ -120,14 +159,48 @@ function search_request_callback( WP_Rest_Request $request ) {
 }
 
 
+/**
+ * Fallback to standard WP search if no elastic search is found.
+ *
+ * Note only returns top 50 results. No pagination is supported.
+ *
+ * @param string $query Query string.
+ *
+ * @return array Array of HM_Handbook\Search\Result objects.
+ */
+function fallback_search_request( $query ) {
 
-class Result {
-	public $title;
-	public $excerpt;
-	public $site;
-	public $author;
-	public $date;
-	public $url;
+	$search_query_args = array(
+		's'              => $query,
+		'post_type'      => get_post_types( [ 'public' => true ] ),
+		'posts_per_page' => 50,
+	);
+
+	$search_query = new WP_Query( $search_query_args );
+	$results      = [];
+
+	while ( $search_query->have_posts() ) {
+
+		$search_query->the_post();
+
+		$date_format = sprintf( '%s @ %s', get_option( 'date_format' ), get_option( 'time_format' ) );
+
+		$result          = new Result;
+		$result->title   = strip_tags( html_entity_decode( get_the_title() ) );
+		$result->excerpt = strip_tags( html_entity_decode( get_the_excerpt() ) );
+		$result->author  = get_the_author();
+		$result->date    = get_the_date( $date_format );
+		$result->url     = get_permalink();
+
+		if ( empty( $result->title ) && empty( $result->excerpt ) ) {
+			continue;
+		}
+
+		array_push( $results, $result );
+
+	}
+
+	return $results;
 }
 
 function normalize_post( $item ) {
@@ -138,10 +211,11 @@ function normalize_post( $item ) {
 
 	$post = $item['_source'];
 
-	$data->title = $post['post_title'];
-	$data->url = $post['guid'];
+	$data->title   = $post['post_title'];
+	$data->url     = $post['guid'];
 	$data->excerpt = wp_trim_words( $post['post_content'], 80, ' ' . "[\xe2\x80\xa6]" );
-	$data->date = $post['post_modified'];
+	$data->date    = $post['post_modified'];
+	$data->type    = isset( $post['post_type'] ) ? $post['post_type'] : 'post';
 
 	// Author, as per P2's functions
 	$author = get_user_by( 'id', $post['post_author'] );
@@ -178,10 +252,11 @@ function normalize_comment( $item ) {
 
 	restore_current_blog();
 
-	$data->title = 'Response to: ' . $parent['post_title'];
-	$data->url = trailingslashit( $parent['guid'] ) . '#comment-' . $post['comment_ID'] ;
+	$data->title   = 'Response to: ' . $parent['post_title'];
+	$data->url     = trailingslashit( $parent['guid'] ) . '#comment-' . $post['comment_ID'] ;
 	$data->excerpt = wp_trim_words( $post['comment_content'], 80, ' ' . "[\xe2\x80\xa6]" );
-	$data->date = $post['comment_date'];
+	$data->date    = $post['comment_date'];
+	$data->type    = 'comment';
 
 	// Author, as per P2's functions
 	$author = get_user_by( 'id', $post['user_id'] );
