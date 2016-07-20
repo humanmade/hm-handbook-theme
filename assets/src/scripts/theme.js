@@ -10,12 +10,12 @@
 
 	var createResultItem = function( result ) {
 
-		var li = document.createElement( 'LI' );
-		li.classList.add( 'SearchBar_Result' );
+		var div = document.createElement( 'div' );
+		div.classList.add( 'SearchBar_Result' );
 
 		var a = document.createElement( 'A' );
-		a.setAttribute( 'href', result.permalink )
-		li.appendChild( a );
+		a.setAttribute( 'href', result.url )
+		div.appendChild( a );
 
 		if ( 'title' in result && result.title.length > 0 ) {
 			var title = document.createElement( 'H3' );
@@ -26,27 +26,30 @@
 
 		var content = document.createElement( 'DIV' );
 		content.classList.add( 'SearchBar_Result_Text' );
-		content.appendChild( document.createTextNode( result.content ) );
+		content.appendChild( document.createTextNode( result.excerpt ) );
 		a.appendChild( content );
 
 		// Ensure the width of search results is fixed.
 		// Prevents styling issue as we animate the width of the container.
-		var width = searchBar.offsetWidth - 30;
-		li.style = 'width:' + width + 'px;';
+		var width = searchBar.offsetWidth;
+		div.style = 'width:' + width + 'px;';
 
-		return li;
+		return div;
 
 	}
 
 	var fetchSearchResults = function( query ) {
 
-		var url = 'http://wordpress-trunk.dev/wp-json/hm-handbook/v1/search?query=' + encodeURIComponent( query );
+		var api_endpoint = HMHandbookSearchSettings.api_endpoint;
+		var api_nonce    = HMHandbookSearchSettings.api_nonce;
 
-		fetch( url, {
+		api_endpoint += '?query=' + encodeURIComponent( query );
+
+		fetch( api_endpoint, {
 			credentials: 'include',
-			// headers: new Headers({
-			// 	'X-WP-Nonce': PageHistorySettings.api_nonce
-			// }),
+			headers: new Headers({
+				'X-WP-Nonce': api_nonce
+			}),
 		} ).then( function( response ) {
 			if ( response.ok ) {
 				return response.json();
@@ -73,7 +76,26 @@
 
 	}
 
-	var container = document.getElementById( 'site-search-results' );
+	var container, body, html, height, adminBar;
+
+	container = document.getElementById( 'site-search-results' );
+	adminBar  = document.getElementById( 'wpadminbar' );
+	body      = document.body;
+	html      = document.documentElement;
+
+	height = Math.max(
+		body.scrollHeight,
+		body.offsetHeight,
+		html.clientHeight,
+		html.scrollHeight,
+		html.offsetHeight
+	);
+
+	if ( adminBar ) {
+		height = height - adminBar.offsetHeight;
+	}
+
+	resultsContainer.style['max-height'] = ( height - 108 ) + 'px';
 
 	searchField.addEventListener( "keyup", function() {
 
