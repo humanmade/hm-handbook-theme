@@ -29,6 +29,8 @@ namespace HM_Handbook;
 
 	<?php endif; ?>
 
-	<?php the_content(); ?>
+	<div class="article-content">
+		<?php the_content(); ?>
+	</div>
 
 </article>

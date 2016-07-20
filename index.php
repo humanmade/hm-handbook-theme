@@ -16,7 +16,6 @@ namespace HM_Handbook;
 
 get_header();
 
-
 ?>
 
 <div class="site-container">
