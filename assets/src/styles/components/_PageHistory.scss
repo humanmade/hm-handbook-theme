@@ -104,11 +104,21 @@ $mq-lg-down: "screen and ( max-width: 70rem )";
 
 .PageHistory_List_Item {
 
-	cursor: pointer;
-	padding: #{ $base-line-height / 8 } 0 #{ $base-line-height / 8 } #{ $gutter-width / 2 };
 	position: relative;
+	padding: 0 0 0 #{ $gutter-width / 2 };
 
-	&:hover {
+	a {
+		padding: #{ $base-line-height / 8 } 0;
+		display: block;
+	}
+
+	a:link,
+	a:visited {
+		color: inherit;
+		text-decoration: inherit;
+	}
+
+	a:hover {
 		color: #444;
 		text-decoration: underline;
 	}
@@ -151,6 +161,7 @@ $mq-lg-down: "screen and ( max-width: 70rem )";
 	background: $hm-light-grey;
 	padding: $base-line-height / 2 $gutter-width / 2;
 	font-family: $font-family-code;
+	word-wrap: break-word;
 }
 
 
