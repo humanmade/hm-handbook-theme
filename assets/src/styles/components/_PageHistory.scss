@@ -3,12 +3,12 @@ $mq-lg-up:   "screen and ( min-width: 70rem )";
 $mq-lg-down: "screen and ( max-width: 70rem )";
 
 .PageHistory_Diff-Added {
-	background: #daf2d6;
+	background: $hm-handbook-colour-green;
 	text-decoration: none;
 }
 
 .PageHistory_Diff-Removed {
-	background: lighten( $hm-primary, 35% );;
+	background: lighten( $hm-primary, 35% );
 }
 
 .PageHistory_List_Container {

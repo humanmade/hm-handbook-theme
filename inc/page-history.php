@@ -15,7 +15,7 @@ function init() {
 	add_action( 'rest_api_init',      __NAMESPACE__ . '\\setup_api', 20 );
 
 	foreach ( [ 'post', 'page' ] as $post_type ) {
-		add_post_type_support( 'post', 'hm-handbook-page-history' );
+		add_post_type_support( $post_type, 'hm-handbook-page-history' );
 	};
 
 }
