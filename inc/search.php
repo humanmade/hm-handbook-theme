@@ -13,6 +13,8 @@ add_action( 'wp_enqueue_scripts', function() {
 		'api_nonce'    => wp_create_nonce( 'wp_rest' ),
 	] );
 
+	add_action( 'wp_footer', __NAMESPACE__ . '\\search_templates' );
+
 }, 20 );
 
 add_action( 'rest_api_init', function() {
@@ -118,30 +120,12 @@ function elastic_search_request( $query ) {
 		);
 	}
 
-	$query = trim( $query );
+	$items = hmn_hmes_search_items( trim( $query ), $args );
 
-	if ( ! function_exists( 'hmn_hmes_search_items' ) ) {
-		return rest_ensure_response( [
-			[
-				'type'    => 'article',
-				'title'   => 'Hanc ergo intuens debet',
-				'content' => 'Duo Reges: constructio interrete. Erit enim instructus ad mortem contemnendam, ad exilium, ad ipsum etiam dolorem. Quod autem satis est, eo quicquid accessit, nimium est; Virtutibus igitur rectissime mihi videris et ad consuetudinem nostrae orationis vitia posuisse contraria. Collige omnia, quae soletis: Praesidium amicorum. Tum ille timide vel potius verecunde: Facio, inquit. Non quaeritur autem quid naturae tuae consentaneum sit, sed quid disciplinae. Quae contraria sunt his, malane? Hoc dixerit potius Ennius: Nimium boni est, cui nihil est mali. Dolor ergo, id est summum malum, metuetur semper, etiamsi non aderit',
-				'permalink' => 'http://google.com',
-			],
-			[
-				'type'    => 'article',
-				'title'   => 'Quia dolori non voluptas contraria est.',
-				'content' => 'Duo Reges: constructio interrete. Ego vero volo in virtute vim esse quam maximam; Quantum Aristoxeni ingenium consumptum videmus in musicis? Hanc ergo intuens debet institutum illud quasi signum absolvere. Qui convenit? Quis istud possit, inquit, negare? Certe, nisi voluptatem tanti aestimaretis. In schola desinis. Hi curatione adhibita levantur in dies, valet alter plus cotidie, alter videt. Sin aliud quid voles, postea. Itaque eos id agere, ut a se dolores, morbos, debilitates repellant. Verum hoc idem saepe faciamus.',
-				'permalink' => 'http://bing.com',
-			]
-		] );
-	}
-
-	$items = hmn_hmes_search_items( $query, $args );
-
-	$data = array();
-	$data['query'] = $query;
-	$data['results'] = array();
+	$data = array(
+		'query'   => $query,
+		'results' => [],
+	);
 
 	foreach ( $items as $item ) {
 		switch ( $item['_type'] ) {
@@ -200,7 +184,11 @@ function fallback_search_request( $query ) {
 
 	}
 
-	return $results;
+	return [
+		'query'   => $query,
+		'results' => $results,
+	];
+
 }
 
 function normalize_post( $item ) {
@@ -289,4 +277,24 @@ function normalize_site( $site ) {
 		'url'    => $site->siteurl,
 	);
 	return $data;
+}
+
+function search_result_templates() {
+	?>
+
+	<script id="tmpl-site-search-result" type="text/template">
+		<div class="SearchBar_Result SearchBar_Result-<% if ( 'comment' === type ) { %>-Comment<% } else { %>-Post<% } %>">
+			<a href="<%- url %>">
+	            <% if ( title ) { %>
+					<h3 class="SearchBar_Result_Title"><%- title %></h3>
+				<% } %>
+
+				<% if ( excerpt ) { %>
+					<div class="SearchBar_Result_Text"><%- excerpt %></div>
+				<% } %>
+			</a>
+		</div>
+	</script>
+
+	<?php
 }

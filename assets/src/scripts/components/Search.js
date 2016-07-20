@@ -1,36 +1,32 @@
 import 'whatwg-fetch';
+import debounce from 'lodash/debounce';
+import template from 'lodash/template';
 
 var init = function( searchBar ) {
 
-	var searchField      = searchBar.querySelector( '#site-search' );
-	var resultsContainer = searchBar.querySelector( '#site-search-results' );
+	var searchField      = searchBar.querySelector( '#site-search' ),
+	    resultsContainer = searchBar.querySelector( '#site-search-results' );
 
 	if ( ! searchField || ! resultsContainer ) {
 		return;
 	}
 
+
+	var resultTemplate = document.getElementById( 'tmpl-site-search-result' );
+	var resultTemplateCompiled = template( resultTemplate ? resultTemplate.innerHTML.trim() : '' );
+
+	/**
+	 * Create a result item element
+	 */
 	var createResultItem = function( result ) {
 
-		var div = document.createElement( 'div' );
-		div.classList.add( 'SearchBar_Result' );
+		var html, tmp, div, width;
 
-		var a = document.createElement( 'A' );
-		a.setAttribute( 'href', result.url )
-		div.appendChild( a );
-
-
-		if ( 'title' in result && result.title.length > 0 ) {
-			var title = document.createElement( 'H3' );
-			title.classList.add( 'SearchBar_Result_Title' );
-			title.appendChild( document.createTextNode( result.title ) );
-			a.appendChild( title );
-		}
-
-
-		var content = document.createElement( 'DIV' );
-		content.classList.add( 'SearchBar_Result_Text' );
-		content.appendChild( document.createTextNode( result.excerpt ) );
-		a.appendChild( content );
+		// Create temporary element.
+		// Set HTML, then grab first child.
+		tmp = document.createElement( 'div' );
+		tmp.innerHTML = resultTemplateCompiled( result );
+		div = tmp.firstChild;
 
 		// Ensure the width of search results is fixed.
 		// Prevents styling issue as we animate the width of the container.
@@ -41,6 +37,9 @@ var init = function( searchBar ) {
 
 	}
 
+	/**
+	 * Fetch search results and update results container.
+	 */
 	var fetchSearchResults = function( query ) {
 
 		var api_endpoint = HMHandbookSearchSettings.api_endpoint;
@@ -63,11 +62,11 @@ var init = function( searchBar ) {
 				resultsContainer.removeChild( resultsContainer.firstChild );
 			}
 
-			json.forEach( function( result ) {
+			json.results.forEach( function( result ) {
 				resultsContainer.appendChild( createResultItem( result ) );
 			} )
 
-			if ( json.length > 0 ) {
+			if ( json.results.length > 0 ) {
 				searchBar.classList.add( 'SearchBar-HasResults' );
 			} else {
 				window.setTimeout( function() {
@@ -79,20 +78,17 @@ var init = function( searchBar ) {
 
 	}
 
-	var container, body, html, height, adminBar;
-
-	container = document.getElementById( 'site-search-results' );
-	adminBar  = document.getElementById( 'wpadminbar' );
-	body      = document.body;
-	html      = document.documentElement;
-
-	height = Math.max(
-		body.scrollHeight,
-		body.offsetHeight,
-		html.clientHeight,
-		html.scrollHeight,
-		html.offsetHeight
+	// Get the height of the whole document.
+	// Bit convoluted, taken from jQuery.
+	var height = Math.max(
+		document.body.scrollHeight,
+		document.body.offsetHeight,
+		document.documentElement.clientHeight,
+		document.documentElement.scrollHeight,
+		document.documentElement.offsetHeight
 	);
+
+	var adminBar = document.getElementById( 'wpadminbar' );
 
 	if ( adminBar ) {
 		height = height - adminBar.offsetHeight;
@@ -100,15 +96,17 @@ var init = function( searchBar ) {
 
 	resultsContainer.style['max-height'] = ( height - 108 ) + 'px';
 
-	searchField.addEventListener( "keyup", function() {
+	var keyUpCallBack = function() {
 
 		if ( searchField.value.length < 2 ) {
 			return false;
 		}
 
-		fetchSearchResults( searchField.value );
+		fetchSearchResults( searchField.value )
 
-	} );
+	}
+
+	searchField.addEventListener( "keyup", debounce( keyUpCallBack, 150 ) );
 
 };
 
