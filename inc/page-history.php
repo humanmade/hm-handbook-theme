@@ -1,15 +1,46 @@
 <?php
 
-namespace HM_Handbook;
+namespace HM_Handbook\PageHistory;
 
 use \DateTime;
 use \WP_Query;
 use \WP_REST_Request;
 use \WP_Error;
 
-add_action( 'wp_enqueue_scripts', function() {
+add_action( 'init', __NAMESPACE__ . '\\init' );
 
-	if ( ! is_singular() ) {
+function init() {
+
+	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\localize_script', 20 );
+	add_action( 'rest_api_init',      __NAMESPACE__ . '\\setup_api', 20 );
+
+	foreach ( [ 'post', 'page' ] as $post_type ) {
+		add_post_type_support( 'post', 'hm-handbook-page-history' );
+	};
+
+}
+
+/**
+ * Get supported post types.
+ *
+ * @return array Post type names.
+ */
+function get_supported_post_types() {
+	return array_filter( get_post_types(), function( $post_type ) {
+		return post_type_supports( $post_type, 'hm-handbook-page-history' );
+	} );
+}
+
+/**
+ * Pass plugin settings to hm-handbook script.
+ *
+ * Note must be called AFTER hm-handbook script is registered.
+ *
+ * @return null
+ */
+function localize_script() {
+
+	if ( ! is_singular( get_supported_post_types() ) ) {
 		return;
 	}
 
@@ -23,9 +54,14 @@ add_action( 'wp_enqueue_scripts', function() {
 		'api_nonce' => wp_create_nonce( 'wp_rest' ),
 	] );
 
-}, 20 );
+}
 
-add_action( 'rest_api_init', function () {
+/**
+ * Setup API. Register rest routes.
+ *
+ * @return null
+ */
+function setup_api() {
 	register_rest_route(
 		'hm-handbook/v1',
 		'/revisions/(?P<id>\d+)',
@@ -50,7 +86,7 @@ add_action( 'rest_api_init', function () {
 		]
 	);
 
-} );
+}
 
 /**
  * Get post revisions API request response.
