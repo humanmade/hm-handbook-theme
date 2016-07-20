@@ -1,0 +1,238 @@
+$border-color-light-grey: darken( $border-color, 10% );
+$mq-lg-up:   "screen and ( min-width: 70rem )";
+$mq-lg-down: "screen and ( max-width: 70rem )";
+
+.PageHistory_Diff-Added {
+	background: $hm-handbook-colour-green;
+	text-decoration: none;
+}
+
+.PageHistory_Diff-Removed {
+	background: lighten( $hm-primary, 35% );
+}
+
+.PageHistory_List_Container {
+	max-width: 400px;
+	min-width: 300px;
+	position: relative;
+	margin: $base-line-height 0;
+	padding: #{ $base-line-height / 2 } #{ $gutter-width / 2 };
+	background: $hm-light-grey;
+	border-radius: 2px;
+
+	@media #{ $mq-lg-up } {
+		position: absolute;
+		left: 100%;
+		top: 0;
+		margin: 0 $gutter-width;
+	}
+
+	@media ( min-width: 1600px ) {
+		margin: 0 #{ $gutter-width * 2 };
+	}
+
+}
+
+.PageHistory_List_Container {
+	.PageHistory_List + .Btn .Loading {
+		background-image: url( "#{ $hm-images }/icons/icon-spinner-black.svg" );
+		background-size: 50%;
+		margin-right: 7px;
+		opacity: 0.3;
+	}
+}
+
+.PageHistory_List_Container-Collapsed {
+
+	height: 3rem;
+	overflow: hidden;
+
+	.PageHistory_List,
+	.PageHistory_List + .Btn {
+		display: none;
+	}
+
+}
+
+.PageHistory_List_Container-Expanded {
+
+	height: auto;
+
+	.PageHistory_List,
+	.PageHistory_List + .Btn {
+		display: block;
+
+		&[disabled] {
+			display: none;
+		}
+
+	}
+
+}
+
+.PageHistory_List_Title {
+	@include text-sm;
+	margin-top: 0;
+	margin-bottom: $base-line-height / 4;
+}
+
+.PageHistory_List {
+
+	@include text-sm;
+	color: $hm-medium-grey;
+	list-style: none;
+	position: relative;
+	margin: 0;
+	padding: 0 0 0 #{ $gutter-width / 2 };
+
+	&:after {
+		content: " ";
+		display: block;
+		border-left: 1px solid $border-color-light-grey;
+		position: absolute;
+		top: $base-line-height / 2;
+		bottom: calc( #{ $base-line-height / 2 } + 2px );
+		left: $gutter-width / 4 - 1px;
+	}
+
+	& + .Btn {
+		margin: 0;
+		padding: 0;
+	}
+
+}
+
+.PageHistory_List_Item {
+
+	position: relative;
+	padding: 0 0 0 #{ $gutter-width / 2 };
+
+	a {
+		padding: #{ $base-line-height / 8 } 0;
+		display: block;
+	}
+
+	a:link,
+	a:visited {
+		color: inherit;
+		text-decoration: inherit;
+	}
+
+	a:hover {
+		color: #444;
+		text-decoration: underline;
+	}
+
+	&:after {
+		content: " ";
+		display: block;
+		width: 5px;
+		height: 5px;
+		background: $border-color-light-grey;
+		border-radius: 100%;
+		position: absolute;
+		left: $gutter-width / -4 - 3px;
+		top: $base-line-height / 2;
+		margin-top: 0;
+		z-index: 1;
+	}
+
+	&:first-child:after,
+	&.PageHistory_List_Item-Active:after {
+		width: 9px;
+		height: 9px;
+		margin-top: -3px;
+		left: $gutter-width / -4 - 5px;
+	}
+
+	&.PageHistory_List_Item-Active:after {
+		background-color: $hm-primary;
+	}
+
+	&.PageHistory_List_Item-Active + .PageHistory_List_Item:after {
+		background-color: $hm-medium-grey;
+	}
+}
+
+.PageHistory_Diff {
+	@include text-sm;
+	display: none; // Only shown when active.
+	white-space: pre-wrap;
+	background: $hm-light-grey;
+	padding: $base-line-height / 2 $gutter-width / 2;
+	font-family: $font-family-code;
+	word-wrap: break-word;
+}
+
+
+.article-showing-diff {
+
+	.article-content {
+		display: none;
+	}
+
+	.PageHistory_Diff {
+		display: block;
+	}
+
+}
+
+.Btn-Toggle {
+
+	background: none;
+	position: absolute;
+	top: $base-line-height / 4;
+	right: $base-line-height / 4;
+	margin: 0;
+	text-indent: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+	padding: 0;
+	width: 2.25rem;
+	height: 2.25rem;
+
+	&:before {
+		position: absolute;
+		content: " ";
+		background: rgba( $hm-warm-grey, .75 );
+		border-radius: 100%;
+		top: 50%;
+		left: 50%;
+		width: 18px;
+		height: 18px;
+		margin-left: -9px;
+		margin-top: -9px;
+		text-indent: 0;
+	}
+
+	&:after {
+		position: absolute;
+		content: " ";
+		background: url( "#{ $hm-images }/icons/icon-plus-white.svg" ) no-repeat center center;
+		background-size: 100% 100%;
+		top: 50%;
+		left: 50%;
+		width: 8px;
+		height: 8px;
+		margin-left: -4px;
+		margin-top: -4px;
+		text-indent: 0;
+	}
+
+	&:hover,
+	&:focus {
+
+		background: none;
+		outline: none;
+
+		&:before {
+			background: darken( $hm-warm-grey, 40% );
+		}
+	}
+
+
+	&.Btn-StateExpanded:after {
+		background-image: url( "#{ $hm-images }/icons/icon-minus-white.svg" );
+	}
+
+}

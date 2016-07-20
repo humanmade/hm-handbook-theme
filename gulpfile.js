@@ -1,11 +1,11 @@
-const gulp          = require( 'gulp' );
-const webpack       = require( 'webpack' );
-const sourcemaps    = require( 'gulp-sourcemaps' );
-const watch         = require( 'gulp-watch' );
-const postcss       = require( 'gulp-postcss' );
-const autoprefixer  = require( 'autoprefixer' );
-const sass          = require( 'gulp-sass' );
-const sassLint      = require( 'gulp-sass-lint' );
+const gulp         = require( 'gulp' );
+const webpack      = require( 'webpack' );
+const sourcemaps   = require( 'gulp-sourcemaps' );
+const watch        = require( 'gulp-watch' );
+const postcss      = require( 'gulp-postcss' );
+const autoprefixer = require( 'autoprefixer' );
+const sass         = require( 'gulp-sass' );
+const sassLint     = require( 'gulp-sass-lint' );
 
 // All the configs for different tasks.
 const config = {
@@ -61,8 +61,8 @@ gulp.task( 'lint', function () {
 // Watch for changes in JS/CSS.
 gulp.task('watch', function() {
 	gulp.watch( 'assets/src/styles/**/*.scss', ['styles'] );
-	gulp.watch( ['assets/src/scripts/**/*.js'], ['js'] );
+	gulp.watch( [ 'assets/src/scripts/**/*.js', 'assets/src/scripts/**/*.jsx' ], ['js'] );
 });
 
 // Tasks
-gulp.task( 'default', [ 'styles', 'lint' ] );
+gulp.task( 'default', [ 'styles', 'js', 'lint' ] );
