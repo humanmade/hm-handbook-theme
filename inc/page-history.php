@@ -19,7 +19,7 @@ add_action( 'wp_enqueue_scripts', function() {
 			'loadMore'  => __( 'Load more revisions', 'hm-handbook' ),
 		],
 		'post_id'   => get_the_ID(),
-		'api_base'  => home_url( '/wp-json/hm-handbook/v1/' ),
+		'api_base'  => rest_url( 'hm-handbook/v1/' ),
 		'api_nonce' => wp_create_nonce( 'wp_rest' ),
 	] );
 
