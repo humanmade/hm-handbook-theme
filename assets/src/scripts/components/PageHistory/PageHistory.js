@@ -120,9 +120,16 @@ export default class PageHistory extends React.Component {
 
 	onClearDiff() {
 
+		// Update active state for each revision.
+		var newRevisions = this.state.revisions.map( ( _revision ) => {
+			_revision.active = false
+			return _revision;
+		});
+
 		this.setState({
+			revisions: newRevisions,
 			diff: { a: null, b: null },
-		})
+		});
 
 		this.toggleContainerClass();
 	}
