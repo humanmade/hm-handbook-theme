@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PageHistory from './components/PageHistory/PageHistory.js';
+import searchBar from './components/Search.js';
 
 if ( 'HMHandbookPageHistory' in window ) {
 
@@ -15,4 +16,13 @@ if ( 'HMHandbookPageHistory' in window ) {
 		ReactDOM.render( <PageHistory post_id={ id } containerEl={ containers[ i ] } />, el );
 	}
 
+}
+
+
+var searchBars = document.querySelectorAll( '.SearchBar' );
+
+if ( searchBars.length ) {
+	for ( var i = 0; i < searchBars.length; i++ ) {
+		searchBar.init( searchBars[ i ] );
+	}
 }

@@ -24,9 +24,15 @@ get_header();
 
 	<main class="site-content">
 
+		<?php get_template_part( 'parts/site-content-heading' ); ?>
+
 		<?php while ( have_posts() ) : the_post(); ?>
 			<?php get_template_part( 'parts/article' ); ?>
 		<?php endwhile; ?>
+
+		<?php if ( ! is_singular() ) : ?>
+			<?php get_template_part( 'parts/pagination' ); ?>
+		<?php endif; ?>
 
 	</main>
 
