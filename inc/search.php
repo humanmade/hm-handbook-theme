@@ -19,7 +19,7 @@ add_action( 'wp_enqueue_scripts', function() {
 
 add_action( 'rest_api_init', function() {
 
-	register_rest_route( 'hm-handbook/v1', '/search', array(
+	register_rest_route( 'hm-handbook/v1', '/search', [
 		'callback'     => __NAMESPACE__ . '\\search_request_callback',
 		'methods'      => WP_REST_Server::READABLE,
 		'args' => [
@@ -27,7 +27,7 @@ add_action( 'rest_api_init', function() {
 				'sanitize_callback' => 'sanitize_text_field',
 			],
 		],
-	) );
+	] );
 
 } );
 
@@ -102,11 +102,11 @@ function elastic_search_request( $query ) {
  */
 function fallback_search_request( $query ) {
 
-	$search_query_args = array(
+	$search_query_args = [
 		's'              => $query,
 		'post_type'      => get_post_types( [ 'public' => true ] ),
 		'posts_per_page' => 50,
-	);
+	];
 
 	$search_query = new WP_Query( $search_query_args );
 	$results      = [];
@@ -162,11 +162,11 @@ function normalize_post( $item ) {
 	};
 
 	add_filter( 'user_has_cap', $cb );
-	$data->author = array(
+	$data->author = [
 		'name'   => $author->display_name,
 		'ID'     => $author->ID,
-		'avatar' => get_avatar( $author->ID, '48', '', '', array( 'class' => 'search-result-avatar' ) )
-	);
+		'avatar' => get_avatar( $author->ID, '48', '', '', [ 'class' => 'search-result-avatar' ] )
+	];
 	remove_filter( 'user_has_cap', $cb );
 
 	$data->raw = $post;
@@ -203,11 +203,11 @@ function normalize_comment( $item ) {
 	};
 
 	add_filter( 'user_has_cap', $cb );
-	$data->author = array(
+	$data->author = [
 		'name'   => $author->display_name,
 		'ID'     => $author->ID,
-		'avatar' => get_avatar( $author->ID, '48', '', '', array( 'class' => 'search-result-avatar' ) )
-	);
+		'avatar' => get_avatar( $author->ID, '48', '', '', [ 'class' => 'search-result-avatar' ] )
+	];
 	remove_filter( 'user_has_cap', $cb );
 
 	$data->raw = $post;
@@ -218,12 +218,12 @@ function normalize_comment( $item ) {
 function normalize_site( $site ) {
 	$site = get_blog_details( $site );
 
-	$data = array(
+	$data = [
 		'id'     => $site->blog_id,
 		'name'   => $site->blogname,
 		'domain' => $site->domain,
 		'url'    => $site->siteurl,
-	);
+	];
 	return $data;
 }
 
