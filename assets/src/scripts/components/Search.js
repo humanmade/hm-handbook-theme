@@ -108,6 +108,11 @@ var init = function( searchBar ) {
 
 	searchField.addEventListener( "keyup", debounce( keyUpCallBack, 150 ) );
 
+	// Prevent submission of the search form.
+	searchBar.addEventListener( 'submit', function(e) {
+		e.preventDefault();
+	} );
+
 };
 
 export default {
