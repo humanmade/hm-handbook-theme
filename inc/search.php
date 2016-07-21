@@ -64,68 +64,16 @@ function search_request_callback( WP_Rest_Request $request ) {
  */
 function elastic_search_request( $query ) {
 
-	$args  = array();
-	$match = preg_match_all( '~(\S+): ?(\S+)~i', $query, $matches );
-
-	if ( $match && ! empty( $matches[0] ) ) {
-
-		foreach ( $matches[0] as $key_val ) {
-			$query                  = preg_replace( '~' . preg_quote( $key_val ) . '~', '', $query );
-			$exploded               = explode( ':', str_replace( ' ', '', $key_val ) );
-			$args[ $exploded[ 0 ] ] = strpos( $exploded[1], ',' ) ? explode( ',', $exploded[1] ) : $exploded[1];
-		}
-	}
-
-	if ( ! empty( $args['before'] ) ) {
-		// If only a number is supplied, assume year
-		$args['before'] = is_numeric( $args['before'] ) ? strtotime( $args['before'] . '-01-01' ) :   strtotime( $args['before'] );
-	} else {
-		$args['before'] = null;
-	}
-
-	if ( ! empty( $args['after'] ) ) {
-		// If only a number is supplied, assume year
-		$args['after'] = is_numeric( $args['after'] ) ? strtotime( $args['after'] . '-01-01' ) :   strtotime( $args['after'] );
-	}  else {
-		$args['after'] = null;
-	}
-
-	if ( ! empty( $args['user'] ) && ! is_numeric( $args['user'] )  ) {
-
-		global $wpdb;
-
-		$r = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->users WHERE user_login = %s OR display_name LIKE %s ", $args['user'], '%' . $args['user'] . '%' ) );
-
-		$args['user'] = $r ? $r : $args['user'];
-	}
-
-	if ( ! empty( $args['site'] ) ) {
-		$args['sites']  = is_array( $args['site'] ) ? $args['site'] : array( $args['site'] );
-
-		$args['sites']  = array_map( function( $site ) {
-
-				if ( ! is_numeric( $site ) ) {
-
-					foreach ( hm_hub_get_sites() as $site_obj ) {
-
-						if ( explode( '.', $site_obj['domain'] )[0] === $site ) {
-							$site = $site_obj['blog_id'];
-						}
-					}
-				}
-
-				return $site;
-
-			}, $args['sites']
-		);
-	}
+	$args = [
+		'sites' => [ get_current_blog_id() ],
+	];
 
 	$items = hmn_hmes_search_items( trim( $query ), $args );
 
-	$data = array(
+	$data = [
 		'query'   => $query,
 		'results' => [],
-	);
+	];
 
 	foreach ( $items as $item ) {
 		switch ( $item['_type'] ) {
