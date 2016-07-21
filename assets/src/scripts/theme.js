@@ -19,8 +19,10 @@ if ( 'HMHandbookPageHistory' in window ) {
 }
 
 
-var searchBarEl = document.querySelector( '.SearchBar' );
+var searchBars = document.querySelectorAll( '.SearchBar' );
 
-if ( searchBarEl ) {
-	searchBar.init( searchBarEl );
+if ( searchBars.length ) {
+	for ( var i = 0; i < searchBars.length; i++ ) {
+		searchBar.init( searchBars[ i ] );
+	}
 }

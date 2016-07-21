@@ -13,7 +13,7 @@ add_action( 'wp_enqueue_scripts', function() {
 		'api_nonce'    => wp_create_nonce( 'wp_rest' ),
 	] );
 
-	add_action( 'wp_footer', __NAMESPACE__ . '\\search_templates' );
+	add_action( 'wp_footer', __NAMESPACE__ . '\\search_result_templates' );
 
 }, 20 );
 

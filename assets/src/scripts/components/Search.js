@@ -4,7 +4,7 @@ import template from 'lodash/template';
 
 var init = function( searchBar ) {
 
-	var searchField      = searchBar.querySelector( '.SearchBar_Field ),
+	var searchField      = searchBar.querySelector( '.SearchBar_Field' ),
 	    resultsContainer = searchBar.querySelector( '.SearchBar_Results' );
 
 	if ( ! searchField || ! resultsContainer ) {
@@ -13,7 +13,7 @@ var init = function( searchBar ) {
 
 
 	var resultTemplate = document.getElementById( 'tmpl-site-search-result' );
-	var resultTemplateCompiled = template( resultTemplate ? resultTemplate.innerHTML.trim() : '' );
+	var resultTemplateCompiled = template( resultTemplate ? resultTemplate.innerHTML.trim() : '<a href="<% url %>"><%- title %></a>' );
 
 	/**
 	 * Create a result item element
