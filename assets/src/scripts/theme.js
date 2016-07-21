@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PageHistory from './components/PageHistory/PageHistory.js';
-import searchBar from './components/Search.js';
+// import searchBar from './components/Search.js';
+import SearchBar from './components/SearchBar/SearchBar.js';
 
 if ( 'HMHandbookPageHistory' in window ) {
 
@@ -18,11 +19,17 @@ if ( 'HMHandbookPageHistory' in window ) {
 
 }
 
+var searchBarContainers = document.querySelectorAll( '.StyleGuide_SearchContainer' );
 
-var searchBars = document.querySelectorAll( '.SearchBar' );
+for ( var i = 0; i < searchBarContainers.length; i++ ) {
 
-if ( searchBars.length ) {
-	for ( var i = 0; i < searchBars.length; i++ ) {
-		searchBar.init( searchBars[ i ] );
+	while ( searchBarContainers[ i ].firstChild ) {
+		searchBarContainers[ i ].removeChild( searchBarContainers[ i ].firstChild );
 	}
+
+	ReactDOM.render(
+		<SearchBar query={ '' } containerEl={ searchBarContainers[ i ] } />,
+		searchBarContainers[ i ]
+	);
+
 }
