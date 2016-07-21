@@ -22,31 +22,21 @@ add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_scripts' );
  */
 function setup() {
 
-	/*
-	 * Let WordPress manage the document title.
-	 * By adding theme support, we declare that this theme does not use a
-	 * hard-coded <title> tag in the document head, and expect WordPress to
-	 * provide it for us.
-	 */
+	// Let WordPress manage the document title.
 	add_theme_support( 'title-tag' );
 
-	/*
-	 * Enable support for Post Thumbnails on posts and pages.
-	 *
-	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-	 */
+	// Enable support for Post Thumbnails on posts and pages.
 	add_theme_support( 'post-thumbnails' );
 
-	/*
-	 * Switch default core markup for search form, comment form, and comments
-	 * to output valid HTML5.
-	 */
+	// Switch default core markup for search form, comment form, and comments to output valid HTML5.
 	add_theme_support( 'html5', [ 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ]	);
 
-	/**
-	 * Register navigation menus.
-	 */
+	// Register navigation menus.
 	register_nav_menu( 'nav-primary', 'Main navigation' );
+
+	// Filter next/prev post classes.
+	add_filter( 'next_posts_link_attributes',     __NAMESPACE__ . '\\posts_link_attributes' );
+	add_filter( 'previous_posts_link_attributes', __NAMESPACE__ . '\\posts_link_attributes' );
 
 }
 
@@ -116,4 +106,13 @@ function get_parent_theme_file_uri( $file = '' ) {
 	}
 
 	return $url;
+}
+
+/**
+ * Add Class to pagination links
+ *
+ * @return string Attributes.
+ */
+function posts_link_attributes() {
+    return 'class="Btn Btn-Secondary Btn-Small"';
 }

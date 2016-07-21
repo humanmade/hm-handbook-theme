@@ -1,0 +1,11 @@
+.Pagination {
+
+	margin: $base-line-height auto 0;
+	border-top: 1px solid $border-color;
+	padding-top: $base-line-height;
+	text-align: center;
+
+	a:last-child {
+		margin-right: 0;
+	}
+}

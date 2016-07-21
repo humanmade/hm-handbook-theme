@@ -30,6 +30,11 @@ get_header();
 			<?php get_template_part( 'parts/article' ); ?>
 		<?php endwhile; ?>
 
+		<div class="Pagination">
+			<?php previous_posts_link( 'Previous Page' ); ?>
+			<?php next_posts_link( 'Next Page' ); ?>
+		</div>
+
 	</main>
 
 </div>
