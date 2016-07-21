@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PageHistory from './components/PageHistory/PageHistory.js';
-// import searchBar from './components/Search.js';
 import SearchBar from './components/SearchBar/SearchBar.js';
 
 if ( 'HMHandbookPageHistory' in window ) {

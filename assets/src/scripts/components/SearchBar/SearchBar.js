@@ -1,6 +1,5 @@
 import React from 'react';
 import SearchBarResults from './SearchBarResults.js';
-import debounce from 'lodash/debounce';
 
 import 'whatwg-fetch';
 
@@ -77,8 +76,14 @@ export default class SearchBar extends React.Component {
 				return response.json();
 			}
 		}).then( ( json ) => {
+
 			this.setState( { results: json.results } );
-			debounce( () => { this.setState( { loading: false } ) }, 750 )();
+
+			// Delay disable loading just a little.
+			window.setTimeout( () => {
+				this.setState( { loading: false } );
+			}, 500 );
+
 		});
 	}
 
@@ -89,7 +94,7 @@ export default class SearchBar extends React.Component {
 	onBlur() {
 		window.setTimeout( () => {
 			this.setState( { focused: false } );
-		}, 750 );
+		}, 500 );
 	}
 
 }
