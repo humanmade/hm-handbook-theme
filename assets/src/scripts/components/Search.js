@@ -4,8 +4,8 @@ import template from 'lodash/template';
 
 var init = function( searchBar ) {
 
-	var searchField      = searchBar.querySelector( '#site-search' ),
-	    resultsContainer = searchBar.querySelector( '#site-search-results' );
+	var searchField      = searchBar.querySelector( '.SearchBar_Field ),
+	    resultsContainer = searchBar.querySelector( '.SearchBar_Results' );
 
 	if ( ! searchField || ! resultsContainer ) {
 		return;
