@@ -1,0 +1,20 @@
+.site-content-header {
+
+	margin: $base-line-height auto $base-line-height;
+	border-bottom: 1px solid $border-color;
+	padding-bottom: $base-line-height;
+
+	@media #{ $mq-lg-up } {
+		margin-top: $base-line-height * 2;
+		margin-bottom: $base-line-height * 2;
+	}
+
+	&:first-child {
+		margin-top: 0;
+	}
+
+	.site-content-header-title {
+		margin-top: 0;
+	}
+
+}
