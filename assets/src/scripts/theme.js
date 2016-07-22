@@ -20,7 +20,7 @@ if ( 'HMHandbookPageHistory' in window ) {
 
 var searchBarContainers = document.querySelectorAll( '.StyleGuide_SearchContainer' );
 
-for ( var i = 0; i < searchBarContainers.length; i++ ) {
+for ( let i = 0; i < searchBarContainers.length; i++ ) {
 
 	while ( searchBarContainers[ i ].firstChild ) {
 		searchBarContainers[ i ].removeChild( searchBarContainers[ i ].firstChild );
