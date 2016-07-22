@@ -64,7 +64,7 @@ export default class SearchBar extends Component {
 		var api_endpoint = HMHandbookSearchSettings.api_endpoint;
 		var api_nonce    = HMHandbookSearchSettings.api_nonce;
 
-		api_endpoint += '?query=' + encodeURIComponent( query );
+		api_endpoint += `?query=${ encodeURIComponent( query ) }`;
 
 		fetch( api_endpoint, {
 			credentials: 'include',
