@@ -5,7 +5,7 @@
 
 		<div class="SearchBar_Container">
 			<input class="SearchBar_Field" type="search" id="site-search" placeholder="<?php esc_html_e( 'Search the site &hellip;', 'hm-handbook' ); ?>" value="<?php the_search_query(); ?>" name="s"/>
-			<?php submit_button( 'Submit', 'SearchBar_Submit' ) ?>
+			<button class="SearchBar_Submit"><?php esc_html_e( 'Submit', 'hm-handbook' ); ?></button>
 		</div>
 
 	</form>
