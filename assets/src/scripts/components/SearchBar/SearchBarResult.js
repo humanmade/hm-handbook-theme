@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 
 /**
  * History List.
@@ -7,13 +8,16 @@ export default class SearchBar_Result extends Component {
 
 	render() {
 
-		var classes = [ 'SearchBar_Result' ];
-		classes.push( ( 'comment' === this.props.type ) ? 'SearchBar_Result-Comment' : 'SearchBar_Result-Post' );
+		let classes = classNames({
+			'SearchBar_Result':         true,
+			'SearchBar_Result-Comment': 'comment' === this.props.type,
+			'SearchBar_Result-Post':    'post' === this.props.type
+		});
 
-		var style = { width: ( this.props.containerWidth - 60 ) + 'px' }
+		let style = { width: ( this.props.containerWidth - 60 ) + 'px' }
 
 		return (
-			<div style={ style } className={ classes.join( ' ' ) }>
+			<div style={ style } className={ classes }>
 				<a href={ this.props.url }>
 					<h3 className="SearchBar_Result_Title">{ this.props.title }</h3>
 					<div className="SearchBar_Result_Text">{ this.props.excerpt }</div>

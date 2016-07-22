@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SearchBarResults from './SearchBarResults.js';
-
+import classNames from 'classnames';
 import 'whatwg-fetch';
 
 var strings = {
@@ -23,18 +23,14 @@ export default class SearchBar extends Component {
 
 	render() {
 
-		var searchBarClasses = [ 'SearchBar' ];
+		let searchBarClassNames = classNames({
+			'SearchBar':            true,
+			'SearchBar-Focused':    this.state.focused,
+			'SearchBar-HasResults': this.state.focused,
+			'SearchBar-Loading':    this.state.loading,
+		});
 
-		if ( this.state.focused ) {
-			searchBarClasses.push( 'SearchBar-Focused' );
-			searchBarClasses.push( 'SearchBar-HasResults' );
-		}
-
-		if ( this.state.loading ) {
-			searchBarClasses.push( 'SearchBar-Loading' );
-		}
-
-		return <div className={ searchBarClasses.join(' ') }>
+		return <div className={ searchBarClassNames }>
 
 			<form
 				className="SearchBar_Container"
@@ -86,8 +82,9 @@ export default class SearchBar extends Component {
 	}
 
 	fetchResults( query ) {
-		var api_endpoint = HMHandbookSearchSettings.api_endpoint;
-		var api_nonce    = HMHandbookSearchSettings.api_nonce;
+
+		let api_endpoint = HMHandbookSearchSettings.api_endpoint;
+		let api_nonce    = HMHandbookSearchSettings.api_nonce;
 
 		api_endpoint += `?query=${ encodeURIComponent( query ) }`;
 
