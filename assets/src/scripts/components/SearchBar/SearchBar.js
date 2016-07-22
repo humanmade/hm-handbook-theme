@@ -35,15 +35,40 @@ export default class SearchBar extends Component {
 		}
 
 		return <div className={ searchBarClasses.join(' ') }>
-			<form className="SearchBar_Container" role="search" method="get" onSubmit={ (e) => { e.preventDefualt(); this.onSearch() } }>
+
+			<form
+				className="SearchBar_Container"
+				role="search"
+				method="get"
+				onSubmit={ (e) => { e.preventDefualt(); this.onSearch() } }
+			>
+
 				<label className="SearchBar_Label" htmlFor="site-search">{ strings.label }</label>
-				<input ref="input" className="SearchBar_Field" type="search" id="site-search" placeholder={ strings.placeholder } value={ this.state.query } onChange={ () => this.onSearch() } onFocus={ () => this.onFocus() } onBlur={ () => this.onBlur() } />
+
+				<input
+					ref="input"
+					className="SearchBar_Field"
+					type="search"
+					id="site-search"
+					placeholder={ strings.placeholder }
+					value={ this.state.query }
+					onChange={ () => this.onSearch() }
+					onFocus={ () => this.onFocus() }
+					onBlur={ () => this.onBlur() }
+				/>
+
 				<button className="SearchBar_Submit" type="submit">
 					{ strings.button }
 					<span className={ this.state.loading ? 'Loading Loading-Active' : 'Loading' }></span>
 				</button>
+
 			</form>
-			<SearchBarResults results={ this.state.results } containerWidth={ this.props.containerEl.offsetWidth } />
+
+			<SearchBarResults
+				results={ this.state.results }
+				containerWidth={ this.props.containerEl.offsetWidth }
+			/>
+
 		</div>
 	}
 
