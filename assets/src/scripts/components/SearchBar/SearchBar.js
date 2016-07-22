@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import SearchBarResults from './SearchBarResults.js';
 
 import 'whatwg-fetch';
@@ -9,7 +9,7 @@ var strings = {
 	placeholder: 'Search the site…',
 };
 
-export default class SearchBar extends React.Component {
+export default class SearchBar extends Component {
 
 	constructor( props ) {
 		super( props );

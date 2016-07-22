@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 /**
  * History List.
  */
-export default class SearchBar_Result extends React.Component {
+export default class SearchBar_Result extends Component {
 
 	render() {
 

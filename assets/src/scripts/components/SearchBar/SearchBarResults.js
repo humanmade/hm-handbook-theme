@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import SearchBarResult from './SearchBarResult.js';
 
 /**
  * History List.
  */
-export default class SearchBarResults extends React.Component {
+export default class SearchBarResults extends Component {
 
 	render() {
 
