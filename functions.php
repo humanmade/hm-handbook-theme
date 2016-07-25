@@ -16,6 +16,7 @@ require_once( __DIR__ . '/inc/search.php' );
 add_action( 'after_setup_theme',  __NAMESPACE__ . '\\setup' );
 add_action( 'after_setup_theme',  __NAMESPACE__ . '\\content_width', 0 );
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_scripts' );
+add_action( 'admin_init',         __NAMESPACE__ . '\\setup_admin' );
 
 /**
  * Set up the theme.
@@ -37,6 +38,18 @@ function setup() {
 	// Filter next/prev post classes.
 	add_filter( 'next_posts_link_attributes',     __NAMESPACE__ . '\\posts_link_attributes' );
 	add_filter( 'previous_posts_link_attributes', __NAMESPACE__ . '\\posts_link_attributes' );
+
+
+}
+
+function setup_admin() {
+
+	add_editor_style( 'assets/dist/styles/editor.css' );
+
+	add_filter( 'mce_external_plugins', function( $plugin_array ) {
+		$plugin_array['typekit'] = get_template_directory_uri() . '/inc/tinyMCE/tinyMCE-typekit.js';
+		return $plugin_array;
+	} );
 
 }
 
