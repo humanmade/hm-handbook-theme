@@ -3,12 +3,6 @@
 	background-color: $hm-beige;
 	padding: $base-line-height $gutter-width;
 
-	@media #{ $mq-md-up } {
-		width: 20%;
-		max-width: 300px;
-		min-width: 250px;
-	}
-
 	ul {
 		margin: 0;
 	}

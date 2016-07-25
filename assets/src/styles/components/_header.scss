@@ -6,6 +6,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: left;
+
 }
 
 .site-logo {
@@ -43,9 +44,8 @@
 	}
 
 	@media #{ $mq-md-up } {
-		width: 20%;
+		min-width: 200px;
 		max-width: 300px;
-		min-width: 250px;
 	}
 
 }

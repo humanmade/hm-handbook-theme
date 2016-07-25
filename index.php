@@ -24,15 +24,27 @@ get_header();
 
 	<main class="site-content">
 
-		<?php get_template_part( 'parts/site-content-heading' ); ?>
+		<div class="site-content-inner">
 
-		<?php while ( have_posts() ) : the_post(); ?>
-			<?php get_template_part( 'parts/article' ); ?>
-		<?php endwhile; ?>
+			<?php get_template_part( 'parts/site-content-heading' ); ?>
 
-		<?php if ( ! is_singular() ) : ?>
-			<?php get_template_part( 'parts/pagination' ); ?>
-		<?php endif; ?>
+			<?php while ( have_posts() ) : the_post(); ?>
+				<?php get_template_part( 'parts/article' ); ?>
+			<?php endwhile; ?>
+
+			<?php if ( ! is_singular() ) : ?>
+				<?php get_template_part( 'parts/pagination' ); ?>
+			<?php endif; ?>
+
+		</div>
+
+		<div class="site-content-sidebar">
+			Site content sidebar. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. At cum de plurimis eadem dicit, tum certe de maximis. Sed in rebus apertissimis nimium longi sumus. Odium autem et invidiam facile vitabis.
+
+Ut non sine causa ex iis memoriae ducta sit disciplina. Tamen a proposito, inquam, aberramus. Sin tantum modo ad indicia veteris memoriae cognoscenda, curiosorum.
+
+An vero displicuit ea, quae tributa est animi virtutibus tanta praestantia? Aut, Pylades cum sis, dices te esse Orestem, ut moriare pro amico? Venit enim mihi Platonis in mentem, quem accepimus primum hic disputare solitum;
+		</div>
 
 	</main>
 
