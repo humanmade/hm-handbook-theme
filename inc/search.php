@@ -13,8 +13,6 @@ add_action( 'wp_enqueue_scripts', function() {
 		'api_nonce'    => wp_create_nonce( 'wp_rest' ),
 	] );
 
-	add_action( 'wp_footer', __NAMESPACE__ . '\\search_result_templates' );
-
 }, 20 );
 
 add_action( 'rest_api_init', function() {
@@ -225,24 +223,4 @@ function normalize_site( $site ) {
 		'url'    => $site->siteurl,
 	];
 	return $data;
-}
-
-function search_result_templates() {
-	?>
-
-	<script id="tmpl-site-search-result" type="text/template">
-		<div class="SearchBar_Result SearchBar_Result-<% if ( 'comment' === type ) { %>-Comment<% } else { %>-Post<% } %>">
-			<a href="<%- url %>">
-	            <% if ( title ) { %>
-					<h3 class="SearchBar_Result_Title"><%- title %></h3>
-				<% } %>
-
-				<% if ( excerpt ) { %>
-					<div class="SearchBar_Result_Text"><%- excerpt %></div>
-				<% } %>
-			</a>
-		</div>
-	</script>
-
-	<?php
 }
