@@ -4,7 +4,7 @@ import classNames from 'classnames';
 /**
  * History List.
  */
-export default class SearchBar_Result extends Component {
+export default class SearchBarResult extends Component {
 
 	render() {
 
@@ -28,12 +28,12 @@ export default class SearchBar_Result extends Component {
 
 }
 
-SearchBar_Result.propTypes = {
+SearchBarResult.propTypes = {
 	query:          React.PropTypes.string,
 	containerWidth: React.PropTypes.number,
 };
 
-SearchBar_Result.defaultProps = {
+SearchBarResult.defaultProps = {
 	query:          '',
 	containerWidth: 0,
 }
