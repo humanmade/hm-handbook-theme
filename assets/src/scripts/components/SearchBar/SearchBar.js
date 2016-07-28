@@ -2,12 +2,7 @@ import React, { Component } from 'react';
 import SearchBarResults from './SearchBarResults.js';
 import classNames from 'classnames';
 import 'whatwg-fetch';
-
-var strings = {
-	label:       'Search',
-	button:      'Submit',
-	placeholder: 'Search the site…',
-};
+import searchBarSettings from './SearchBarSettings.js';
 
 export default class SearchBar extends Component {
 
@@ -39,14 +34,14 @@ export default class SearchBar extends Component {
 				onSubmit={ (e) => { e.preventDefualt(); this.onSearch() } }
 			>
 
-				<label className="SearchBar_Label" htmlFor="site-search">{ strings.label }</label>
+				<label className="SearchBar_Label" htmlFor="site-search">{ searchBarSettings.strings.label }</label>
 
 				<input
 					ref="input"
 					className="SearchBar_Field"
 					type="search"
 					id="site-search"
-					placeholder={ strings.placeholder }
+					placeholder={ searchBarSettings.strings.placeholder }
 					value={ this.state.query }
 					onChange={ () => this.onSearch() }
 					onFocus={ () => this.onFocus() }
@@ -54,7 +49,7 @@ export default class SearchBar extends Component {
 				/>
 
 				<button className="SearchBar_Submit" type="submit">
-					{ strings.button }
+					{ searchBarSettings.strings.button }
 					<span className={ this.state.loading ? 'Loading Loading-Active' : 'Loading' }></span>
 				</button>
 
@@ -63,6 +58,7 @@ export default class SearchBar extends Component {
 			<SearchBarResults
 				results={ this.state.results }
 				containerWidth={ this.props.containerEl.offsetWidth }
+				query={ this.state.query }
 			/>
 
 		</div>
@@ -83,8 +79,8 @@ export default class SearchBar extends Component {
 
 	fetchResults( query ) {
 
-		let api_endpoint = HMHandbookSearchSettings.api_endpoint;
-		let api_nonce    = HMHandbookSearchSettings.api_nonce;
+		let api_endpoint = searchBarSettings.api_endpoint;
+		let api_nonce    = searchBarSettings.api_nonce;
 
 		api_endpoint += `?query=${ encodeURIComponent( query ) }`;
 

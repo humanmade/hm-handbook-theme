@@ -1,0 +1,36 @@
+$hm-images: "./../../../vendor/hm-pattern-library/assets/images";
+
+// External
+@import "./../../../vendor/hm-pattern-library/assets/sass/style";
+
+// Base
+@import "base/variables";
+@import "base/fonts";
+
+.mce-content-body {
+	max-width: 90%;
+	max-width: calc( 40rem + #{ $gutter-width * 2 } );
+	margin-left: auto;
+	margin-right: auto;
+	-webkit-font-smoothing: auto !important;
+}
+
+table {
+	margin: $base-line-height auto;
+}
+
+.mce-item-table {
+	border: none;
+}
+
+.mce-item-table td {
+	@extend td;
+	border-top: none;
+	border-left: none;
+}
+
+.mce-item-table th {
+	@extend td;
+	border-top: none;
+	border-left: none;
+}
