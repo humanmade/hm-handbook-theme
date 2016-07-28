@@ -8,9 +8,15 @@ use \WP_Query;
 
 add_action( 'wp_enqueue_scripts', function() {
 
-	wp_localize_script( 'hm-handbook', 'HMHandbookSearchSettings', [
+	wp_localize_script( 'hm-handbook', 'HMHandbookSearchBarSettings', [
 		'api_endpoint' => rest_url( 'hm-handbook/v1/search' ),
 		'api_nonce'    => wp_create_nonce( 'wp_rest' ),
+		'strings' => [
+			'label'       => __( 'Search', 'hm-handbook' ),
+			'button'      => __( 'Submit', 'hm-handbook' ),
+			'placeholder' => __( 'Search the site…', 'hm-handbook' ),
+			'noResults'   => __( 'No results found', 'hm-handbook' ),
+		],
 	] );
 
 }, 20 );
