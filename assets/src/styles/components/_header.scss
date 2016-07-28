@@ -22,8 +22,8 @@
 	.HMLogo {
 
 		display: block;
-		width: 240px;
-		height: 46px;
+		width: 210px;
+		height: 40px;
 		margin: #{ .75 * $base-line-height } auto $base-line-height;
 
 		@media #{ $mq-md-down } {
@@ -44,8 +44,8 @@
 	}
 
 	@media #{ $mq-md-up } {
-		min-width: 200px;
-		max-width: 300px;
+		min-width: 250px;
+		max-width: 250px;
 	}
 
 }
