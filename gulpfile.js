@@ -51,8 +51,8 @@ gulp.task( 'js', function( callback ) {
 	);
 });
 
-gulp.task( 'lint', function () {
-  return gulp.src( './assets/src/styles/**/*.s+(a|c)ss')
+gulp.task( 'lint-sass', function () {
+  return gulp.src( [ './assets/src/styles/**/*.s+(a|c)ss', '!./assets/src/styles/editor.scss' ] )
 	.pipe( sassLint( { configFile: '.sass-lint.yml' } ) )
 	.pipe( sassLint.format() )
 	.pipe( sassLint.failOnError() )
@@ -60,9 +60,9 @@ gulp.task( 'lint', function () {
 
 // Watch for changes in JS/CSS.
 gulp.task('watch', function() {
-	gulp.watch( 'assets/src/styles/**/*.scss', ['styles'] );
+	gulp.watch( 'assets/src/styles/**/*.scss', ['styles', 'lint-sass' ] );
 	gulp.watch( [ 'assets/src/scripts/**/*.js', 'assets/src/scripts/**/*.jsx' ], ['js'] );
 });
 
 // Tasks
-gulp.task( 'default', [ 'styles', 'js', 'lint' ] );
+gulp.task( 'default', [ 'styles', 'js', 'lint-sass' ] );
