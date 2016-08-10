@@ -1,0 +1,105 @@
+.comment-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+
+.comment-list .comment {
+
+	margin: $base-line-height auto $base-line-height;
+
+	@media #{ $mq-lg-up } {
+		margin-top: $base-line-height * 2;
+		margin-bottom: $base-line-height * 2;
+	}
+
+	.comment-meta {
+
+		margin-bottom: $base-line-height;
+		padding-left: calc( 3rem + #{ $gutter-width } );
+
+		.avatar	 {
+			width: 3rem;
+			height: 3rem;
+			float: left;
+			margin-left: calc( -3rem - #{ $gutter-width } );
+			border-radius: 2px;
+		}
+
+		.comment-author {
+			@include font-heading;
+			color: $hm-dark-grey;
+
+			a {
+				color: inherit;
+			}
+		}
+
+		.comment-metadata {
+			@include text-sm;
+
+			a {
+				color: inherit;
+			}
+		}
+
+		.edit-link {
+			display: none;
+		}
+	}
+
+	& + .comment {
+		border-top: 1px solid $border-color;
+		margin-top: 0;
+		padding-top: $base-line-height;
+
+		@media #{ $mq-lg-up } {
+			padding-top: $base-line-height * 2;
+		}
+
+	}
+
+	.comment-reply-link {
+		@extend .Btn;
+		@extend .Btn-Small;
+		@extend .Btn-Tertiary;
+	}
+}
+
+.comment-form {
+
+	.logged-in-as {
+
+		background: $hm-light-grey;
+		border-radius: 2px;
+		padding: $base-line-height / 2 $gutter-width;
+
+		a {
+			color: inherit;
+		}
+	}
+
+	label {
+		@include font-heading;
+		color: $hm-dark-grey;
+		@include text-sm;
+		margin-top: $base-line-height / 2;
+		margin-bottom: 0;
+	}
+
+	.submit {
+		@extend .Btn;
+		@extend .Btn-Secondary;
+	}
+
+	input[type="email"],
+	input[type="url"] {
+		@extend .Form_Field;
+		font-family: $font-family-code;
+
+		&::placeholder {
+			font-style: normal;
+		}
+	}
+}
