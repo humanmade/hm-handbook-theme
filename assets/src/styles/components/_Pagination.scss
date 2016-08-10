@@ -1,11 +1,20 @@
 .Pagination {
 
-	margin: $base-line-height auto 0;
+	@extend .util-Clearfix;
+
+	margin: $base-line-height auto;
 	border-top: 1px solid $border-color;
 	padding-top: $base-line-height;
 	text-align: center;
+}
 
-	a:last-child {
-		margin-right: 0;
-	}
+.Pagination-Prev {
+	float: left;
+	margin-bottom: 0;
+}
+
+.Pagination-Next {
+	margin-right: 0;
+	margin-bottom: 0;
+	float: right;
 }

@@ -36,8 +36,8 @@ function setup() {
 	register_nav_menu( 'nav-primary', 'Main navigation' );
 
 	// Filter next/prev post classes.
-	add_filter( 'next_posts_link_attributes',     __NAMESPACE__ . '\\posts_link_attributes' );
-	add_filter( 'previous_posts_link_attributes', __NAMESPACE__ . '\\posts_link_attributes' );
+	add_filter( 'next_posts_link_attributes',     __NAMESPACE__ . '\\posts_link_attributes_next' );
+	add_filter( 'previous_posts_link_attributes', __NAMESPACE__ . '\\posts_link_attributes_prev' );
 
 
 }
@@ -122,10 +122,19 @@ function get_parent_theme_file_uri( $file = '' ) {
 }
 
 /**
- * Add Class to pagination links
+ * Add Class to pagination next links
  *
  * @return string Attributes.
  */
-function posts_link_attributes() {
-    return 'class="Btn Btn-Secondary Btn-Small"';
+function posts_link_attributes_next() {
+    return 'class="Btn Btn-Secondary Btn-Small Pagination-Next"';
+}
+
+/**
+ * Add Class to pagination previous links
+ *
+ * @return string Attributes.
+ */
+function posts_link_attributes_prev() {
+    return 'class="Btn Btn-Secondary Btn-Small Pagination-Prev"';
 }

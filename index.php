@@ -18,24 +18,22 @@ get_header();
 
 ?>
 
-<div class="site-container">
+<div class="site-content">
 
-	<?php echo get_sidebar(); ?>
-
-	<main class="site-content">
-
+	<?php if ( ! is_singular() ) : ?>
 		<?php get_template_part( 'parts/site-content-heading' ); ?>
+	<?php endif; ?>
 
-		<?php while ( have_posts() ) : the_post(); ?>
-			<?php get_template_part( 'parts/article' ); ?>
-		<?php endwhile; ?>
+	<?php while ( have_posts() ) : the_post(); ?>
+		<?php get_template_part( 'parts/article' ); ?>
+	<?php endwhile; ?>
 
-		<?php if ( ! is_singular() ) : ?>
-			<?php get_template_part( 'parts/pagination' ); ?>
-		<?php endif; ?>
-
-	</main>
+	<?php if ( ! is_singular() ) : ?>
+		<?php get_template_part( 'parts/pagination' ); ?>
+	<?php endif; ?>
 
 </div>
+
+<div class="site-content-sidebar"></div>
 
 <?php get_footer(); ?>

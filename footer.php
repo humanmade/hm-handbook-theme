@@ -14,6 +14,14 @@ namespace HM_Handbook;
 
 ?>
 
+			<div class="site-footer Footer">
+				<p><span class="HMLogo HMLogo-Tiny"></span><a href="http://hmn.md">Made by Humans</a></p>
+			</div>
+
+		</main>
+
+	</div>
+
 	<?php wp_footer(); ?>
 
 </body>

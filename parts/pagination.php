@@ -3,7 +3,7 @@
 global $wp_query;
 
 // Return if not more than 1 page.
-if ( $wp_query->max_num_pages < 1 ) {
+if ( $wp_query->max_num_pages <= 1 ) {
 	return;
 }
 
