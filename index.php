@@ -18,36 +18,22 @@ get_header();
 
 ?>
 
-<div class="site-container">
+<div class="site-content">
 
-	<?php echo get_sidebar(); ?>
+	<?php if ( ! is_singular() ) : ?>
+		<?php get_template_part( 'parts/site-content-heading' ); ?>
+	<?php endif; ?>
 
-	<main class="site-content-container">
+	<?php while ( have_posts() ) : the_post(); ?>
+		<?php get_template_part( 'parts/article' ); ?>
+	<?php endwhile; ?>
 
-		<div class="site-content">
-
-			<?php if ( ! is_singular() ) : ?>
-				<?php get_template_part( 'parts/site-content-heading' ); ?>
-			<?php endif; ?>
-
-			<?php while ( have_posts() ) : the_post(); ?>
-				<?php get_template_part( 'parts/article' ); ?>
-			<?php endwhile; ?>
-
-			<?php if ( ! is_singular() ) : ?>
-				<?php get_template_part( 'parts/pagination' ); ?>
-			<?php endif; ?>
-
-		</div>
-
-		<div class="site-content-sidebar"></div>
-
-		<div class="Site_Footer Footer">
-			<p><span class="HMLogo HMLogo-Tiny"></span><a href="http://hmn.md">Made by Humans</a></p>
-		</div>
-
-	</main>
+	<?php if ( ! is_singular() ) : ?>
+		<?php get_template_part( 'parts/pagination' ); ?>
+	<?php endif; ?>
 
 </div>
+
+<div class="site-content-sidebar"></div>
 
 <?php get_footer(); ?>

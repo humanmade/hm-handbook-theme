@@ -58,3 +58,8 @@ namespace HM_Handbook;
 
 	</header>
 
+	<div class="site-container">
+
+		<?php echo get_sidebar(); ?>
+
+		<main class="site-content-container">
