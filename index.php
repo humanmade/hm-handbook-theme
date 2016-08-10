@@ -22,11 +22,13 @@ get_header();
 
 	<?php echo get_sidebar(); ?>
 
-	<main class="site-content">
+	<main class="site-content-container">
 
-		<div class="site-content-inner">
+		<div class="site-content">
 
-			<?php get_template_part( 'parts/site-content-heading' ); ?>
+			<?php if ( ! is_singular() ) : ?>
+				<?php get_template_part( 'parts/site-content-heading' ); ?>
+			<?php endif; ?>
 
 			<?php while ( have_posts() ) : the_post(); ?>
 				<?php get_template_part( 'parts/article' ); ?>
