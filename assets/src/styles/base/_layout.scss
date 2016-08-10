@@ -29,29 +29,31 @@ body {
 .site-content-container {
 
 	width: 100%;
+	padding: $base-line-height $gutter-width;
 
 	@media #{ $mq-md-up } {
-		width: calc( 100% - 300px - #{ $gutter-width } );
+		width: calc( 100% - 300px );
+		max-width: calc( 40rem + #{ $gutter-width + 250px + $gutter-width * 2 } );
 	}
 
 	@media #{ $mq-lg-up } {
-		width: calc( 100% - 300px - #{ $gutter-width * 2 } );
+		max-width: calc( 40rem + #{ $gutter-width * 2 + 250px + $gutter-width * 4 } );
+		padding: ( $base-line-height * 2 ) ( $gutter-width * 2 );
 	}
 }
 
 .site-content {
 
 	width: 100%;
-	padding: $base-line-height $gutter-width;
 	float: left;
 
 	@media #{ $mq-md-up } {
 		width: calc( 100% - 250px );
-		max-width: calc( 40rem + 120px );
+		padding-right: $gutter-width;
 	}
 
 	@media #{ $mq-lg-up } {
-		padding: ( $base-line-height * 2 ) ( $gutter-width * 2 );
+		padding-right: $gutter-width * 2;
 	}
 }
 
@@ -71,14 +73,7 @@ body {
 }
 
 .site-footer {
-	width: auto;
+	width: 100%;
 	clear: both;
-	margin-top: 0;
-	margin-left: $gutter-width;
-	margin-right: $gutter-width;
-
-	@media #{ $mq-lg-up } {
-		margin-left: $gutter-width * 2;
-		margin-right: $gutter-width * 2;
-	}
+	padding-top: 0;
 }
