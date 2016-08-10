@@ -31,11 +31,9 @@ namespace HM_Handbook;
 		<?php if ( is_front_page() ) : ?>
 			<div class="site-logo">
 
-				<div class="site-logo">
-					<a class="HMLogo HMLogo-White" href="<?php echo esc_url( home_url() ); ?>/">
-						Human Made Limited
-					</a>
-				</div>
+				<a class="HMLogo HMLogo-White" href="<?php echo esc_url( home_url() ); ?>/">
+					Human Made Limited
+				</a>
 
 				<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
 
