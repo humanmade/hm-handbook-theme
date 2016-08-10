@@ -42,6 +42,10 @@ get_header();
 
 		<div class="site-content-sidebar"></div>
 
+		<div class="Site_Footer Footer">
+			<p><span class="HMLogo HMLogo-Tiny"></span><a href="http://hmn.md">Made by Humans</a></p>
+		</div>
+
 	</main>
 
 </div>

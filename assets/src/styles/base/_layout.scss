@@ -69,3 +69,16 @@ body {
 		margin-top: $base-line-height * 2;
 	}
 }
+
+.Site_Footer {
+	width: auto;
+	clear: both;
+	margin-top: 0;
+	margin-left: $gutter-width;
+	margin-right: $gutter-width;
+
+	@media #{ $mq-lg-up } {
+		margin-left: $gutter-width * 2;
+		margin-right: $gutter-width * 2;
+	}
+}
