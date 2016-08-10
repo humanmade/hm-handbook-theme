@@ -25,12 +25,12 @@ if ( ! have_comments() && ! comments_open() ) {
 
 	<?php if ( have_comments() ) : ?>
 
-		<h2 class="comments-title">
+		<h3 class="comments-title">
 			<?php
 			$string = _nx( 'One comment', '%1$s comments', get_comments_number(), 'comments title' );
 			printf( $string, number_format_i18n( get_comments_number() ), get_the_title() );
 			?>
-		</h2>
+		</h3>
 
 		<ol class="comment-list">
 			<?php

@@ -7,11 +7,12 @@
 
 .comment-list .comment {
 
-	margin: $base-line-height auto $base-line-height;
+	margin: 0;
+	padding: $base-line-height auto $base-line-height;
 
 	@media #{ $mq-lg-up } {
-		margin-top: $base-line-height * 2;
-		margin-bottom: $base-line-height * 2;
+		padding-top: $base-line-height * 2;
+		padding-bottom: $base-line-height * 2;
 	}
 
 	.comment-meta {
@@ -65,6 +66,33 @@
 		@extend .Btn-Small;
 		@extend .Btn-Tertiary;
 	}
+
+	#cancel-comment-reply-link {
+		@extend .Btn;
+		@extend .Btn-Small;
+		float: right;
+	}
+
+	.children {
+		list-style: none;
+		margin: 0 0 0 $gutter-width;
+		padding: 0;
+		// border-top: 1px solid $border-color;
+
+		.comment {
+			// border-left: 1px solid $border-color;
+			padding-left: $gutter-width;
+		}
+
+	}
+
+	.comment-awaiting-moderation {
+		background: $hm-light-grey;
+		border-radius: 2px;
+		padding: $base-line-height / 2 $gutter-width;
+		margin-left: calc( -3rem - #{ $gutter-width } );
+		clear: both;
+	}
 }
 
 .comment-form {
@@ -102,4 +130,5 @@
 			font-style: normal;
 		}
 	}
+
 }
