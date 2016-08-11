@@ -24,8 +24,8 @@
 		display: block;
 		width: 210px;
 		height: 40px;
-		margin: 7px auto; // 7px =  ( 2rem - 40px ) / 2
-		margin-top: calc( .75rem + 7px );
+		margin: calc( ( #{ $base-line-height * 2 } - 40px ) / 2 ) auto;
+		margin-top: calc( #{ $base-line-height / 2 } + ( ( #{ $base-line-height * 2 } - 40px ) / 2 ) );
 
 		@media #{ $mq-md-down } {
 			margin-left: auto;
@@ -40,7 +40,6 @@
 		color: #FFF;
 		text-align: center;
 		position: relative;
-		// top: calc( -1.5rem + 5px );
 		margin-bottom: -1.5rem;
 	}
 
