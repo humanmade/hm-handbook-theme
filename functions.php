@@ -12,7 +12,6 @@ namespace HM_Handbook;
 require_once( __DIR__ . '/inc/primary-nav.php' );
 require_once( __DIR__ . '/inc/page-history.php' );
 require_once( __DIR__ . '/inc/search.php' );
-require_once( __DIR__ . '/inc/nav-private-items.php' );
 
 add_action( 'after_setup_theme',  __NAMESPACE__ . '\\setup' );
 add_action( 'after_setup_theme',  __NAMESPACE__ . '\\content_width', 0 );
@@ -130,7 +129,7 @@ function get_parent_theme_file_uri( $file = '' ) {
  * @return string Attributes.
  */
 function posts_link_attributes_next() {
-    return 'class="Btn Btn-Secondary Btn-Small Pagination-Next"';
+	return 'class="Btn Btn-Secondary Btn-Small Pagination-Next"';
 }
 
 /**
@@ -139,5 +138,9 @@ function posts_link_attributes_next() {
  * @return string Attributes.
  */
 function posts_link_attributes_prev() {
-    return 'class="Btn Btn-Secondary Btn-Small Pagination-Prev"';
+	return 'class="Btn Btn-Secondary Btn-Small Pagination-Prev"';
 }
+
+add_filter( 'private_title_format', function( $format ) {
+	return '🔒 %s';
+} );

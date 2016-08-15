@@ -36,7 +36,7 @@ function render_nav_item( $page ) {
 	$classes = ['NavAccordion_Item'];
 
 	if ( 'private' === get_post_status( $page->ID ) ) {
-		$classes[] = 'NavAccordion_Item-Private';
+		$classes[] = 'Nav_Item-Private';
 	}
 
 	printf(
