@@ -15,6 +15,16 @@
 
 	.site-content-header-title {
 		margin-top: 0;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.site-content-header-title-pre {
+		@include text-sm;
+		@include font-heading;
+		margin-bottom: 0;
 	}
 
 }

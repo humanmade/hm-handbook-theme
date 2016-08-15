@@ -30,7 +30,7 @@ namespace HM_Handbook;
 	<?php endif; ?>
 
 	<div class="article-content">
-		<?php the_content(); ?>
+		<?php is_singular() ? the_content() : the_excerpt(); ?>
 	</div>
 
 </article>
