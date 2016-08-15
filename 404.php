@@ -21,7 +21,10 @@ get_header();
 <div class="site-content">
 
 	<div class="article">
-		<h1 class="article-title"><?php esc_html_e( 'Sorry! That page can&rsquo;t be found.', 'handbook' ); ?></h1>
+		<h1 class="article-title">
+			<?php esc_html_e( 'Sorry!', 'handbook' ); ?><br />
+			<?php esc_html_e( 'Page not found.', 'handbook' ); ?>
+		</h1>
 	</div>
 </div>
 
