@@ -5,17 +5,10 @@
  * @package hm-handbook
  */
 
-namespace HM_Handbook; ?>
+namespace HM_Handbook;
+
+?>
 
 <nav class="site-sidebar">
-
-	<?php
-
-	wp_nav_menu( [
-		'theme_location' => 'nav-primary',
-		'menu_class'     => 'NavAccordion',
-	] );
-
-	?>
-
+	<?php render_nav_list(); ?>
 </nav>
