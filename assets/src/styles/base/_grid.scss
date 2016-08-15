@@ -1,0 +1,24 @@
+@mixin grid-row {
+	@extend .util-Clearfix;
+	margin-left: -1 * $gutter-width;
+	margin-right: -1 * $gutter-width;
+	margin-bottom: $base-line-height * -1;
+}
+
+@mixin grid-item( $column_span, $total_columns: 12 ) {
+	box-sizing: border-box;
+	width: $column_span / $total_columns * 100%;
+	padding-left: $gutter-width;
+	padding-right: $gutter-width;
+	float: left;
+}
+
+.util-GridRow {
+	@include grid-row();
+}
+
+@for $i from 1 through 12 {
+	.util-GridItem-#{$i} {
+		@include grid-item( $i );
+	}
+}
