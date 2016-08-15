@@ -36,6 +36,11 @@ function setup() {
 	add_filter( 'next_posts_link_attributes',     __NAMESPACE__ . '\\posts_link_attributes_next' );
 	add_filter( 'previous_posts_link_attributes', __NAMESPACE__ . '\\posts_link_attributes_prev' );
 
+	add_action( 'customize_register', function() {
+		global $wp_customize;
+		$wp_customize->remove_section( 'add_menu' );
+		$wp_customize->remove_section( 'menu_locations' );
+	}, 100 );
 
 }
 
