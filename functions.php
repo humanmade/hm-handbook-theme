@@ -12,6 +12,7 @@ namespace HM_Handbook;
 require_once( __DIR__ . '/inc/primary-nav.php' );
 require_once( __DIR__ . '/inc/page-history.php' );
 require_once( __DIR__ . '/inc/search.php' );
+require_once( __DIR__ . '/inc/editor-mods.php' );
 
 add_action( 'after_setup_theme',  __NAMESPACE__ . '\\setup' );
 add_action( 'after_setup_theme',  __NAMESPACE__ . '\\content_width', 0 );
@@ -26,8 +27,8 @@ function setup() {
 	// Let WordPress manage the document title.
 	add_theme_support( 'title-tag' );
 
-	// Enable support for Post Thumbnails on posts and pages.
-	add_theme_support( 'post-thumbnails' );
+	// Disable support for Post Thumbnails on posts and pages.
+	remove_theme_support( 'post-thumbnails' );
 
 	// Switch default core markup for search form, comment form, and comments to output valid HTML5.
 	add_theme_support( 'html5', [ 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ]	);
