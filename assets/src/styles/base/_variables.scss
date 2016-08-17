@@ -1,4 +1,24 @@
-// Breakpoints
-$mq-lg-up: "( min-width: 1300px )" !default;
+/**
+ * Default Colours.
+ */
 
-$hm-handbook-colour-green: #daf2d6 !default;
+$hm-handbook-colour-green: #daf2d6; // .PageHistory_Diff-Added background colour
+$border-color-darken: darken( $border-color, 10% ) !default;
+
+/**
+ * Variable Mapping
+ */
+
+// Page History
+$color-success: $hm-handbook-colour-green !default;
+$color-pagehistory-background:  $hm_light-grey !default;
+$color-pagehistory-list: $hm-medium-grey !default;
+
+// Sidebar
+$color-sidebar-background:  $hm-beige !default;
+
+
+/**
+ * Breakpoints
+ */
+$mq-lg-up:  "( min-width: 1300px )" !default;

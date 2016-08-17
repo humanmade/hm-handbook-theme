@@ -1,12 +1,11 @@
-$border-color-light-grey: darken( $border-color, 10% );
 
 .PageHistory_Diff-Added {
-	background: $hm-handbook-colour-green;
+	background: $color-success;
 	text-decoration: none;
 }
 
 .PageHistory_Diff-Removed {
-	background: lighten( $hm-primary, 35% );
+	background: lighten( $color-primary, 35% );
 }
 
 .PageHistory_List_Container {
@@ -15,7 +14,7 @@ $border-color-light-grey: darken( $border-color, 10% );
 	position: relative;
 	margin: $base-line-height 0;
 	padding: #{ $base-line-height / 2 } #{ $gutter-width / 2 };
-	background: $hm-light-grey;
+	background: $color-pagehistory-background;
 	border-radius: 2px;
 
 	@media #{ $mq-md-up } {
@@ -38,7 +37,7 @@ $border-color-light-grey: darken( $border-color, 10% );
 
 .PageHistory_List_Container {
 	.PageHistory_List + .Btn .Loading {
-		background-image: url( "#{ $hm-images }/icons/icon-spinner-black.svg" );
+		background-image: url( "#{ $images-path }/icons/icon-spinner-black.svg" );
 		background-size: 50%;
 		margin-right: 7px;
 		opacity: 0.3;
@@ -82,7 +81,7 @@ $border-color-light-grey: darken( $border-color, 10% );
 .PageHistory_List {
 
 	@include text-sm;
-	color: $hm-medium-grey;
+	color: $color-pagehistory-list;
 	list-style: none;
 	position: relative;
 	margin: 0;
@@ -91,7 +90,7 @@ $border-color-light-grey: darken( $border-color, 10% );
 	&:after {
 		content: " ";
 		display: block;
-		border-left: 1px solid $border-color-light-grey;
+		border-left: 1px solid $border-color-darken;
 		position: absolute;
 		top: $base-line-height / 2;
 		bottom: calc( #{ $base-line-height / 2 } + 2px );
@@ -131,7 +130,7 @@ $border-color-light-grey: darken( $border-color, 10% );
 		display: block;
 		width: 5px;
 		height: 5px;
-		background: $border-color-light-grey;
+		background: $border-color-darken;
 		border-radius: 100%;
 		position: absolute;
 		left: $gutter-width / -4 - 3px;
@@ -149,11 +148,11 @@ $border-color-light-grey: darken( $border-color, 10% );
 	}
 
 	&.PageHistory_List_Item-Active:after {
-		background-color: $hm-primary;
+		background-color: $color-primary;
 	}
 
 	&.PageHistory_List_Item-Active + .PageHistory_List_Item:after {
-		background-color: $hm-medium-grey;
+		background-color: $color-pagehistory-list;
 	}
 }
 
@@ -161,7 +160,7 @@ $border-color-light-grey: darken( $border-color, 10% );
 	@include text-sm;
 	display: none; // Only shown when active.
 	white-space: pre-wrap;
-	background: $hm-light-grey;
+	background: $color-pagehistory-background;
 	padding: $base-line-height / 2 $gutter-width / 2;
 	font-family: $font-family-code;
 	word-wrap: break-word;
@@ -197,7 +196,7 @@ $border-color-light-grey: darken( $border-color, 10% );
 	&:before {
 		position: absolute;
 		content: " ";
-		background: rgba( $hm-warm-grey, .75 );
+		background: rgba( $color-nav-toggle-background, .75 );
 		border-radius: 100%;
 		top: 50%;
 		left: 50%;
@@ -211,7 +210,7 @@ $border-color-light-grey: darken( $border-color, 10% );
 	&:after {
 		position: absolute;
 		content: " ";
-		background: url( "#{ $hm-images }/icons/icon-plus-white.svg" ) no-repeat center center;
+		background: url( "#{ $images-path }/icons/icon-plus-white.svg" ) no-repeat center center;
 		background-size: 100% 100%;
 		top: 50%;
 		left: 50%;
@@ -229,13 +228,13 @@ $border-color-light-grey: darken( $border-color, 10% );
 		outline: none;
 
 		&:before {
-			background: darken( $hm-warm-grey, 40% );
+			background: darken( $color-nav-toggle-background, 40% );
 		}
 	}
 
 
 	&.Btn-StateExpanded:after {
-		background-image: url( "#{ $hm-images }/icons/icon-minus-white.svg" );
+		background-image: url( "#{ $images-path }/icons/icon-minus-white.svg" );
 	}
 
 }
