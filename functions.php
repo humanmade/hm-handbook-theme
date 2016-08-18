@@ -18,6 +18,28 @@ add_action( 'after_setup_theme',  __NAMESPACE__ . '\\content_width', 0 );
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_scripts' );
 add_action( 'admin_init',         __NAMESPACE__ . '\\setup_admin' );
 
+add_action( 'wp_enqueue_scripts', function() {
+
+    wp_enqueue_script( 'hm-global-nav', '//hmn.dev/hm-global-nav/script.js', [], '0.1', true );
+
+    // Pass settings
+    wp_localize_script( 'hm-global-nav', 'hmUberNavSettings', [
+        'bg'     => 'Grey',
+        'shadow' => false,
+    ] );
+
+    /**
+     * Load global nav script asynchronously.
+     */
+    add_filter( 'script_loader_tag', function( $tag, $handle ) {
+        if ( 'hm-global-nav' === $handle ) {
+            $tag = str_replace( ' src', ' async="async" src', $tag );
+        }
+        return $tag;
+    }, 10, 2 );
+
+} );
+
 /**
  * Set up the theme.
  */
