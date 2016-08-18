@@ -30,11 +30,13 @@ namespace HM_Handbook;
 
 		<?php if ( is_front_page() ) : ?>
 			<div class="site-logo">
-
-				<a class="HMLogo HMLogo-White" href="<?php echo esc_url( home_url() ); ?>/">
-					Human Made Limited
-				</a>
-
+				<?php if ( function_exists( 'the_custom_logo' ) ) {
+					the_custom_logo();
+				} else { ?>
+					<a class="HMLogo HMLogo-White" href="<?php echo esc_url( home_url() ); ?>/">
+						Human Made Limited
+					</a>
+				<?php } ?>
 				<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
 
 			</div>
