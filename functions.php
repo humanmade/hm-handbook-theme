@@ -29,8 +29,14 @@ function setup() {
 	// Enable support for Post Thumbnails on posts and pages.
 	add_theme_support( 'post-thumbnails' );
 
+	// Enable custom site logo support
+	add_theme_support( 'custom-logo' );
+
 	// Switch default core markup for search form, comment form, and comments to output valid HTML5.
 	add_theme_support( 'html5', [ 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ]	);
+
+	// Show page history in the theme
+	add_theme_support( 'hm-page-history' );
 
 	// Register navigation menus.
 	register_nav_menu( 'nav-primary', 'Main navigation' );
