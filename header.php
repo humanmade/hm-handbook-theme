@@ -30,7 +30,7 @@ namespace HM_Handbook;
 
 		<?php if ( is_front_page() ) : ?>
 			<div class="site-logo">
-				<?php if ( function_exists( 'the_custom_logo' ) ) {
+				<?php if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
 					the_custom_logo();
 				} else { ?>
 					<a class="HMLogo HMLogo-White" href="<?php echo esc_url( home_url() ); ?>/">
