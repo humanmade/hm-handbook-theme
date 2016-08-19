@@ -11,13 +11,16 @@ add_action( 'init', __NAMESPACE__ . '\\init' );
 
 function init() {
 
+	if ( ! current_theme_supports( 'hm-page-history' ) ) {
+		return;
+	}
+
 	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\localize_script', 20 );
-	add_action( 'rest_api_init',      __NAMESPACE__ . '\\setup_api', 20 );
+	add_action( 'rest_api_init', __NAMESPACE__ . '\\setup_api', 20 );
 
 	foreach ( [ 'post', 'page' ] as $post_type ) {
 		add_post_type_support( $post_type, 'hm-handbook-page-history' );
 	};
-
 }
 
 /**

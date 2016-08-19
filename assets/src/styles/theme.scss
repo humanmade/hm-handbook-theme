@@ -11,10 +11,12 @@ $hm-images: "./../../../vendor/hm-pattern-library/assets/images";
 // Components
 @import "components/header";
 @import "components/sidebar";
+@import "components/footer";
 @import "components/article";
 @import "components/site-content-header";
 @import "components/Pagination";
 @import "components/PageHistory";
+@import "components/Nav";
 @import "components/comments";
 
 .article {

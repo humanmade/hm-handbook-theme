@@ -29,8 +29,14 @@ function setup() {
 	// Enable support for Post Thumbnails on posts and pages.
 	add_theme_support( 'post-thumbnails' );
 
+	// Enable custom site logo support
+	add_theme_support( 'custom-logo' );
+
 	// Switch default core markup for search form, comment form, and comments to output valid HTML5.
 	add_theme_support( 'html5', [ 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ]	);
+
+	// Show page history in the theme
+	add_theme_support( 'hm-page-history' );
 
 	// Register navigation menus.
 	register_nav_menu( 'nav-primary', 'Main navigation' );
@@ -38,7 +44,6 @@ function setup() {
 	// Filter next/prev post classes.
 	add_filter( 'next_posts_link_attributes',     __NAMESPACE__ . '\\posts_link_attributes_next' );
 	add_filter( 'previous_posts_link_attributes', __NAMESPACE__ . '\\posts_link_attributes_prev' );
-
 
 }
 
@@ -131,7 +136,7 @@ function get_parent_theme_file_uri( $file = '' ) {
  * @return string Attributes.
  */
 function posts_link_attributes_next() {
-    return 'class="Btn Btn-Secondary Btn-Small Pagination-Next"';
+	return 'class="Btn Btn-Secondary Btn-Small Pagination-Next"';
 }
 
 /**
@@ -140,5 +145,9 @@ function posts_link_attributes_next() {
  * @return string Attributes.
  */
 function posts_link_attributes_prev() {
-    return 'class="Btn Btn-Secondary Btn-Small Pagination-Prev"';
+	return 'class="Btn Btn-Secondary Btn-Small Pagination-Prev"';
 }
+
+add_filter( 'private_title_format', function( $format ) {
+	return '🔒 %s';
+} );

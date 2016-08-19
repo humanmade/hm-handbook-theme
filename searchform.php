@@ -1,5 +1,5 @@
 <div class="StyleGuide_SearchContainer">
-	<form class="SearchBar" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+	<form class="SearchBar" role="search" method="get" action="<?php echo esc_url( home_url() ); ?>">
 
 		<label class="SearchBar_Label" for="site-search"><?php esc_html_e( 'Search', 'hm-handbook' ); ?></label>
 

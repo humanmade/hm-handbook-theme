@@ -28,27 +28,21 @@ namespace HM_Handbook;
 
 	<header class="site-header">
 
-		<?php if ( is_front_page() ) : ?>
-			<div class="site-logo">
+		<div class="site-logo">
+			<?php
+				if ( has_custom_logo() ) {
+					the_custom_logo();
+				} else {
+					echo '<a class="HMLogo HMLogo-White" href ="' . esc_url( home_url('/') ) . '">Human Made Limited</a>';
+				}
 
-				<a class="HMLogo HMLogo-White" href="<?php echo esc_url( home_url() ); ?>/">
-					Human Made Limited
-				</a>
-
-				<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
-
-			</div>
-		<?php else : ?>
-			<div class="site-logo">
-
-				<a class="HMLogo HMLogo-White" href="<?php echo esc_url( home_url() ); ?>/">
-					<?php bloginfo( 'name' ); ?>
-				</a>
-
-				<div class="site-title"><?php bloginfo( 'name' ); ?></div>
-
-			</div>
-		<?php endif; ?>
+				if ( is_front_page() ) {
+					echo '<h1 class="site-title">' . get_bloginfo( 'name' ) . '</h1>';
+				} else {
+					echo '<div class="site-title">' . get_bloginfo( 'name' ) . '</div>';
+				}
+			?>
+		</div>
 
 		<div class="site-search">
 			 <?php echo get_search_form(); ?>
