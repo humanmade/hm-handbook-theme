@@ -45,7 +45,6 @@ function setup() {
 	add_filter( 'next_posts_link_attributes',     __NAMESPACE__ . '\\posts_link_attributes_next' );
 	add_filter( 'previous_posts_link_attributes', __NAMESPACE__ . '\\posts_link_attributes_prev' );
 
-
 }
 
 function setup_admin() {
@@ -133,7 +132,7 @@ function get_parent_theme_file_uri( $file = '' ) {
  * @return string Attributes.
  */
 function posts_link_attributes_next() {
-    return 'class="Btn Btn-Secondary Btn-Small Pagination-Next"';
+	return 'class="Btn Btn-Secondary Btn-Small Pagination-Next"';
 }
 
 /**
@@ -142,5 +141,9 @@ function posts_link_attributes_next() {
  * @return string Attributes.
  */
 function posts_link_attributes_prev() {
-    return 'class="Btn Btn-Secondary Btn-Small Pagination-Prev"';
+	return 'class="Btn Btn-Secondary Btn-Small Pagination-Prev"';
 }
+
+add_filter( 'private_title_format', function( $format ) {
+	return '🔒 %s';
+} );
