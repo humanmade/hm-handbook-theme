@@ -48,12 +48,16 @@ function render_nav_list( $parent_id = 0 ) {
  * @param  WP_Post $page
  * @return null
  */
-function render_nav_item( WP_Post $page ) {
+function render_nav_item( \WP_Post $page ) {
 
 	$classes = ['NavAccordion_Item'];
 
 	if ( 'private' === get_post_status( $page->ID ) ) {
 		$classes[] = 'Nav_Item-Private';
+	}
+
+	if ( is_nav_item_current( $page ) ) {
+		$classes[] = 'NavAccordion_Item-Active';
 	}
 
 	printf(
@@ -66,6 +70,22 @@ function render_nav_item( WP_Post $page ) {
 	render_nav_list( $page->ID );
 
 	echo '</li>';
+}
+
+function is_nav_item_current( \WP_Post $page ) {
+
+	$page_url = get_permalink( $page->ID );
+
+	if ( parse_url( $page_url, PHP_URL_HOST ) !== $_SERVER['HTTP_HOST'] ) {
+		return false;
+	}
+
+	if ( parse_url( $page_url, PHP_URL_PATH ) !== $_SERVER['REQUEST_URI'] ) {
+		return false;
+	}
+
+	return true;
+
 }
 
 /**
