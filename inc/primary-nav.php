@@ -48,7 +48,7 @@ function render_nav_list( $parent_id = 0 ) {
  * @param  WP_Post $page
  * @return null
  */
-function render_nav_item( WP_Post $page ) {
+function render_nav_item( \WP_Post $page ) {
 
 	$classes = ['NavAccordion_Item'];
 
