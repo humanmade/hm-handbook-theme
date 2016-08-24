@@ -110,6 +110,8 @@ function fallback_search_request( $query ) {
 		's'              => $query,
 		'post_type'      => get_post_types( [ 'public' => true ] ),
 		'posts_per_page' => 50,
+		'post_status'    => [ 'publish', 'private' ],
+		'perm'           => 'readable',
 	];
 
 	$search_query = new WP_Query( $search_query_args );
