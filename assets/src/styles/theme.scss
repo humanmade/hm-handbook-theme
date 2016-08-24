@@ -48,7 +48,7 @@ $images-path: "./../../../vendor/hm-pattern-library/assets/images" !default;
 
 	.SearchBar_Results-Info {
 		margin: 0 #{ $gutter-width / 2 } #{ $base-line-height / 2 } #{ $gutter-width / 2 };
-		border-top: 1px solid #d25c4c;
+		border-top: 1px solid desaturate( $color-primary, 5% );
 		padding-top: $base-line-height / 2;
 		font-size: 1rem;
 		line-height: $base-line-height;
