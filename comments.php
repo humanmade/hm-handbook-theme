@@ -27,7 +27,7 @@ if ( ! have_comments() && ! comments_open() ) {
 
 		<h3 class="comments-title">
 			<?php
-			$string = _nx( 'One comment', '%1$s comments', get_comments_number(), 'comments title' );
+			$string = _nx( 'One comment', '%1$s comments', get_comments_number(), 'comments title', 'hm-handbook' );
 			printf( $string, number_format_i18n( get_comments_number() ), get_the_title() );
 			?>
 		</h3>
@@ -45,7 +45,7 @@ if ( ! have_comments() && ! comments_open() ) {
 	<?php endif; // have_comments() ?>
 
 	<?php if ( ! comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
-		<p class="no-comments"><?php _e( 'Comments are closed.', 'twentyfifteen' ); ?></p>
+		<p class="no-comments"><?php _e( 'Comments are closed.', 'hm-handbook' ); ?></p>
 	<?php endif; ?>
 
 	<?php comment_form(); ?>

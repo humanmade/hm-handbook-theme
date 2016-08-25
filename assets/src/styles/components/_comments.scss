@@ -41,13 +41,13 @@
 .comment-meta {
 
 	margin-bottom: $base-line-height;
-	padding-left: calc( 3rem + #{ $gutter-width } );
+	padding-left: calc( #{ $comment_avatar_width } + #{ $gutter-width } );
 
 	.avatar	 {
-		width: 3rem;
-		height: 3rem;
+		width: $comment_avatar_width;
+		height: $comment_avatar_width;
 		float: left;
-		margin-left: calc( -3rem - #{ $gutter-width } );
+		margin-left: calc( #{ -1 * $comment_avatar_width } - #{ $gutter-width } );
 		border-radius: 2px;
 	}
 
@@ -89,7 +89,7 @@
 	background: $hm-light-grey;
 	border-radius: 2px;
 	padding: $base-line-height / 2 $gutter-width;
-	margin-left: calc( -3rem - #{ $gutter-width } );
+	margin-left: calc( ( -1 * $comment_avatar_width ) - #{ $gutter-width } );
 	clear: both;
 }
 

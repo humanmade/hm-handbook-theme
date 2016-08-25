@@ -11,12 +11,13 @@ $border-color-darken: darken( $border-color, 10% ) !default;
 
 // Page History
 $color-success: $hm-handbook-colour-green !default;
-$color-pagehistory-background:  $hm_light-grey !default;
+$color-pagehistory-background: $hm_light-grey !default;
 $color-pagehistory-list: $hm-medium-grey !default;
 
 // Sidebar
-$color-sidebar-background:  $hm-beige !default;
+$color-sidebar-background: $hm-beige !default;
 
+$comment_avatar_width: 3rem !default;
 
 /**
  * Breakpoints
