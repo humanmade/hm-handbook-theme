@@ -46,6 +46,9 @@ function setup() {
 	add_filter( 'next_posts_link_attributes',     __NAMESPACE__ . '\\posts_link_attributes_next' );
 	add_filter( 'previous_posts_link_attributes', __NAMESPACE__ . '\\posts_link_attributes_prev' );
 
+	add_filter( 'private_title_format', __NAMESPACE__ . '\\filter_private_title_format' );
+	add_filter( 'wp_link_pages_link', __NAMESPACE__ . '\multi_page_links_markup', 10, 2 );
+
 }
 
 function setup_admin() {
@@ -149,6 +152,24 @@ function posts_link_attributes_prev() {
 	return 'class="Btn Btn-Secondary Btn-Small Pagination-Prev"';
 }
 
-add_filter( 'private_title_format', function( $format ) {
+/**
+ * Filter the private link titles to use emoji.
+ */
+function filter_private_title_format( $format ) {
 	return '🔒 %s';
-} );
+}
+
+/**
+ * Handle the markup for multi-page posts.
+ */
+function multi_page_links_markup( $link, $i ) {
+
+	global $page;
+
+	if ( $i === $page ) {
+		$link = '<span class="Pagination-Current">' . $link . '</span>';
+	}
+
+	return $link;
+
+}
