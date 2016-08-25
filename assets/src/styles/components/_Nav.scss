@@ -1,0 +1,12 @@
+.Nav_Item-Private a:before {
+	$iconSrc: iconSrc( "lock" );
+	content: " ";
+	display: inline-block;
+	background: url( $iconSrc ) no-repeat center center;
+	width: 1.125rem;
+	height: 1.125rem;
+	margin-right: 3px;
+	vertical-align: top;
+	position: relative;
+	top: -2px;
+}
