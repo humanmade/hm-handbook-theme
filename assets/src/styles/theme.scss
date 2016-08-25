@@ -17,6 +17,7 @@ $images-path: "./../../../vendor/hm-pattern-library/assets/images" !default;
 @import "components/Pagination";
 @import "components/PageHistory";
 @import "components/Nav";
+@import "components/comments";
 
 .article {
 	position: relative;

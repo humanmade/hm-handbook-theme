@@ -32,6 +32,10 @@ get_header();
 		<?php get_template_part( 'parts/pagination' ); ?>
 	<?php endif; ?>
 
+	<?php if ( is_singular() && ( comments_open() || get_comments_number() ) ) : ?>
+		<?php comments_template(); ?>
+	<?php endif; ?>
+
 </div>
 
 <div class="site-content-sidebar"></div>
