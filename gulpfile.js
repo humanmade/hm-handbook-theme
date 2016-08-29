@@ -52,7 +52,7 @@ gulp.task( 'js', function( callback ) {
 });
 
 gulp.task( 'lint-sass', function () {
-  return gulp.src( [ './assets/src/styles/**/*.s+(a|c)ss', '!./assets/src/styles/editor.scss' ] )
+  return gulp.src( [ './assets/src/styles/**/*.s+(a|c)ss', '!./assets/src/styles/editor.scss', '!./assets/src/styles/login.scss' ] )
 	.pipe( sassLint( { configFile: '.sass-lint.yml' } ) )
 	.pipe( sassLint.format() )
 	.pipe( sassLint.failOnError() )

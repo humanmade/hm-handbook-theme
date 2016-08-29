@@ -60,6 +60,13 @@ function setup_admin() {
 }
 
 /**
+ * Add login Styling
+ */
+add_action( 'login_enqueue_scripts', function() {
+	wp_enqueue_style( 'hm-login', get_theme_file_uri( 'assets/dist/styles/login.css' ), [], wp_get_theme()->Version );
+} );
+
+/**
  * Enqueue all theme scripts.
  */
 function enqueue_scripts() {
