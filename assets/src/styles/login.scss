@@ -35,9 +35,17 @@ html {
 }
 
 #loginform {
-	@extend .Form_Field;
 	background-color: $color-sidebar-background;
 	width: 100%;
+	border: none;
+	padding: $base-line-height / 2 $gutter-width;
+	border-radius: 2px;
+}
+
+#user_login,
+#user_pass {
+	@extend .Form_Field;
+	@extend .Form_Field-Lg;
 }
 
 .login label,
@@ -48,8 +56,9 @@ html {
 	@extend .Form_Label;
 }
 
-.wp-core-ui .button-primary {
+#wp-submit {
+	@extend .Btn;
 	@extend .Btn-Secondary;
-	box-shadow: none;
-	text-shadow: none;
+	@extend .Btn-Small;
+	margin-right: 0;
 }
