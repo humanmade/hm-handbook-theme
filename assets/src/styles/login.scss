@@ -12,25 +12,48 @@ html {
 	background-color: $color-primary;
 }
 
+#login {
+	width: 100%;
+	max-width: 520px;
+	padding: 8% 15px 0;
+}
+
 .login #backtoblog,
 .login #nav {
+	margin: $base-line-height / 2 auto;
 	a {
 		color: $white;
-		font-size: 0.9rem;
+		@include text-sm;
 		&:hover{
-			color: $color-accent;
+			color: $white;
+			text-decoration: underline;
 		}
 	}
 }
 
+@media #{ $mq-sm-up } {
+
+	#nav {
+		float: right;
+	}
+
+	#backtoblog {
+		float: left;
+	}
+
+}
+
 #login h1,
 .login h1 {
+	margin-bottom: $base-line-height;
+
 	a {
 		background-image: url( "#{ $images-path }/logos/logo-white.svg" );
 		background-size: 100%;
-		margin-bottom: 0;
-		width: 100%;
-		height: 80px;
+		background-position: center center;
+		margin: 0 auto;
+		width: 292px;
+		height: 56px;
 	}
 }
 
@@ -54,6 +77,13 @@ html {
 .wp-core-ui .button-primary,
 .wp-core-ui .button-secondary {
 	@extend .Form_Label;
+	color: $color-text-heading;
+}
+
+.login form .forgetmenot label {
+	@include font-body;
+	display: inline-block;
+	margin-top: .75 * $base-line-height;
 }
 
 #wp-submit {
