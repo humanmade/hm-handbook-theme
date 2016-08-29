@@ -47,7 +47,7 @@ function setup() {
 	add_filter( 'previous_posts_link_attributes', __NAMESPACE__ . '\\posts_link_attributes_prev' );
 
 	add_filter( 'private_title_format', __NAMESPACE__ . '\\filter_private_title_format' );
-	add_filter( 'wp_link_pages_link', __NAMESPACE__ . '\multi_page_links_markup', 10, 2 );
+	add_filter( 'wp_link_pages_link', __NAMESPACE__ . '\\multi_page_links_markup', 10, 2 );
 
 }
 
