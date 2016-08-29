@@ -18,6 +18,12 @@ html {
 	padding: 8% 15px 0;
 }
 
+#login {
+	width: 100%;
+	max-width: 520px;
+	padding: 8% 15px 0;
+}
+
 .login #backtoblog,
 .login #nav {
 	margin: $base-line-height / 2 auto;
@@ -69,7 +75,6 @@ html {
 #user_pass {
 	@extend .Form_Field;
 	@extend .Form_Field-Lg;
-	background-color: $white;
 }
 
 .login label,
