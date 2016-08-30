@@ -9,7 +9,13 @@ $images-path: "./../../../vendor/hm-pattern-library/assets/images" !default;
 
 body,
 html {
-	background-color: $color-primary;
+	background-color: $login-background-color;
+}
+
+#login {
+	width: 100%;
+	max-width: 520px;
+	padding: 8% 15px 0;
 }
 
 #login {
@@ -48,7 +54,7 @@ html {
 	margin-bottom: $base-line-height;
 
 	a {
-		background-image: url( "#{ $images-path }/logos/logo-white.svg" );
+		background-image: url( $login-logo-image );
 		background-size: 100%;
 		background-position: center center;
 		margin: 0 auto;
@@ -58,7 +64,7 @@ html {
 }
 
 #loginform {
-	background-color: $color-sidebar-background;
+	background-color: $login-form-background;
 	width: 100%;
 	border: none;
 	padding: $base-line-height / 2 $gutter-width;

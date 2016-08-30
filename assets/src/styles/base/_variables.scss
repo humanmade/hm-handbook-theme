@@ -17,6 +17,11 @@ $color-pagehistory-list: $hm-medium-grey !default;
 // Sidebar
 $color-sidebar-background: $hm-beige !default;
 
+// Login
+$login-background-color: $color-primary !default;
+$login-logo-image : "#{ $images-path }/logos/logo-white.svg" !default;
+$login-form-background : $color-sidebar-background !default;
+
 $comment_avatar_width: 3rem !default;
 
 /**
