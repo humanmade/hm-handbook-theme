@@ -1,0 +1,36 @@
+.PostList {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.PostList_Item {
+
+	@include text-sm;
+	border-bottom: 1px solid $border-color;
+
+	&:last-child {
+		border-bottom: none;
+	}
+}
+
+.Post_list_Item-Small {
+	@include text-sm;
+}
+
+.PostList_Item_Link {
+	display: block;
+	padding: $base-line-height / 2 0;
+	color: inherit;
+
+	&:link,
+	&:visited {
+		color: inherit;
+	}
+
+	&:hover,
+	&:focus {
+		text-decoration: none;
+		color: $hm-primary;
+	}
+}

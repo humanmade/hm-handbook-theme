@@ -17,6 +17,7 @@ $hm-images: "./../../../vendor/hm-pattern-library/assets/images";
 @import "components/Pagination";
 @import "components/PageHistory";
 @import "components/comments";
+@import "components/PostList";
 
 .article {
 	position: relative;
@@ -69,40 +70,4 @@ $hm-images: "./../../../vendor/hm-pattern-library/assets/images";
 .Widget_Title {
 	margin-top: 0;
 	margin-bottom: $base-line-height / 2;
-}
-
-.PostList {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
-.PostList_Item {
-	border-bottom: 1px solid $border-color;
-
-	&:last-child {
-		border-bottom: none;
-	}
-}
-
-.PostList_Item_Link {
-	display: block;
-	padding: $base-line-height / 2 0;
-	color: inherit;
-
-	&:link,
-	&:visited {
-		color: inherit;
-	}
-
-	&:hover,
-	&:focus {
-		text-decoration: none;
-		color: $hm-primary;
-	}
-}
-
-small,
-.text-sm {
-	@include text-sm;
 }
