@@ -1,6 +1,8 @@
 <?php
 
-$comments = get_comments();
+$comments = get_comments([
+	'number' => 5
+]);
 
 ?>
 
@@ -23,10 +25,10 @@ $comments = get_comments();
 
 			<li class="PostList_Item">
 				<a class="PostList_Item_Link" href="<?php echo esc_url( $comment_post_link ); ?>">
-					<b><?php echo esc_html( $comment->comment_author ); ?>.</b>
+					<b>On &ldquo;<?php echo esc_html( get_the_title( $comment->comment_post_ID ) ); ?>&rdquo; by <?php echo esc_html( $comment->comment_author ); ?>.</b>
 					<em><?php echo esc_html( get_comment_date( 'jS F, Y', $comment->comment_ID ) ); ?>.</em>
 					<br/>
-					<?php echo wp_kses_post( '<small>' . $comment->comment_content . '</small>' ); ?>
+					<?php echo wp_kses_post( $comment->comment_content ); ?>
 				</a>
 			</li>
 
