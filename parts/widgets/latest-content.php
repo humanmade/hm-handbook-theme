@@ -19,7 +19,7 @@ $query = new WP_Query( $args );
 		<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 			<li class="PostList_Item">
 				<a class="PostList_Item_Link" href="<?php the_permalink(); ?>">
-					<?php the_title(); ?>
+					<b><?php the_title(); ?></b> by <?php the_author(); ?>
 				</a>
 			</li>
 		<?php endwhile; ?>
