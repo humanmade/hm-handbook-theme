@@ -42,6 +42,18 @@ function setup() {
 	// Register navigation menus.
 	register_nav_menu( 'nav-primary', 'Main navigation' );
 
+	// Register Sidebars.
+	register_sidebar( [
+		'name'        => __( 'Content Siedebar (Logged Out)', 'hm-handbook' ),
+		'id'          => 'site-content-logged-out',
+		'description' => 'Shown only to logged out visitors.',
+		'class'       => '',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>'
+	] );
+
 	// Filter next/prev post classes.
 	add_filter( 'next_posts_link_attributes',     __NAMESPACE__ . '\\posts_link_attributes_next' );
 	add_filter( 'previous_posts_link_attributes', __NAMESPACE__ . '\\posts_link_attributes_prev' );

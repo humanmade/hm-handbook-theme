@@ -64,12 +64,8 @@ body {
 
 	@media #{ $mq-md-up } {
 		width: 250px;
-		margin-top: $base-line-height;
 	}
 
-	@media #{ $mq-lg-up } {
-		margin-top: $base-line-height * 2;
-	}
 }
 
 .site-footer {
