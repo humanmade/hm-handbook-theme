@@ -11,7 +11,7 @@ add_action( 'init', __NAMESPACE__ . '\\init' );
 
 function init() {
 
-	if ( ! current_theme_supports( 'hm-page-history' ) ) {
+	if ( ! current_theme_supports( 'hm-page-history' ) || ! is_user_logged_in() ) {
 		return;
 	}
 
