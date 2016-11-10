@@ -60,6 +60,9 @@ function setup() {
 
 }
 
+/**
+ * Set up the admin.
+ */
 function setup_admin() {
 
 	add_editor_style( 'assets/dist/styles/editor.css' );
@@ -168,6 +171,11 @@ function posts_link_attributes_prev() {
 	return 'class="Btn Btn-Secondary Btn-Small Pagination-Prev"';
 }
 
+/**
+ * Add indicative icon to private page titles
+ *
+ * @return string Title format.
+ */
 add_filter( 'private_title_format', function( $format ) {
 	return '🔒 %s';
 } );
