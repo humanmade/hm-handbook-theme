@@ -179,3 +179,15 @@ function posts_link_attributes_prev() {
 add_filter( 'private_title_format', function( $format ) {
 	return '🔒 %s';
 } );
+
+/**
+ * Redirect private pages to a hiring page if a user is logged out
+ */
+function redirect_private_pages() {
+	$queried_object = get_queried_object();
+	if ( isset( $queried_object->post_status ) && 'private' === $queried_object->post_status && ! is_user_logged_in() ) {
+		wp_redirect( home_url( '/join-human-made/' ) );
+		exit();
+	}
+}
+add_action( 'pre_get_posts', 'HM_Handbook\redirect_private_pages' );
