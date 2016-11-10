@@ -60,6 +60,9 @@ function setup() {
 
 }
 
+/**
+ * Set up the admin.
+ */
 function setup_admin() {
 
 	add_editor_style( 'assets/dist/styles/editor.css' );
