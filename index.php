@@ -28,6 +28,10 @@ get_header();
 		<?php get_template_part( 'parts/article' ); ?>
 	<?php endwhile; ?>
 
+	<?php if ( is_front_page() ) : ?>
+		<?php get_template_part( 'parts/updates' ); ?>
+	<?php endif; ?>
+
 	<?php if ( ! is_singular() ) : ?>
 		<?php get_template_part( 'parts/pagination' ); ?>
 	<?php endif; ?>
