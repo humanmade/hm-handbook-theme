@@ -17,7 +17,7 @@ namespace HM_Handbook;
 
 		<h3 class="updates--heading"><?php esc_html_e( 'Latest pages', 'hm-handbook' ); ?></h3>
 
-		<?php latest_pages(); ?>
+		<?php get_latest( 'posts' ); ?>
 
 	</div>
 
@@ -25,13 +25,7 @@ namespace HM_Handbook;
 
 		<h3 class="updates--heading"><?php esc_html_e( 'Recent edits', 'hm-handbook' ); ?></h3>
 
-		<ol class="updates--list">
-			<li class="updates--list-item"><a class="updates--link" href="#">Lorem ipsum</a></li>
-			<li class="updates--list-item"><a class="updates--link" href="#">Lorem ipsum</a></li>
-			<li class="updates--list-item"><a class="updates--link" href="#">Lorem ipsum</a></li>
-			<li class="updates--list-item"><a class="updates--link" href="#">Lorem ipsum</a></li>
-			<li class="updates--list-item"><a class="updates--link" href="#">Lorem ipsum</a></li>
-		</ol>
+		<?php get_latest( 'edits' ); ?>
 
 	</div>
 
