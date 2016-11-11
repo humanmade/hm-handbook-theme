@@ -7,10 +7,14 @@ function get_latest( $latest = 'posts' ) {
 	$args = [ 'post_type' => 'page' ];
 
 	if ( 'edits' === $latest ) {
-		$args = array_merge( $args, [ 'orderby' => 'modified' ] );
+		$args = array_merge( $args, [ 'orderby' => 'modified', 'suppress_filters' => false ] );
+
+		add_filter( 'posts_where', 'HM_Handbook\edited_pages_only' );
 	}
 
 	$posts = get_posts( $args );
+
+	remove_filter( 'posts_where', 'HM_Handbook\edited_pages_only' );
 
 	$output = '<ol class="updates--list">';
 	foreach ( $posts as $post ) {
@@ -30,4 +34,12 @@ function get_latest( $latest = 'posts' ) {
 	$output .= '</ol>';
 
 	echo $output;
+}
+
+function edited_pages_only( $where = '' ) {
+	global $wpdb;
+
+	$where .= $wpdb->prepare( " AND $wpdb->posts.post_date != $wpdb->posts.post_modified AND $wpdb->posts.post_type = %s", 'page' );
+
+	return $where;
 }
