@@ -1,0 +1,37 @@
+.updates {
+	display: flex;
+	flex-wrap: wrap;
+
+	&--heading {
+		flex: 1 0 100%;
+		margin: 0 0 #{ $gutter-width / 2 };
+	}
+
+	&--box {
+		background-color: $hm-light-grey;
+		padding: $gutter-width;
+		margin: 0 #{ $gutter-width / 2 } $gutter-width 0;
+		flex: 1 0 100%;
+
+		@media ( min-width: 1400px ) {
+			flex-basis: calc( 50% - #{ $gutter-width } );
+		}
+	}
+
+	&--list {
+		margin: 0;
+		padding: 0;
+	}
+
+	&--list-item {
+		list-style: none;
+		border-bottom: 1px solid darken( $hm-light-grey, 10% );
+		padding: #{ $gutter-width / 4 } 0;
+
+		&:last-child {
+			padding-bottom: 0;
+			border-bottom: 0;
+		}
+	}
+
+}
