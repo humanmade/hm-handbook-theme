@@ -39,7 +39,7 @@ function get_latest( $latest = 'posts' ) {
 function edited_pages_only( $where = '' ) {
 	global $wpdb;
 
-	$where .= $wpdb->prepare( " AND $wpdb->posts.post_date != $wpdb->posts.post_modified AND $wpdb->posts.post_type = %s", 'page' );
+	$where .= " AND $wpdb->posts.post_date != $wpdb->posts.post_modified";
 
 	return $where;
 }
