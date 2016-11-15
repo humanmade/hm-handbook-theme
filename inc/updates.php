@@ -14,12 +14,12 @@ function display_latest( $latest = 'posts' ) {
 	if ( 'edits' === $latest ) {
 		$args = array_merge( $args, [ 'orderby' => 'modified', 'suppress_filters' => false ] );
 
-		add_filter( 'posts_where', __NAMESPACE__ . '\get_edited_pages_only' );
+		add_filter( 'posts_where', __NAMESPACE__ . '\\get_edited_pages_only' );
 	}
 
 	$posts = get_posts( $args );
 
-	remove_filter( 'posts_where', __NAMESPACE__ . '\get_edited_pages_only' );
+	remove_filter( 'posts_where', __NAMESPACE__ . '\\get_edited_pages_only' );
 
 	$output = '<ol class="updates--list">';
 	foreach ( $posts as $post ) {
