@@ -28,9 +28,16 @@ function display_latest( $latest = 'posts' ) {
 		$output .= '<span class="updates--link-meta">';
 
 		if ( 'posts' === $latest ) {
-			$output .= 'Posted in ' . get_the_title( $post->post_parent ) . ' on ' . date_i18n( get_option( 'date_format' ), strtotime( $post->post_date ) );
+			$output .= sprintf(
+				esc_html__( 'Posted in %1$s on %2$s', 'hm-handbook' ),
+				get_the_title( $post->post_parent ),
+				date_i18n( get_option( 'date_format' ), strtotime( $post->post_date ) )
+			);
 		} else if ( 'edits' === $latest ) {
-			$output .= 'Last updated on ' . date_i18n( get_option( 'date_format' ), strtotime( $post->post_modified ) );
+			$output .= sprintf(
+				esc_html__( 'Last updated on %s', 'hm-handbook' ),
+				date_i18n( get_option( 'date_format' ), strtotime( $post->post_modified ) )
+			);
 		}
 
 		$output .= '</span>';
