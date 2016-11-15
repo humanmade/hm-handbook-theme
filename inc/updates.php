@@ -2,6 +2,11 @@
 
 namespace HM_Handbook;
 
+/**
+ * Display a list of latest updates
+ *
+ * @param string $latest What to show, posts or edits
+ */
 function display_latest( $latest = 'posts' ) {
 
 	$args = [ 'post_type' => 'page' ];
@@ -36,6 +41,12 @@ function display_latest( $latest = 'posts' ) {
 	echo $output;
 }
 
+/**
+ * Modify SQL query to only return edited pages
+ *
+ * @param string $where Existing SQL query string
+ * @return string $where New SQL query string
+ */
 function get_edited_pages_only( $where = '' ) {
 	global $wpdb;
 
