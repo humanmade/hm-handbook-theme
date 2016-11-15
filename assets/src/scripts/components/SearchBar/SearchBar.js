@@ -31,7 +31,8 @@ export default class SearchBar extends Component {
 				className="SearchBar_Container"
 				role="search"
 				method="get"
-				onSubmit={ (e) => { e.preventDefualt(); this.onSearch() } }
+				action="/"
+				onSubmit={ (e) => { this.onSearch() } }
 			>
 
 				<label className="SearchBar_Label" htmlFor="site-search">{ searchBarSettings.strings.label }</label>
@@ -39,6 +40,7 @@ export default class SearchBar extends Component {
 				<input
 					ref="input"
 					className="SearchBar_Field"
+					name="s"
 					type="search"
 					id="site-search"
 					placeholder={ searchBarSettings.strings.placeholder }
