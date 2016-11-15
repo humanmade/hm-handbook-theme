@@ -2,19 +2,19 @@
 
 namespace HM_Handbook;
 
-function get_latest( $latest = 'posts' ) {
+function display_latest( $latest = 'posts' ) {
 
 	$args = [ 'post_type' => 'page' ];
 
 	if ( 'edits' === $latest ) {
 		$args = array_merge( $args, [ 'orderby' => 'modified', 'suppress_filters' => false ] );
 
-		add_filter( 'posts_where', 'HM_Handbook\edited_pages_only' );
+		add_filter( 'posts_where', 'HM_Handbook\get_edited_pages_only' );
 	}
 
 	$posts = get_posts( $args );
 
-	remove_filter( 'posts_where', 'HM_Handbook\edited_pages_only' );
+	remove_filter( 'posts_where', 'HM_Handbook\get_edited_pages_only' );
 
 	$output = '<ol class="updates--list">';
 	foreach ( $posts as $post ) {
@@ -36,7 +36,7 @@ function get_latest( $latest = 'posts' ) {
 	echo $output;
 }
 
-function edited_pages_only( $where = '' ) {
+function get_edited_pages_only( $where = '' ) {
 	global $wpdb;
 
 	$where .= " AND $wpdb->posts.post_date != $wpdb->posts.post_modified";

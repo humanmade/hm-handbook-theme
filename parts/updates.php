@@ -17,7 +17,7 @@ namespace HM_Handbook;
 
 		<h3 class="updates--heading"><?php esc_html_e( 'Latest pages', 'hm-handbook' ); ?></h3>
 
-		<?php get_latest( 'posts' ); ?>
+		<?php display_latest( 'posts' ); ?>
 
 	</div>
 
@@ -25,7 +25,7 @@ namespace HM_Handbook;
 
 		<h3 class="updates--heading"><?php esc_html_e( 'Recent edits', 'hm-handbook' ); ?></h3>
 
-		<?php get_latest( 'edits' ); ?>
+		<?php display_latest( 'edits' ); ?>
 
 	</div>
 
