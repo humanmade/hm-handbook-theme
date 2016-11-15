@@ -26,16 +26,21 @@
 	&--list-item {
 		list-style: none;
 		border-bottom: 1px solid darken( $hm-light-grey, 10% );
-		padding: #{ $gutter-width / 4 } 0;
-
+		padding: #{ $gutter-width / 3 } 0;
 		&:last-child {
 			padding-bottom: 0;
 			border-bottom: 0;
 		}
 	}
 
+	&--link {
+		display: block;
+		line-height: 1.2;
+	}
+
 	&--link-meta {
 		display: block;
+		padding-top: 0.25em;
 		font-size: 70%;
 		line-height: 1.2;
 	}
