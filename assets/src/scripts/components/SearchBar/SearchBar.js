@@ -39,6 +39,7 @@ export default class SearchBar extends Component {
 
 				<input
 					ref="input"
+					autoComplete="off"
 					className="SearchBar_Field"
 					name="s"
 					type="search"
