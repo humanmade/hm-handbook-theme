@@ -1,4 +1,5 @@
 .updates {
+
 	display: flex;
 	flex-wrap: wrap;
 
@@ -27,6 +28,7 @@
 		list-style: none;
 		border-bottom: 1px solid darken( $hm-light-grey, 10% );
 		padding: #{ $gutter-width / 3 } 0;
+
 		&:last-child {
 			padding-bottom: 0;
 			border-bottom: 0;
