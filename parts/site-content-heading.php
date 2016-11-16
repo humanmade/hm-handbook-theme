@@ -13,7 +13,7 @@
 			<?php
 			$term  = get_queried_object();
 			$tax   = get_taxonomy( $term->taxonomy );
-			printf( __( '%s Archive', 'handbook' ), esc_html( $tax->labels->singular_name ) );
+			printf( __( '%s Archive', 'hm-handbook' ), esc_html( $tax->labels->singular_name ) );
 			?>
 		</p>
 
@@ -33,7 +33,7 @@
 
 	<div class="site-content-header">
 
-		<p class="site-content-header-title-pre"><?php esc_html_e( 'Author Archive', 'handbook' ); ?></p>
+		<p class="site-content-header-title-pre"><?php esc_html_e( 'Author Archive', 'hm-handbook' ); ?></p>
 
 		<h1 class="site-content-header-title"><?php echo esc_html( get_the_author() ); ?></h1>
 
@@ -54,11 +54,11 @@
 		<p class="site-content-header-title-pre">
 			<?php
 			if ( is_day() ) {
-				esc_html_e( 'Daily Archives', 'handbook' );
+				esc_html_e( 'Daily Archives', 'hm-handbook' );
 			} elseif ( is_month() ) {
-				esc_html_e( 'Monthly Archives', 'handbook' );
+				esc_html_e( 'Monthly Archives', 'hm-handbook' );
 			} elseif ( is_year() ) {
-				esc_html_e( 'Yearly Archives', 'handbook' );
+				esc_html_e( 'Yearly Archives', 'hm-handbook' );
 			}
 			?>
 		</p>
@@ -72,7 +72,7 @@
 			} elseif ( is_year() ) {
 				echo esc_html( get_the_date( 'Y' ) );
 			} else {
-				esc_html_e( 'Date Archives', 'handbook' );
+				esc_html_e( 'Date Archives', 'hm-handbook' );
 			}
 			?>
 		</h2>

@@ -40,7 +40,6 @@
 		color: $white;
 		text-align: center;
 		position: relative;
-		margin-bottom: -1.5rem;
 	}
 
 	@media #{ $mq-md-up } {
@@ -64,7 +63,7 @@
 		float: right;
 
 		@media #{ $mq-md-down } {
-			padding-top: 0;
+			padding-top: 1rem;
 		}
 	}
 
