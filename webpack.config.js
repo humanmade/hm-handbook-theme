@@ -1,8 +1,13 @@
+const webpack = require( 'webpack' );
+
 module.exports =  {
 	cache: false,
 	devtool: 'source-map',
 	entry: {
-		theme: './assets/src/scripts/theme.js',
+		theme: [
+			'./vendor/hm-pattern-library/assets/js/app.js',
+			'./assets/src/scripts/theme.js',
+		]
 	},
 	output: {
 		path: 'assets/dist/scripts',
@@ -21,7 +26,12 @@ module.exports =  {
 		    }
 		]
 	},
-	plugins: [],
+	plugins: [
+		new webpack.optimize.UglifyJsPlugin({
+			compress: { warnings: false },
+			sourceMap: true,
+		}),
+	],
 	externals: {
 		'jquery' : 'jQuery'
 	},
