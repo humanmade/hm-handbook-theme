@@ -37,6 +37,15 @@ gulp.task( 'styles', () => {
 
 // Bundle JS.
 gulp.task( 'js', function( callback ) {
+
+	// Set production environment to ensure webpack dev version isn't used.
+	// Change to dev during developemnt to get more useful errors.
+	config.webpack.plugins.push( new webpack.DefinePlugin({
+		"process.env": {
+			NODE_ENV: JSON.stringify( "production" ),
+		}
+	}));
+
 	webpack(
 		config.webpack,
 		function( err, stats ) {
