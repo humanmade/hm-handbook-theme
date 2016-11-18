@@ -16,6 +16,11 @@ namespace HM_Handbook;
 
 			<div class="site-footer Footer">
 				<p><a href="https://hmn.md" class="hm-link"><span class="HMLogo HMLogo-Tiny"></span>Made by Humans</a></p>
+
+				<div class="footer-widgets">
+					<?php dynamic_sidebar( 'footer-content' ); ?>
+				</div>
+
 			</div>
 
 		</main>
