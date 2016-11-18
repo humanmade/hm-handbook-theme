@@ -47,7 +47,7 @@ function setup() {
 	register_sidebar( [
 		'name'          => __( 'Content Siedebar (Logged Out)', 'hm-handbook' ),
 		'id'            => 'site-content-logged-out',
-		'description'   => 'Shown only to logged out visitors.',
+		'description'   => __( 'Shown only to logged out visitors.', 'hm-handbook' ),
 		'class'         => '',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
@@ -57,7 +57,7 @@ function setup() {
 	register_sidebar( [
 		'name'          => __( 'Footer Content', 'hm-handbook' ),
 		'id'            => 'footer-content',
-		'description'   => 'Shown in site footer.',
+		'description'   => __( 'Show in the site footer.', 'hm-handbook' ),
 		'class'         => '',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
