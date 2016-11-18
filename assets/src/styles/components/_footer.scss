@@ -14,5 +14,14 @@
 
 	}
 
+	.footer-content {
+		@include font-body;
+
+		@media #{ $mq-md-up } {
+			width: calc( 100% - 250px ); // Same as content area
+		}
+
+	}
+
 }
 
