@@ -36,5 +36,4 @@ Example of what needs to be done:
 
 1. `cd vendor/hm-pattern-library`
 1. `git fetch --tags && git checkout 1.0` or `git checkout gh-pages && git pull`
-1. `cd ../../`
-1. `git add vendor/hm-pattern-library && commit -m 'Update HM Pattern Library'`
+1. `cd ../../ && git add vendor/hm-pattern-library && commit -m 'Update HM Pattern Library'`
