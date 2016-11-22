@@ -9,19 +9,15 @@
 
 namespace HM_Handbook;
 
-$hide_title = in_array( get_page_template_slug(), [
-	'page-templates/page-no-title.php'
-], true );
-
 ?>
 
 <article <?php post_class( 'article' ); ?>>
 
-	<?php if ( ! $hide_title && is_singular() ) : ?>
+	<?php if ( is_singular() ) : ?>
 		<h1 class="article-title">
 			<?php the_title(); ?>
 		</h1>
-	<?php elseif ( ! $hide_title ) : ?>
+	<?php else : ?>
 		<h2 class="article-title">
 			<a href="<?php the_permalink(); ?>">
 				<?php the_title(); ?>

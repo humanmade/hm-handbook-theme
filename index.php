@@ -24,9 +24,18 @@ get_header();
 		<?php get_template_part( 'parts/site-content-heading' ); ?>
 	<?php endif; ?>
 
-	<?php while ( have_posts() ) : the_post(); ?>
-		<?php get_template_part( 'parts/article' ); ?>
-	<?php endwhile; ?>
+	<?php
+
+	while ( have_posts() ) {
+		the_post();
+
+		if ( 'page-templates/page-no-title.php' === get_page_template_slug() ) {
+			get_template_part( 'parts/article', 'no-title' );
+		} else {
+			get_template_part( 'parts/article' );
+		}
+	}
+	?>
 
 	<?php if ( is_front_page() ) : ?>
 		<?php get_template_part( 'parts/updates' ); ?>
