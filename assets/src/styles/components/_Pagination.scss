@@ -24,13 +24,14 @@
 	a {
 		@extend .Btn;
 		@extend .Btn-Small;
-		@extend .Btn-Secondary;
+		@extend .Btn-Tertiary;
 		margin-right: $gutter-width / 4;
 	}
 
 	.Pagination-Current {
 		@extend .Btn;
 		@extend .Btn-Small;
+		@extend .Btn-Secondary;
 		margin-right: $gutter-width / 4;
 		pointer-events: none;
 	}
