@@ -1,16 +1,29 @@
 ## Development Guidelines
 
-The theme uses gulp to run various tasks. This includes compiling CSS, bundling JS and minifiying images.
 
 * Theme styles use SCSS and are stored in `assets/src/styles`.
-* Theme JavaScript files are in `assets/src/scripts`. Webpack is used to bundle theme.js.
+* Theme JavaScript files are in `assets/src/scripts`.
 * Theme Images files are in `assets/src/images`.
-* Compiled/proccessed are be kept in `assets/dist`.
-* You should never include files from `assets/src` directly within the theme.
 
+The theme uses [gulp](http://gulpjs.com) to run various tasks such as compiling CSS, bundling JS and minifiying images. 
 
-1. Make sure you run `git submodule update --recursive --init` in the theme folder to pull down the vendor submodules that are used in this theme.
-1. Reqirements: [NPM](http://blog.npmjs.org/post/85484771375/how-to-install-npm) and [Gulp CLI](http://gulpjs.com/)
+* Compiled/proccessed files are not tracked in git and MUST be built locally and on deploy.
+* All compiled/proccessed assets are be kept in `assets/dist`. 
+* You probably shouldn't load files from `assets/src` directly.
+
+### Dev Setup
+
+**Dependencies**
+
+* A developemnt environment for working with WordPress. EG [Salty Wordpress](https://github.com/humanmade/Salty-WordPress)
+* [git](https://git-scm.com)
+* [NPM](http://blog.npmjs.org/post/85484771375/how-to-install-npm)
+* [Gulp CLI](http://gulpjs.com/)
+
+**Getting it setup**
+
+1. Check out the code to the `themes` directory of your WordPress install. `git checkout --recursive git@github.com:humanmade/hm-handbook-theme.git`
+1. If you didn't pass `--recursive` in the previous step, you need to make sure you run `git submodule update --recursive --init` from inside the hm-handbook-theme directory to pull down the submodules that are used in this theme.
 1. `npm install` to install all required dependencies.
 1. `gulp` to run all the tasks required to build the theme.
 1. `gulp watch` to watch for changes, and run required tasks automatically.
