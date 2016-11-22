@@ -9,13 +9,13 @@ The theme uses [gulp](http://gulpjs.com) to run various tasks such as compiling 
 
 * Compiled/proccessed files are not tracked in git and MUST be built locally and on deploy.
 * All compiled/proccessed assets are be kept in `assets/dist`. 
-* You probably shouldn't load files from `assets/src` directly.
+* Always load assets from `assets/dist`, you probably shouldn't be loading anything from `assets/src`.
 
 ### Dev Setup
 
 **Dependencies**
 
-* A developemnt environment for working with WordPress. EG [Salty Wordpress](https://github.com/humanmade/Salty-WordPress)
+* A development environment and working WordPress install. EG [Salty Wordpress](https://github.com/humanmade/Salty-WordPress)
 * [git](https://git-scm.com)
 * [NPM](http://blog.npmjs.org/post/85484771375/how-to-install-npm)
 * [Gulp CLI](http://gulpjs.com/)
