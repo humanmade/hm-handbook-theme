@@ -14,3 +14,14 @@ The theme uses gulp to run various tasks. This includes compiling CSS, bundling 
 1. `npm install` to install all required dependencies.
 1. `gulp` to run all the tasks required to build the theme.
 1. `gulp watch` to watch for changes, and run required tasks automatically.
+
+### Updating HM Pattern Library
+
+The pattern library is a submodule checked out to `/vendor/hm-pattern-library`. We are using the compiled version of this so you should check out either a tagged release or the `gh-pages` branch when updating.
+
+Example of what needs to be done: 
+
+1. `cd vendor/hm-pattern-library`
+1. `git fetch --tags && git checkout 1.0` or `git checkout gh-pages && git pull`
+1. `cd ../../`
+1. `git add vendor/hm-pattern-library && commit -m 'Update HM Pattern Library'`
