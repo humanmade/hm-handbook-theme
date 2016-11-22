@@ -33,4 +33,18 @@ namespace HM_Handbook;
 		<?php is_singular() ? the_content() : the_excerpt(); ?>
 	</div>
 
+	<?php if ( is_singular() ) : ?>
+		<div class="Pagination Pagination-Article">
+			<?php
+
+			wp_link_pages( array(
+				'before'           => '' . __( '<span class="Pagination-Label">Pages:</span>' ),
+				'after'            => '',
+			) );
+
+			?>
+		</div>
+	<?php endif; ?>
+
+
 </article>
