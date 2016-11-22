@@ -15,7 +15,7 @@ The theme uses [gulp](http://gulpjs.com) to run various tasks such as compiling 
 
 **Dependencies**
 
-* A development environment and working WordPress install. EG [Salty Wordpress](https://github.com/humanmade/Salty-WordPress)
+* A development environment and working WordPress install. e.g. [Salty Wordpress](https://github.com/humanmade/Salty-WordPress)
 * [git](https://git-scm.com)
 * [NPM](http://blog.npmjs.org/post/85484771375/how-to-install-npm)
 * [Gulp CLI](http://gulpjs.com/)
