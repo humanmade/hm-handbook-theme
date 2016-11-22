@@ -28,6 +28,10 @@ get_header();
 		<?php get_template_part( 'parts/article' ); ?>
 	<?php endwhile; ?>
 
+	<?php if ( is_front_page() ) : ?>
+		<?php get_template_part( 'parts/updates' ); ?>
+	<?php endif; ?>
+
 	<?php if ( ! is_singular() ) : ?>
 		<?php get_template_part( 'parts/pagination' ); ?>
 	<?php endif; ?>
@@ -38,6 +42,10 @@ get_header();
 
 </div>
 
-<div class="site-content-sidebar"></div>
+<div class="site-content-sidebar">
+	<?php if ( ! is_user_logged_in() ) {
+		dynamic_sidebar( 'site-content-logged-out' );
+	} ?>
+</div>
 
 <?php get_footer(); ?>

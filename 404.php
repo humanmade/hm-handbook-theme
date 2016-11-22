@@ -15,8 +15,8 @@ get_header();
 
 	<div class="article">
 		<h1 class="article-title">
-			<?php esc_html_e( 'Sorry!', 'handbook' ); ?><br />
-			<?php esc_html_e( 'Page not found.', 'handbook' ); ?>
+			<?php esc_html_e( 'Sorry!', 'hm-handbook' ); ?><br />
+			<?php esc_html_e( 'Page not found.', 'hm-handbook' ); ?>
 		</h1>
 	</div>
 </div>

@@ -18,6 +18,7 @@ $images-path: "./../../../vendor/hm-pattern-library/assets/images" !default;
 @import "components/PageHistory";
 @import "components/Nav";
 @import "components/comments";
+@import "components/updates";
 
 .article {
 	position: relative;
@@ -54,6 +55,22 @@ $images-path: "./../../../vendor/hm-pattern-library/assets/images" !default;
 		font-size: 1rem;
 		line-height: $base-line-height;
 		color: #FFF;
+	}
+
+}
+
+.widget {
+	@include text-sm;
+}
+
+.widget-title {
+	@include text-md;
+}
+
+.widget_text {
+	.HMLogo {
+		margin-left: 0;
+		margin-bottom: 0;
 	}
 
 }

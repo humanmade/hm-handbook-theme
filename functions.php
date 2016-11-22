@@ -13,6 +13,7 @@ require_once( __DIR__ . '/inc/primary-nav.php' );
 require_once( __DIR__ . '/inc/page-history.php' );
 require_once( __DIR__ . '/inc/search.php' );
 require_once( __DIR__ . '/inc/editor-mods.php' );
+require_once( __DIR__ . '/inc/updates.php' );
 
 add_action( 'after_setup_theme',  __NAMESPACE__ . '\\setup' );
 add_action( 'after_setup_theme',  __NAMESPACE__ . '\\content_width', 0 );
@@ -42,6 +43,28 @@ function setup() {
 	// Register navigation menus.
 	register_nav_menu( 'nav-primary', 'Main navigation' );
 
+	// Register Sidebars.
+	register_sidebar( [
+		'name'          => __( 'Content Siedebar (Logged Out)', 'hm-handbook' ),
+		'id'            => 'site-content-logged-out',
+		'description'   => __( 'Shown only to logged out visitors.', 'hm-handbook' ),
+		'class'         => '',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>'
+	] );
+	register_sidebar( [
+		'name'          => __( 'Footer Content', 'hm-handbook' ),
+		'id'            => 'footer-content',
+		'description'   => __( 'Show in the site footer.', 'hm-handbook' ),
+		'class'         => '',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>'
+	] );
+	
 	// Filter next/prev post classes.
 	add_filter( 'next_posts_link_attributes',     __NAMESPACE__ . '\\posts_link_attributes_next' );
 	add_filter( 'previous_posts_link_attributes', __NAMESPACE__ . '\\posts_link_attributes_prev' );
@@ -51,6 +74,9 @@ function setup() {
 
 }
 
+/**
+ * Set up the admin.
+ */
 function setup_admin() {
 
 	add_editor_style( 'assets/dist/styles/editor.css' );
@@ -63,12 +89,18 @@ function setup_admin() {
 }
 
 /**
+ * Add login Styling
+ */
+add_action( 'login_enqueue_scripts', function() {
+	wp_enqueue_style( 'hm-login', get_theme_file_uri( 'assets/dist/styles/login.css' ), [], wp_get_theme()->Version );
+} );
+
+/**
  * Enqueue all theme scripts.
  */
 function enqueue_scripts() {
 
-	wp_register_script( 'hm-pattern-lib', get_parent_theme_file_uri( 'vendor/hm-pattern-library/assets/js/app.js' ), [], '1.0', true );
-	wp_enqueue_script( 'hm-handbook', get_theme_file_uri( 'assets/dist/scripts/theme.js' ), [ 'hm-pattern-lib' ], '1.0', true );
+	wp_enqueue_script( 'hm-handbook', get_theme_file_uri( 'assets/dist/scripts/theme.js' ), [], '1.0', true );
 	wp_enqueue_style( 'hm-handbook', get_theme_file_uri( 'assets/dist/styles/theme.css' ), [], '1.0' );
 
 	add_action( 'wp_head', function() {
@@ -153,11 +185,13 @@ function posts_link_attributes_prev() {
 }
 
 /**
- * Filter the private link titles to use emoji.
+ * Add indicative icon to private page titles
+ *
+ * @return string Title format.
  */
-function filter_private_title_format( $format ) {
+add_filter( 'private_title_format', function( $format ) {
 	return '🔒 %s';
-}
+} );
 
 /**
  * Handle the markup for multi-page posts.
@@ -173,3 +207,15 @@ function multi_page_links_markup( $link, $i ) {
 	return $link;
 
 }
+
+/**
+ * Redirect private pages to a hiring page if a user is logged out
+ */
+function redirect_private_pages() {
+	$queried_object = get_queried_object();
+	if ( isset( $queried_object->post_status ) && 'private' === $queried_object->post_status && ! is_user_logged_in() ) {
+		wp_redirect( home_url( '/join-human-made/' ) );
+		exit();
+	}
+}
+add_action( 'pre_get_posts', 'HM_Handbook\redirect_private_pages' );

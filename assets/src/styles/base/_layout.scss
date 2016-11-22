@@ -20,6 +20,7 @@ body {
 .site-sidebar {
 
 	padding: $base-line-height $gutter-width;
+	min-height: calc( 100vh - 6rem ); // For IE11 & 10
 
 	@media #{ $mq-md-up } {
 		width: 300px;
@@ -64,12 +65,8 @@ body {
 
 	@media #{ $mq-md-up } {
 		width: 250px;
-		margin-top: $base-line-height;
 	}
 
-	@media #{ $mq-lg-up } {
-		margin-top: $base-line-height * 2;
-	}
 }
 
 .site-footer {
