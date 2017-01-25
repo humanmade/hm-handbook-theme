@@ -1,6 +1,5 @@
 #!/bin/sh
 
 npm install
-npm install gulp
-npm install gulp-cli
+npm install gulp gulp-cli
 node_modules/gulp-cli/bin/gulp.js
