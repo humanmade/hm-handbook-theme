@@ -1,5 +1,5 @@
 #!/bin/sh
 
 npm install
-npm install gulp gulp-cli gulp-sourcemaps gulp-watch gulp-postcss autoprefixer gulp-sass gulp-sass-lint webpack
+npm install gulp-cli
 node_modules/gulp-cli/bin/gulp.js
