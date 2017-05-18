@@ -32,7 +32,6 @@ function modify_tinyMCE4( $mceInit, $editor_id ) {
 		'outdent',
 		'wp_more',
 		'hr',
-		'strikethrough',
 	);
 
 	// Remove these buttons if they are found in toolbar1 or toolbar2
@@ -48,7 +47,8 @@ function modify_tinyMCE4( $mceInit, $editor_id ) {
 	// Insert some new buttons.
 	// We have removed these because we want to insert them into a different position.
 	array_splice( $toolbar2, 1, 0, 'hr' );
-	array_splice( $toolbar2, 1, 0, 'strikethrough' );
+	array_splice( $toolbar2, 5, 0, 'indent' );
+	array_splice( $toolbar2, 5, 0, 'outdent' );
 	array_splice( $toolbar2, count( $toolbar2 ) - 1, 0, 'wp_more' );
 
 	// Convert back to original format.
