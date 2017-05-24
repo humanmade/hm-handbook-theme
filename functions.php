@@ -11,6 +11,7 @@ namespace HM_Handbook;
 
 require_once( __DIR__ . '/inc/primary-nav.php' );
 require_once( __DIR__ . '/inc/page-history.php' );
+require_once( __DIR__ . '/inc/private-links.php' );
 require_once( __DIR__ . '/inc/search.php' );
 require_once( __DIR__ . '/inc/editor-mods.php' );
 require_once( __DIR__ . '/inc/updates.php' );
