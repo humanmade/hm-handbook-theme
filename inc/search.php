@@ -48,12 +48,7 @@ class Result {
 function search_request_callback( WP_Rest_Request $request ) {
 
 	$query = $request->get_param( 'query' );
-
-	if ( function_exists( 'hmn_hmes_search_items' ) ) {
-		$data = elastic_search_request( $query );
-	} else {
-		$data = fallback_search_request( $query );
-	}
+	$data  = fallback_search_request( $query );
 
 	return rest_ensure_response( $data );
 
@@ -110,9 +105,13 @@ function fallback_search_request( $query ) {
 		's'              => $query,
 		'post_type'      => get_post_types( [ 'public' => true ] ),
 		'posts_per_page' => 50,
-		'post_status'    => [ 'publish', 'private' ],
+		'post_status'    => [ 'publish' ],
 		'perm'           => 'readable',
 	];
+
+	if ( is_user_logged_in() ) {
+		$search_query_argsp['post_status'][] = 'private';
+	}
 
 	$search_query = new WP_Query( $search_query_args );
 	$results      = [];
