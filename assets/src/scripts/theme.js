@@ -18,17 +18,15 @@ if ( 'HMHandbookPageHistory' in window ) {
 
 }
 
-var searchBarContainers = document.querySelectorAll( '.StyleGuide_SearchContainer' );
+var searchBarContainers = document.querySelectorAll( '.search-container' );
 
-for ( let i = 0; i < searchBarContainers.length; i++ ) {
-
-	while ( searchBarContainers[ i ].firstChild ) {
-		searchBarContainers[ i ].removeChild( searchBarContainers[ i ].firstChild );
+searchBarContainers.forEach( searchBarContainer => {
+	while ( searchBarContainer.firstChild ) {
+		searchBarContainer.removeChild( searchBarContainer.firstChild );
 	}
 
 	ReactDOM.render(
-		<SearchBar query={ '' } containerEl={ searchBarContainers[ i ] } />,
-		searchBarContainers[ i ]
+		<SearchBar query={ '' } containerEl={ searchBarContainer } />,
+		searchBarContainer
 	);
-
-}
+} );

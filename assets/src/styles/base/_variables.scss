@@ -15,7 +15,7 @@ $color-pagehistory-background: $hm_light-grey !default;
 $color-pagehistory-list: $hm-medium-grey !default;
 
 // Sidebar
-$color-sidebar-background: $hm-beige !default;
+$color-sidebar-background: $hm-light-grey !default;
 
 // Login
 $login-background-color: $color-primary !default;
@@ -28,3 +28,6 @@ $comment_avatar_width: 3rem !default;
  * Breakpoints
  */
 $mq-lg-up:  "( min-width: 1300px )" !default;
+
+// Legacy
+$white: #FFF;

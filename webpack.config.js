@@ -5,7 +5,7 @@ module.exports =  {
 	devtool: 'source-map',
 	entry: {
 		theme: [
-			'./vendor/hm-pattern-library/assets/js/app.js',
+			'./vendor/hm-pattern-library/assets/js/juniper.js',
 			'./assets/src/scripts/theme.js',
 		]
 	},

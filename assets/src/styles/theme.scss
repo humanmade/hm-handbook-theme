@@ -1,7 +1,7 @@
 $images-path: "./../../../vendor/hm-pattern-library/assets/images" !default;
 
 // External
-@import "./../../../vendor/hm-pattern-library/assets/sass/style";
+@import "./../../../vendor/hm-pattern-library/assets/sass/juniper.scss";
 
 // Base
 @import "base/variables";
@@ -24,15 +24,15 @@ $images-path: "./../../../vendor/hm-pattern-library/assets/images" !default;
 	position: relative;
 }
 
-.SearchBar {
+.search-bar {
 
-	.SearchBar_Result_Title {
+	.search-bar_Result_Title {
 		font-size: 1rem;
 		line-height: $base-line-height;
 		margin-bottom: .375rem;
 	}
 
-	&-Loading .SearchBar_Submit {
+	&-Loading .search-bar__submit {
 
 		.Loading {
 			position: absolute;
@@ -48,7 +48,7 @@ $images-path: "./../../../vendor/hm-pattern-library/assets/images" !default;
 
 	}
 
-	.SearchBar_Results-Info {
+	.search-bar_Results-Info {
 		margin: 0 #{ $gutter-width / 2 } #{ $base-line-height / 2 } #{ $gutter-width / 2 };
 		border-top: 1px solid desaturate( $color-primary, 5% );
 		padding-top: $base-line-height / 2;
@@ -68,7 +68,7 @@ $images-path: "./../../../vendor/hm-pattern-library/assets/images" !default;
 }
 
 .widget_text {
-	.HMLogo {
+	.hm-logo {
 		margin-left: 0;
 		margin-bottom: 0;
 	}
