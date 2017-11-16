@@ -219,3 +219,11 @@ function redirect_private_pages() {
 	}
 }
 add_action( 'pre_get_posts', 'HM_Handbook\redirect_private_pages' );
+
+/**
+ * Add no title page template.
+ */
+add_filter( 'theme_page_templates', function( $templates ) {
+	$templates['page-templates/page-no-title.php'] = __( 'Hide Title', 'hm-handbook' );
+	return $templates;
+} );
