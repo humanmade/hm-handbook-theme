@@ -1,0 +1,225 @@
+/**
+ * Helper mixin for generating color variations.
+ */
+@mixin NavAccordion_Coloured( $bg, $border-color, $text-color: $color-text-default ) {
+
+	background: $bg;
+	color: $text-color;
+
+	.NavAccordion_Item {
+		border-color: $border-color;
+	}
+
+	.NavAccordion_Item > ul:after {
+		border-color: $border-color;
+	}
+
+	.NavAccordion_Item .NavAccordion_Item {
+		.NavAccordion_Anchor:after {
+			border-color: $border-color;
+		}
+	}
+
+	$border-color-toggle: $border-color;
+	$border-color-toggle-hover: $border-color;
+
+	@if ( lightness( $bg ) > 60 ) {
+		$border-color-toggle: darken( $border-color, 20% );
+		$border-color-toggle-hover: darken( $border-color, 40% );
+	} @else {
+		$border-color-hover: lighten( $border-color, 30% );
+		$border-color-toggle-hover: lighten( $border-color, 60% );
+	}
+
+	.NavAccordion_Toggle {
+
+		border-color: $border-color-toggle;
+		color: $border-color-toggle;
+
+		&:hover,
+		&:focus {
+			border-color: $border-color-toggle-hover;
+			color: $border-color-toggle-hover;
+		}
+
+	}
+
+}
+
+.NavAccordion {
+
+	@include font-heading;
+	@include text-sm;
+	line-height: $base-line-height * .75;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	a:link,
+	a:visited {
+		color: inherit;
+		border: none;
+	}
+
+	a:hover,
+	a:focus {
+		border: none;
+	}
+
+	ul,
+	ol {
+		list-style: none;
+		font-size: inherit;
+		margin: 0;
+		padding: 0;
+		position: relative;
+	}
+
+}
+
+.NavAccordion_Item {
+
+	font-size: inherit;
+	position: relative;
+	display: block;
+	border-bottom: 1px solid $border-color;
+
+	&:last-child {
+		border-bottom: none;
+	}
+
+	> ul {
+		overflow: hidden;
+		margin-left: $gutter-width / 2;
+	}
+
+}
+
+.NavAccordion_Anchor {
+	display: inline-block;
+	padding: 7.5px 0;
+	position: relative;
+}
+
+.NavAccordion_Item > ul:after {
+	content: " ";
+	border-left: 1px solid $border-color;
+	top: -.333333333rem;
+	bottom: calc( 0.9rem - 1px );
+	left: 0;
+	position: absolute;
+}
+
+.NavAccordion_Item .NavAccordion_Item {
+
+	margin-left: 0;
+	padding-left: $gutter-width;
+	border-left: none;
+	border-bottom: none;
+
+	.NavAccordion_Anchor:after {
+		content: " ";
+		width: $gutter-width / 2;
+		border-bottom: 1px solid $border-color;
+		position: absolute;
+		top: 19px;
+		left: $gutter-width * -1;
+	}
+
+	> ul {
+		margin-left: 0;
+	}
+
+}
+
+.NavAccordion_Item .NavAccordion_Item .NavAccordion_Item {
+	@include font-body;
+}
+
+.NavAccordion_Toggle {
+
+	@extend .btn--small;
+	border: none;
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: $base-line-height * 1.25;
+	width: $base-line-height * 1.25;
+	background: transparent;
+
+	&:after {
+		@include icon( "plus-alt" );
+		position: absolute;
+		content: " ";
+		top: 50%;
+		left: 50%;
+		width: 18px;
+		height: 18px;
+		background-size: 100% 100%;
+		margin-left: -9px;
+		margin-top: -9px;
+		text-indent: 0;
+		opacity: 0.75;
+	}
+
+	&:hover,
+	&:focus {
+		background: none;
+		border: none;
+
+		&:after {
+			opacity: 1;
+		}
+	}
+
+	&:focus {
+		outline: none;
+	}
+
+}
+
+.NavAccordion_Toggle-Open:after {
+	$iconSrc: iconSrc( "minus-alt" );
+	background-image: url( $iconSrc );
+}
+
+.NavAccordion-Red {
+	@include NavAccordion_Coloured( $color-primary, $border-color-primary, $color-nav-accordion-primary-text );
+
+	.NavAccordion_Toggle {
+
+		&:before {
+			background: rgba( 255, 255, 255, .85 );
+		}
+
+		&:after {
+			$iconSrc: iconSrc( "plus-alt", "white" );
+			background-image: url( $iconSrc );
+		}
+
+		&:hover:before,
+		&:focus:before {
+			background-color: $color-nav-accordion-primary-focus-background;
+		}
+
+	}
+
+	.NavAccordion_Toggle-Open:after {
+		$iconSrc: iconSrc( "minus-alt", "white" );
+		background-image: url( $iconSrc );
+	}
+
+}
+
+.NavAccordion-Grey {
+	@include NavAccordion_Coloured(
+		$hm-light-grey,
+		$border-color-light,
+		$hm-medium-grey
+	);
+}
+
+.NavAccordion_Item-Active > .NavAccordion_Anchor {
+	text-decoration: underline;
+}

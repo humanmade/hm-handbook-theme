@@ -19,7 +19,7 @@ body {
 
 .site-sidebar {
 
-	padding: $base-line-height $gutter-width;
+	padding: $margin-vertical-sm $gutter-width * 2;
 	min-height: calc( 100vh - 6rem ); // For IE11 & 10
 
 	@media #{ $mq-md-up } {
@@ -30,7 +30,7 @@ body {
 .site-content-container {
 
 	width: 100%;
-	padding: $base-line-height $gutter-width;
+	padding: $margin-vertical-sm $gutter-width * 2;
 
 	@media #{ $mq-md-up } {
 		width: calc( 100% - 300px );
@@ -39,7 +39,7 @@ body {
 
 	@media #{ $mq-lg-up } {
 		max-width: calc( 40rem + #{ $gutter-width * 2 + 250px + $gutter-width * 4 } );
-		padding: ( $base-line-height * 2 ) ( $gutter-width * 2 );
+		padding: $margin-vertical-sm * 2 ( $gutter-width * 4 );
 	}
 }
 

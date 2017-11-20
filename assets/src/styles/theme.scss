@@ -19,6 +19,7 @@ $images-path: "./../../../vendor/hm-pattern-library/assets/images" !default;
 @import "components/Nav";
 @import "components/comments";
 @import "components/updates";
+@import "components/nav-accordion";
 
 .article {
 	position: relative;

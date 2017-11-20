@@ -13,7 +13,7 @@
 	width: 100%;
 	position: relative;
 	margin: $base-line-height 0;
-	padding: #{ $base-line-height / 2 } #{ $gutter-width / 2 };
+	padding: #{ $base-line-height / 2 } #{ $gutter-width };
 	background: $color-pagehistory-background;
 	border-radius: 2px;
 
@@ -75,7 +75,7 @@
 .PageHistory_List_Title {
 	@include text-sm;
 	margin-top: 0;
-	margin-bottom: $base-line-height / 4;
+	margin-bottom: 0;
 }
 
 .PageHistory_List {
@@ -84,8 +84,8 @@
 	color: $color-pagehistory-list;
 	list-style: none;
 	position: relative;
-	margin: 0;
-	padding: 0 0 0 #{ $gutter-width / 2 };
+	margin: #{ $base-line-height / 4 } 0;
+	padding-left: #{ $gutter-width / 2 };
 
 	&:after {
 		content: " ";
@@ -118,11 +118,13 @@
 	a:visited {
 		color: inherit;
 		text-decoration: inherit;
+		border: none;
 	}
 
 	a:hover {
 		color: #444;
 		text-decoration: underline;
+		border: none;
 	}
 
 	&:after {
@@ -182,42 +184,29 @@
 .btn--toggle {
 
 	background: none;
+	border: none;
 	position: absolute;
-	top: $base-line-height / 4;
-	right: $base-line-height / 4;
+	top: .7775rem;
+	right: $gutter-width;
 	margin: 0;
 	text-indent: 100%;
 	overflow: hidden;
 	white-space: nowrap;
 	padding: 0;
-	width: 2.25rem;
-	height: 2.25rem;
+	width: 1.333rem;
+	height: 1.333rem;
 
-	&:before {
+	&:after {
 		position: absolute;
 		content: " ";
-		background: rgba( $color-nav-toggle-background, .75 );
-		border-radius: 100%;
+		background: url( "#{ $images-path }/icons/icon-plus-alt-black.svg" ) no-repeat center center;
+		background-size: 100% 100%;
 		top: 50%;
 		left: 50%;
 		width: 18px;
 		height: 18px;
 		margin-left: -9px;
 		margin-top: -9px;
-		text-indent: 0;
-	}
-
-	&:after {
-		position: absolute;
-		content: " ";
-		background: url( "#{ $images-path }/icons/icon-plus-white.svg" ) no-repeat center center;
-		background-size: 100% 100%;
-		top: 50%;
-		left: 50%;
-		width: 8px;
-		height: 8px;
-		margin-left: -4px;
-		margin-top: -4px;
 		text-indent: 0;
 	}
 
@@ -234,7 +223,7 @@
 
 
 	&.btn--state-expanded:after {
-		background-image: url( "#{ $images-path }/icons/icon-minus-white.svg" );
+		background-image: url( "#{ $images-path }/icons/icon-minus-alt-black.svg" );
 	}
 
 }

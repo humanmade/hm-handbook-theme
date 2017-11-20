@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PageHistory from './components/PageHistory/PageHistory.js';
 import SearchBar from './components/SearchBar/SearchBar.js';
+import initNavAccordion from './components/NavAccordion/NavAccordion.js';
 
 if ( 'HMHandbookPageHistory' in window ) {
 
@@ -30,3 +31,10 @@ searchBarContainers.forEach( searchBarContainer => {
 		searchBarContainer
 	);
 } );
+
+// Init Accordion Nav for all NavAccordion Items.
+Array.prototype.forEach.call(
+	document.getElementsByClassName( 'NavAccordion_Item' ),
+	initNavAccordion
+);
+
