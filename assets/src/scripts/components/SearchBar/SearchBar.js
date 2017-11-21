@@ -19,10 +19,10 @@ export default class SearchBar extends Component {
 	render() {
 
 		let searchBarClassNames = classNames({
-			'search-bar':            true,
-			'search-bar--focused':    this.state.focused,
+			'search-bar':              true,
+			'search-bar--focused':     this.state.focused,
 			'search-bar--has-results': this.state.focused,
-			'search-bar--loading':    this.state.loading,
+			'search-bar--loading':     this.state.loading,
 		});
 
 		return <div className={ searchBarClassNames }>
@@ -101,7 +101,7 @@ export default class SearchBar extends Component {
 			// Delay disable loading just a little.
 			window.setTimeout( () => {
 				this.setState( { loading: false } );
-			}, 5000000 );
+			}, 500 );
 
 		});
 	}
