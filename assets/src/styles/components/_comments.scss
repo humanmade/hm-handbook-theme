@@ -74,14 +74,14 @@
 }
 
 .comment-reply-link {
-	@extend .Btn;
-	@extend .Btn-Small;
-	@extend .Btn-Tertiary;
+	@extend .btn;
+	@extend .btn--small;
+	@extend .btn--tertiary;
 }
 
 .comment-reply-title a {
-	@extend .Btn;
-	@extend .Btn-Small;
+	@extend .btn;
+	@extend .btn--small;
 	float: right;
 }
 
@@ -115,13 +115,13 @@
 	}
 
 	.submit {
-		@extend .Btn;
-		@extend .Btn-Secondary;
+		@extend .btn;
+		@extend .btn--secondary;
 	}
 
 	input[type="email"],
 	input[type="url"] {
-		@extend .Form_Field;
+		@extend .form__field;
 		font-family: $font-family-code;
 
 		&::placeholder {

@@ -104,7 +104,7 @@ function enqueue_scripts() {
 	wp_enqueue_style( 'hm-handbook', get_theme_file_uri( 'assets/dist/styles/theme.css' ), [], '1.0' );
 
 	add_action( 'wp_head', function() {
-		echo '<script src="https://use.typekit.net/mwe8dvt.js"></script>';
+		echo '<script src="https://use.typekit.net/qly7hgx.js"></script>';
 		echo '<script>try{Typekit.load({ async: true });}catch(e){}</script>';
 	} );
 
@@ -172,7 +172,7 @@ function get_parent_theme_file_uri( $file = '' ) {
  * @return string Attributes.
  */
 function posts_link_attributes_next() {
-	return 'class="Btn Btn-Secondary Btn-Small Pagination-Next"';
+	return 'class="btn btn--secondary btn--small Pagination-Next"';
 }
 
 /**
@@ -181,7 +181,7 @@ function posts_link_attributes_next() {
  * @return string Attributes.
  */
 function posts_link_attributes_prev() {
-	return 'class="Btn Btn-Secondary Btn-Small Pagination-Prev"';
+	return 'class="btn btn--secondary btn--small Pagination-Prev"';
 }
 
 /**

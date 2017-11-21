@@ -6,7 +6,7 @@
 		&:focus {
 			color: $hm-red;
 
-			.HMLogo-Tiny {
+			.hm-logo--tiny {
 				background-image: url( "#{ $images-path }/logos/logo-tiny-red.svg" );
 				opacity: 1;
 			}

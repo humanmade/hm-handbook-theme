@@ -1,6 +1,6 @@
 .Pagination {
 
-	@extend .util-Clearfix;
+	@include clearfix;
 
 	margin: $base-line-height auto;
 	border-top: 1px solid $border-color;
@@ -22,16 +22,16 @@
 .Pagination-Article {
 
 	a {
-		@extend .Btn;
-		@extend .Btn-Small;
-		@extend .Btn-Tertiary;
+		@extend .btn;
+		@extend .btn--small;
+		@extend .btn--tertiary;
 		margin-right: $gutter-width / 4;
 	}
 
 	.Pagination-Current {
-		@extend .Btn;
-		@extend .Btn-Small;
-		@extend .Btn-Secondary;
+		@extend .btn;
+		@extend .btn--small;
+		@extend .btn--secondary;
 		margin-right: $gutter-width / 4;
 		pointer-events: none;
 	}
