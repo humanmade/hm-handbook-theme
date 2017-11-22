@@ -15,6 +15,7 @@ require_once( __DIR__ . '/inc/private-links.php' );
 require_once( __DIR__ . '/inc/search.php' );
 require_once( __DIR__ . '/inc/editor-mods.php' );
 require_once( __DIR__ . '/inc/updates.php' );
+require_once( __DIR__ . '/inc/customizer.php' );
 
 add_action( 'after_setup_theme',  __NAMESPACE__ . '\\setup' );
 add_action( 'after_setup_theme',  __NAMESPACE__ . '\\content_width', 0 );
@@ -71,6 +72,10 @@ function setup() {
 	add_filter( 'previous_posts_link_attributes', __NAMESPACE__ . '\\posts_link_attributes_prev' );
 
 	add_filter( 'wp_link_pages_link', __NAMESPACE__ . '\\multi_page_links_markup', 10, 2 );
+
+	if ( ! is_user_logged_in() ) {
+		add_action( 'template_redirect', __NAMESPACE__ . '\\redirect_private_pages' );
+	}
 
 }
 
@@ -189,9 +194,9 @@ function posts_link_attributes_prev() {
  *
  * @return string Title format.
  */
-add_filter( 'private_title_format', function( $format ) {
+function filter_private_title_format( $format ) {
 	return '🔒 %s';
-} );
+}
 
 /**
  * Handle the markup for multi-page posts.
@@ -209,13 +214,25 @@ function multi_page_links_markup( $link, $i ) {
 }
 
 /**
- * Redirect private pages to a hiring page if a user is logged out
+ * Redirect private pages to a defined page.
+ *
+ * Note this is only hooked in when not logged in.
  */
 function redirect_private_pages() {
-	$queried_object = get_queried_object();
-	if ( isset( $queried_object->post_status ) && 'private' === $queried_object->post_status && ! is_user_logged_in() ) {
-		wp_redirect( home_url( '/join-human-made/' ) );
+
+	$queried_object_id = get_queried_object_id();
+
+	if ( $queried_object_id && 'private' === get_post_status( $queried_object_id ) ) {
+
+		$redirect = home_url();
+
+		if ( $redirect_target_id = get_theme_mod( 'private-page-redirect' ) ) {
+			if ( $permalink = get_permalink( $redirect_target_id ) ) {
+				$redirect = $permalink;
+			}
+		}
+
+		wp_safe_redirect( $redirect );
 		exit();
 	}
 }
-add_action( 'pre_get_posts', 'HM_Handbook\redirect_private_pages' );
