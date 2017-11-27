@@ -9,12 +9,9 @@
 }
 
 .PageHistory_List_Container {
-
 	width: 100%;
 	position: relative;
 	margin: $base-line-height 0;
-	padding: #{ $base-line-height / 2 } #{ $gutter-width };
-	background: $color-pagehistory-background;
 	border-radius: 2px;
 
 	@media #{ $mq-md-up } {
@@ -36,11 +33,10 @@
 }
 
 .PageHistory_List_Container {
-	.PageHistory_List + .btn .Loading {
+	.PageHistory_List + .btn .loading {
 		background-image: url( "#{ $images-path }/icons/icon-spinner-black.svg" );
-		background-size: 50%;
-		margin-right: 7px;
-		opacity: 0.3;
+		background-size: 60%;
+		margin: 0 3px 0 -5px;
 	}
 }
 
@@ -99,7 +95,6 @@
 
 	& + .btn {
 		margin: 0;
-		padding: 0;
 	}
 
 }
@@ -162,7 +157,6 @@
 	@include text-sm;
 	display: none; // Only shown when active.
 	white-space: pre-wrap;
-	background: $color-pagehistory-background;
 	padding: $base-line-height / 2 $gutter-width / 2;
 	font-family: $font-family-code;
 	word-wrap: break-word;
@@ -182,11 +176,10 @@
 }
 
 .btn--toggle {
-
 	background: none;
 	border: none;
 	position: absolute;
-	top: .7775rem;
+	top: 0;
 	right: $gutter-width;
 	margin: 0;
 	text-indent: 100%;

@@ -34,16 +34,17 @@ namespace HM_Handbook;
 	</div>
 
 	<?php if ( is_singular() ) : ?>
+		<?php
+		$pagination = wp_link_pages( array(
+			'before'           => '' . __( '<span class="Pagination-Label">Pages:</span>' ),
+			'after'            => '',
+			'echo'             => false,
+		) );
+		if ( $pagination ) : ?>
 		<div class="Pagination Pagination-Article">
-			<?php
-
-			wp_link_pages( array(
-				'before'           => '' . __( '<span class="Pagination-Label">Pages:</span>' ),
-				'after'            => '',
-			) );
-
-			?>
+			<?php echo wp_kses_post( $pagination ); ?>
 		</div>
+		<?php endif; ?>
 	<?php endif; ?>
 
 

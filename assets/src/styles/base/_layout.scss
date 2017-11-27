@@ -28,45 +28,24 @@ body {
 }
 
 .site-content-container {
-
 	width: 100%;
 	padding: $margin-vertical-sm $gutter-width * 2;
+	display: grid;
+	grid-template-columns: auto;
 
 	@media #{ $mq-md-up } {
 		width: calc( 100% - 300px );
 		max-width: calc( 40rem + #{ $gutter-width + 250px + $gutter-width * 2 } );
+		grid-template-columns: calc( 100% - 250px - $gutter-width ) 250px;
+		grid-column-gap: $gutter-width;
 	}
 
 	@media #{ $mq-lg-up } {
 		max-width: calc( 40rem + #{ $gutter-width * 2 + 250px + $gutter-width * 4 } );
 		padding: $margin-vertical-sm * 2 ( $gutter-width * 4 );
+		grid-template-columns: calc( 100% - 250px - #{ $gutter-width * 2 } ) 250px;
+		grid-column-gap: $gutter-width * 2;
 	}
-}
-
-.site-content {
-
-	width: 100%;
-	float: left;
-
-	@media #{ $mq-md-up } {
-		width: calc( 100% - 250px );
-		padding-right: $gutter-width;
-	}
-
-	@media #{ $mq-lg-up } {
-		padding-right: $gutter-width * 2;
-	}
-}
-
-.site-content-sidebar {
-
-	width: 100%;
-	float: left;
-
-	@media #{ $mq-md-up } {
-		width: 250px;
-	}
-
 }
 
 .site-footer {

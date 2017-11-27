@@ -29,7 +29,7 @@ export default class PageHistoryList extends React.Component {
 		toggleButtonClasses = [ 'btn btn--small btn--toggle' ];
 		toggleButtonClasses.push( this.state.expanded ? ' btn--state-expanded' : null );
 
-		loadMorebuttonClasses = [ 'btn btn--small btn-Link' ];
+		loadMorebuttonClasses = [ 'btn btn--small btn--tertiary' ];
 		loadMorebuttonClasses.push( this.props.loading ? 'btn-Loading' : null );
 
 		return (
@@ -50,7 +50,7 @@ export default class PageHistoryList extends React.Component {
 					})}
 				</ul>
 				<button onClick={ () => actions.onfetchRevisions() } className={ loadMorebuttonClasses.join( ' ' ) } disabled={ ! this.props.hasMore }>
-					<span className={ this.props.loading ? 'Loading Loading-Active' : 'Loading' }></span>
+					{ this.props.loading && <span className="loading loading--active"></span> }
 					{ PageHistorySettings.strings.loadMore }
 				</button>
 			</div>

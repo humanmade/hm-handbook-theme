@@ -1,22 +1,15 @@
 .updates {
 
-	display: flex;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: 50% 50%;
+	grid-column-gap: $gutter-width * 2;
 
 	&--heading {
-		flex: 1 0 100%;
 		margin: 0 0 #{ $gutter-width / 2 };
 	}
 
 	&--box {
-		background-color: $hm-light-grey;
-		padding: $gutter-width;
-		margin: 0 #{ $gutter-width / 2 } $gutter-width 0;
-		flex: 1 0 100%;
-
-		@media ( min-width: 1400px ) {
-			flex-basis: calc( 50% - #{ $gutter-width } );
-		}
+		margin: 0 0 $margin-vertical-sm;
 	}
 
 	&--list {
@@ -38,6 +31,12 @@
 	&--link {
 		display: block;
 		line-height: 1.2;
+
+		&:link,
+		&:visited {
+			border: none;
+			text-decoration: none;
+		}
 	}
 
 	&--link-meta {

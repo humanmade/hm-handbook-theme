@@ -6,16 +6,16 @@
 	background: $bg;
 	color: $text-color;
 
-	.NavAccordion_Item {
+	.nav-accordion__item {
 		border-color: $border-color;
 	}
 
-	.NavAccordion_Item > ul:after {
+	.nav-accordion__item > ul:after {
 		border-color: $border-color;
 	}
 
-	.NavAccordion_Item .NavAccordion_Item {
-		.NavAccordion_Anchor:after {
+	.nav-accordion__item .nav-accordion__item {
+		.nav-accordion__anchor:after {
 			border-color: $border-color;
 		}
 	}
@@ -31,7 +31,7 @@
 		$border-color-toggle-hover: lighten( $border-color, 60% );
 	}
 
-	.NavAccordion_Toggle {
+	.nav-accordion__toggle {
 
 		border-color: $border-color-toggle;
 		color: $border-color-toggle;
@@ -46,7 +46,7 @@
 
 }
 
-.NavAccordion {
+.nav-accordion {
 
 	@include font-heading;
 	@include text-sm;
@@ -77,7 +77,7 @@
 
 }
 
-.NavAccordion_Item {
+.nav-accordion__item {
 
 	font-size: inherit;
 	position: relative;
@@ -95,13 +95,13 @@
 
 }
 
-.NavAccordion_Anchor {
+.nav-accordion__anchor {
 	display: inline-block;
 	padding: 7.5px 0;
 	position: relative;
 }
 
-.NavAccordion_Item > ul:after {
+.nav-accordion__item > ul:after {
 	content: " ";
 	border-left: 1px solid $border-color;
 	top: -.333333333rem;
@@ -110,14 +110,14 @@
 	position: absolute;
 }
 
-.NavAccordion_Item .NavAccordion_Item {
+.nav-accordion__item .nav-accordion__item {
 
 	margin-left: 0;
 	padding-left: $gutter-width;
 	border-left: none;
 	border-bottom: none;
 
-	.NavAccordion_Anchor:after {
+	.nav-accordion__anchor:after {
 		content: " ";
 		width: $gutter-width / 2;
 		border-bottom: 1px solid $border-color;
@@ -132,11 +132,11 @@
 
 }
 
-.NavAccordion_Item .NavAccordion_Item .NavAccordion_Item {
+.nav-accordion__item .nav-accordion__item .nav-accordion__item {
 	@include font-body;
 }
 
-.NavAccordion_Toggle {
+.nav-accordion__toggle {
 
 	@extend .btn--small;
 	border: none;
@@ -179,15 +179,15 @@
 
 }
 
-.NavAccordion_Toggle-Open:after {
+.nav-accordion__toggle--open:after {
 	$iconSrc: iconSrc( "minus-alt" );
 	background-image: url( $iconSrc );
 }
 
-.NavAccordion-Red {
+.nav-accordion--red {
 	@include NavAccordion_Coloured( $color-primary, $border-color-primary, $color-nav-accordion-primary-text );
 
-	.NavAccordion_Toggle {
+	.nav-accordion__toggle {
 
 		&:before {
 			background: rgba( 255, 255, 255, .85 );
@@ -205,14 +205,14 @@
 
 	}
 
-	.NavAccordion_Toggle-Open:after {
+	.nav-accordion__toggle--open:after {
 		$iconSrc: iconSrc( "minus-alt", "white" );
 		background-image: url( $iconSrc );
 	}
 
 }
 
-.NavAccordion-Grey {
+.nav-accordion--grey {
 	@include NavAccordion_Coloured(
 		$hm-light-grey,
 		$border-color-light,
@@ -220,6 +220,6 @@
 	);
 }
 
-.NavAccordion_Item-Active > .NavAccordion_Anchor {
+.nav-accordion__item--active > .nav-accordion__anchor {
 	text-decoration: underline;
 }

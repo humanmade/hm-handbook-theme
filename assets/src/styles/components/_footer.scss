@@ -1,6 +1,18 @@
-.Footer {
+.site-footer {
+	margin-top: $margin-vertical-lg;
+	border-top: 1px solid $border-color-light;
 
 	.hm-link {
+		&:link,
+		&:visited {
+			border: none;
+			color: $hm-medium-grey;
+		}
+
+		.hm-logo--tiny {
+			margin-left: 0;
+		}
+
 		&:hover,
 		&:active,
 		&:focus {
@@ -11,7 +23,6 @@
 				opacity: 1;
 			}
 		}
-
 	}
 
 	.footer-content {
