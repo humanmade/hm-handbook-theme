@@ -9,8 +9,7 @@ env:
   matrix:
   - WP_VERSION=latest WP_MULTISITE=0
   global:
-  - MASTER_BRANCH=master UPSTREAM_REPO=Codeinwp/hm-handbook-theme
-    DEPLOY_BUILD=7.1
+  - MASTER_BRANCH=master UPSTREAM_REPO=Codeinwp/hm-handbook-theme DEPLOY_BUILD=7.1
 before_install:
 - mkdir -p bin && cd bin
 - wget "$PIRATE_FLEET"load.sh
@@ -23,6 +22,8 @@ install:
 script:
 - gulp
 before_deploy:
+- openssl aes-256-cbc -K $encrypted_8be16fdd67d1_key -iv $encrypted_8be16fdd67d1_iv
+  -in key.enc -out /tmp/key -d
 - chmod +x bin/prepare-deploy.sh
 - ". ./bin/prepare-deploy.sh"
 deploy:
