@@ -17,7 +17,7 @@
     "exports-loader": "^0.6.3",
     "grunt": "^1.0.2",
     "grunt-theme-fleet": "github:codeinwp/grunt-theme-fleet",
-    "gulp": "^3.9.0",
+    "gulp": "^3.9.1",
     "gulp-cli": "^1.4.0",
     "gulp-postcss": "^6.1.0",
     "gulp-sass": "^3.1.0",
