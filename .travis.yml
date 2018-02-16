@@ -17,6 +17,8 @@ before_install:
 - cd .. && chmod +x bin/load.sh
 - ". ./bin/load.sh"
 install:
+- npm install gulp-cli -g
+- npm install gulp -D
 - npm install
 - gulp
 before_deploy:
