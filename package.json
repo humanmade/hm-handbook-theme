@@ -1,9 +1,10 @@
 {
-  "name": "HM_Handbook",
+  "name": "hm-handbook-theme",
   "version": "1.0.0",
   "description": "Human Made Handbook Theme",
   "main": "index.php",
   "author": "matth_eu",
+  "category": "themes",
   "license": "GPL-2.0",
   "private": true,
   "devDependencies": {
