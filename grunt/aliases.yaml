@@ -1,0 +1,4 @@
+deploy:
+  - 'mkdir:dist'
+  - 'mkdir:artifact'
+  - 'copy:full'

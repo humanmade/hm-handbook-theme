@@ -1,0 +1,16 @@
+.git
+.distignore
+.gitignore
+.travis.yml
+Gruntfile.js
+grunt
+node_modules
+logs
+package.json
+package-lock.json
+bin
+npm-debug.log
+dist
+gulpfile.js
+artifact
+key.enc
