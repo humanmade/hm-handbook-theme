@@ -17,12 +17,9 @@ before_install:
 - cd .. && chmod +x bin/load.sh
 - ". ./bin/load.sh"
 install:
--./"$HOME/.nvm/nvm.sh"
-- nvm install v8.9.0
-- nvm use v8.9.0
+- ". ./bin/install-dependencies.sh"
 - npm install grunt-cli -g
 - npm install gulp -D
-- npm install
 script:
 - gulp
 before_deploy:
