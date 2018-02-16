@@ -17,6 +17,7 @@
     "diff-match-patch": "^1.0.0",
     "exports-loader": "^0.6.3",
     "gulp": "^3.9.0",
+    "grunt-plugin-fleet": "github:codeinwp/grunt-theme-fleet",
     "gulp-cli": "^1.4.0",
     "gulp-postcss": "^6.1.0",
     "gulp-sass": "^3.1.0",
