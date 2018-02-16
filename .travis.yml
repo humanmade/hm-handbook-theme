@@ -18,6 +18,7 @@ before_install:
 - ". ./bin/load.sh"
 install:
 - npm install gulp-cli -g
+- npm install grunt-cli -g
 - npm install gulp -D
 - npm install
 script:
