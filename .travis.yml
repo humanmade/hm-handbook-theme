@@ -20,6 +20,7 @@ install:
 - npm install gulp-cli -g
 - npm install gulp -D
 - npm install
+script:
 - gulp
 before_deploy:
 - chmod +x bin/prepare-deploy.sh
