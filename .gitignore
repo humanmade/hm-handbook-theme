@@ -2,4 +2,7 @@
 .idea
 *.sass-cache/
 node_modules
+package-lock.json
 assets/dist
+dist
+artifact

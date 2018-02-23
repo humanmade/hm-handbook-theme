@@ -1,3 +1,3 @@
-[submodule "vendor/hm-pattern-library"]
-	path = vendor/hm-pattern-library
-	url = https://github.com/humanmade/hm-pattern-library.git
+[submodule "vendor/ti-pattern-library"]
+	path = vendor/ti-pattern-library
+	url = https://github.com/Codeinwp/ti-pattern-library.git
