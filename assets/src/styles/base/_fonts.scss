@@ -29,8 +29,8 @@ li,
 }
 
 .wf-active {
-	.NavAccordion ul,
-	.NavAccordion ol {
+	.nav-accordion ul,
+	.nav-accordion ol {
 		transition: opacity linear 0.05s, max-height ease-in-out 0.1s;
 	}
 }

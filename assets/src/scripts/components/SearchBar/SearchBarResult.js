@@ -14,7 +14,7 @@ export default class SearchBarResult extends Component {
 			'search-bar__result--post':    'post' === this.props.type
 		});
 
-		let style = { width: ( this.props.containerWidth - 60 ) + 'px' }
+		let style = {}
 
 		return (
 			<div style={ style } className={ classes }>

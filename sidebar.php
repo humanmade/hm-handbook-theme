@@ -13,16 +13,12 @@ namespace HM_Handbook;
 	<?php
 
 	if ( has_nav_menu( 'nav-primary' ) ) {
-
 		wp_nav_menu( [
 			'theme_location' => 'nav-primary',
-			'menu_class'     => 'NavAccordion',
+			'menu_class'     => 'nav-accordion',
 		] );
-
 	} else {
-
 		render_nav_list();
-
 	}
 
 	?>

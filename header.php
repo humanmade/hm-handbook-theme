@@ -33,7 +33,7 @@ namespace HM_Handbook;
 				if ( has_custom_logo() ) {
 					the_custom_logo();
 				} else {
-					echo '<a class="hm-logo hm-logo--white" href ="' . esc_url( home_url('/') ) . '">Human Made Limited</a>';
+					echo '<a class="hm-logo hm-logo--red" href ="' . esc_url( home_url('/') ) . '">Human Made Limited</a>';
 				}
 
 				if ( is_front_page() ) {

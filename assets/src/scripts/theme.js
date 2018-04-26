@@ -34,7 +34,7 @@ searchBarContainers.forEach( searchBarContainer => {
 
 // Init Accordion Nav for all NavAccordion Items.
 Array.prototype.forEach.call(
-	document.getElementsByClassName( 'NavAccordion_Item' ),
+	document.getElementsByClassName( 'nav-accordion__item' ),
 	initNavAccordion
 );
 

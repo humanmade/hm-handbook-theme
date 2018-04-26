@@ -18,7 +18,7 @@ export default function( navAccordionItem ) {
 
 	navAccordionToggle.appendChild( span ) ;
 	navAccordionToggle.classList.add( 'Btn' );
-	navAccordionToggle.classList.add( 'NavAccordion_Toggle' );
+	navAccordionToggle.classList.add( 'nav-accordion__toggle' );
 	navAccordionToggle.setAttribute( 'role', 'button' );
 	navAccordionToggle.setAttribute( 'aria-haspopup', 'true' );
 
@@ -33,29 +33,29 @@ export default function( navAccordionItem ) {
 	var toggleSubNav = function( show ) {
 
 		if ( 'undefined' === typeof show ) {
-			show = navAccordionItem.classList.contains( 'NavAccordion_Item-Closed' );
+			show = navAccordionItem.classList.contains( 'nav-accordion__item--closed' );
 			navAccordionToggle.setAttribute( 'aria-expanded', 'false' );
 		}
 
 		if ( show ) {
-			navAccordionItem.classList.remove( 'NavAccordion_Item-Closed' );
-			navAccordionItem.classList.add( 'NavAccordion_Item-Open' );
-			navAccordionToggle.classList.add( 'NavAccordion_Toggle-Open' );
+			navAccordionItem.classList.remove( 'nav-accordion__item--closed' );
+			navAccordionItem.classList.add( 'nav-accordion__item--open' );
+			navAccordionToggle.classList.add( 'nav-accordion__toggle--open' );
 			navAccordionToggle.setAttribute( 'aria-expanded', 'true' );
 			subNav.style.display = 'block';
 		} else {
-			navAccordionItem.classList.add( 'NavAccordion_Item-Closed' );
-			navAccordionItem.classList.remove( 'NavAccordion_Item-Open' );
-			navAccordionToggle.classList.remove( 'NavAccordion_Toggle-Open' );
+			navAccordionItem.classList.add( 'nav-accordion__item--closed' );
+			navAccordionItem.classList.remove( 'nav-accordion__item--open' );
+			navAccordionToggle.classList.remove( 'nav-accordion__toggle--open' );
 			navAccordionToggle.setAttribute( 'aria-expanded', 'false' );
 			subNav.style.display = 'none';
 		}
 
 	}
 
-	if ( navAccordionItem.classList.contains( 'NavAccordion_Item-Active' ) ) {
+	if ( navAccordionItem.classList.contains( 'nav-accordion__item--active' ) ) {
 		toggleSubNav( true );
-	} else if ( subNav.getElementsByClassName( 'NavAccordion_Item-Active' ).length > 0 ) {
+	} else if ( subNav.getElementsByClassName( 'nav-accordion__item--active' ).length > 0 ) {
 		toggleSubNav( true );
 	} else {
 		toggleSubNav( false );

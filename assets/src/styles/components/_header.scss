@@ -1,18 +1,13 @@
 .site-header {
-
-	@include clearfix;
-	background-color: $color-primary;
 	padding: 0;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: left;
-
+	display: grid;
+	grid-template-columns: 300px auto;
 }
 
 .site-logo {
 
 	width: 100%;
-	margin: 0 auto;
+	background: $hm-light-grey;
 
 	h1 {
 		margin: 0;
@@ -39,11 +34,12 @@
 	}
 
 	.site-title  {
-		@include font-heading;
+		@include font-body;
 		@include text-sm;
-		color: $white;
+		color: $hm-medium-grey;
 		text-align: center;
 		position: relative;
+		margin-top: $margin-vertical-sm / 2;
 	}
 
 	@media #{ $mq-md-up } {
@@ -55,19 +51,12 @@
 .site-search {
 
 	display: block;
-	width: 100%;
-
-	@media #{ $mq-md-up } {
-		width: auto;
-		flex: 1;
-	}
+	max-width: calc( 40rem + 340px );
 
 	.search-container {
-		width: 100%;
 		clear: both;
-		padding: 1.5rem 30px;
-		max-width: 900px;
-		float: right;
+		padding: 1.5rem 60px;
+		float: none;
 
 		@media #{ $mq-md-down } {
 			padding-top: 1rem;
@@ -84,12 +73,6 @@
 	.search-bar__container {
 		@extend .util-clearfix;
 		position: relative;
-
-		@media #{ $mq-md-up } {
-			width: 50%;
-			float: right;
-			transition: width ease-in-out .1s;
-		}
 	}
 
 	.search-bar__label {
@@ -98,22 +81,22 @@
 	}
 
 	.search-bar__field {
-		border: 2px solid rgba( 255, 255, 255, 0.8 );
+		border: 2px solid $color-primary;
 		background: none;
-		color: #FFF;
-		float: right;
+		color: $color-primary;
+		float: none;
 		margin: 0;
 		padding-right: 0;
 		width: 100%;
 		height: $base-line-height * 2;
 
 		&::placeholder {
-			color: rgba( #FFF, 1 );
+			color: rgba( $color-primary, .75 );
 		}
 
 		&:hover,
 		&:focus {
-			border: 2px solid rgba( 255, 255, 255, 1 );
+			border: 2px solid $color-primary;
 		}
 	}
 
@@ -133,7 +116,7 @@
 		opacity: .75;
 
 		&:after {
-			$iconSrc: iconSrc( "search", "white" );
+			$iconSrc: iconSrc( "search", "red" );
 			background: url( $iconSrc ) center center no-repeat;
 			content: " ";
 			display: block;
@@ -155,19 +138,25 @@
 	.search-bar__results {
 		display: none;
 		position: absolute;
-		top: 100%;
+		top: calc( 100% - 1px );
 		left: 0;
 		right: 0;
-		border: 2px solid $white;
+		color: $color-primary;
+		border: 2px solid $color-primary;
 		border-top: none;
-		background: $color-primary;
+		background: white;
 		padding: 0;
 		border-radius: 0 0 2px 2px;
-		color: #FFF;
 		margin: 0;
 		list-style: none;
 		z-index: 50;
+		max-height: 60vh;
+		overflow: auto;
 		overflow-x: hidden;
+
+		&:empty {
+			display: none;
+		}
 	}
 
 	&.search-bar--has-results {
@@ -189,7 +178,7 @@
 		a:visited,
 		a:hover,
 		a:focus {
-			color: #FFF;
+			// color: #FFF;
 			text-decoration: none;
 			border: none;
 		}
@@ -197,18 +186,24 @@
 		a:link {
 			padding: #{ $base-line-height / 2 } #{ $gutter-width };
 			margin: 0;
-			border-top: 1px solid rgba( $white, 0.5 );
+			border-top: 1px solid rgba( $color-primary, 0.5 );
 			display: block;
 
 			&:focus,
 			&:hover {
-				background: rgba( 255, 255, 255, .2 );
-				border-top: 1px solid rgba( $white, 0.8 );
-				border-bottom: 1px solid rgba( $white, 0.8 );
+				background: $hm-light-grey;
+				border-top: 1px solid rgba( $color-primary, 0.8 );
+				border-bottom: 1px solid rgba( $color-primary, 0.8 );
 				margin-bottom: -1px;
 				outline: none;
 				transition: none;
 			}
+		}
+
+		&:last-child a:link:focus,
+		&:last-child a:link:hover {
+			border-bottom: none;
+			margin-bottom: 0;
 		}
 	}
 
@@ -216,12 +211,11 @@
 	.search-bar__result__title,
 	.search-bar__result__text {
 		@include text-sm;
-		color: #FFF;
+		color: $color-primary;
 		margin: 0;
 	}
 
 	.search-bar__results__info {
-		border-top: 1px solid rgba( $white, 0.8 );
 		padding: #{ $base-line-height / 2 } #{ $gutter-width };
 	}
 
@@ -230,17 +224,8 @@
 	}
 
 	&.search-bar--focused {
-
-		@media #{ $mq-md-up } {
-			.search-bar__container {
-				width: 100%;
-				transition: width ease-in-out .1s;
-			}
-		}
-
 		&.search-bar--has-results .search-bar__results {
 			display: block;
 		}
-
 	}
 }

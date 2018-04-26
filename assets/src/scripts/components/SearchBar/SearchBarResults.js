@@ -9,26 +9,24 @@ export default class SearchBarResults extends Component {
 
 	render() {
 
-		// Get the height of the whole document.
-		// Bit convoluted, taken from jQuery.
-		var height = Math.max(
-			document.body.scrollHeight,
-			document.body.offsetHeight,
-			document.documentElement.clientHeight,
-			document.documentElement.scrollHeight,
-			document.documentElement.offsetHeight
-		);
-
+		var height   = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+		var search   = document.getElementById( 'site-search' );
 		var adminBar = document.getElementById( 'wpadminbar' );
 
-		if ( adminBar ) {
-			height = height - adminBar.offsetHeight;
+		if ( search ) {
+			height -= search.offsetHeight;
 		}
+
+		if ( adminBar ) {
+			height -= adminBar.offsetHeight;
+		}
+
+		height -= 54;
 
 		let displayNoResults = this.props.query.length > 1 && this.props.results.length < 1;
 
 		return (
-			<div className="search-bar__results" style={ { maxHeight: ( height - 108 ) + 'px' } }>
+			<div className="search-bar__results" style={ { maxHeight: height }}>
 
 				<h3
 					className="search-bar__results__info"

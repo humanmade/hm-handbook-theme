@@ -50,18 +50,18 @@ function render_nav_list( $parent_id = 0 ) {
  */
 function render_nav_item( \WP_Post $page ) {
 
-	$classes = ['NavAccordion_Item'];
+	$classes = ['nav-accordion__item'];
 
 	if ( 'private' === get_post_status( $page->ID ) ) {
-		$classes[] = 'Nav_Item-Private';
+		$classes[] = 'nav-accordion__item--private';
 	}
 
 	if ( is_nav_item_current( $page ) ) {
-		$classes[] = 'NavAccordion_Item-Active';
+		$classes[] = 'nav-accordion__item--active';
 	}
 
 	printf(
-		'<li class="%s"><a href="%s" class="NavAccordion_Anchor">%s</a>',
+		'<li class="%s"><a href="%s" class="nav-accordion__anchor">%s</a>',
 		esc_attr( implode( ' ', array_map( 'sanitize_html_class', $classes ) ) ),
 		esc_url( get_permalink( $page->ID ) ),
 		esc_html( $page->post_title )
@@ -101,9 +101,9 @@ function is_nav_item_current( \WP_Post $page ) {
  */
 function nav_accordion_item_class( $classes, $item, $args ) {
 	if ( 'nav-primary' === $args->theme_location ) {
-		$classes[] = 'NavAccordion_Item';
+		$classes[] = 'nav-accordion__item';
 		if ( array_intersect( $classes, [ 'current-menu-item' ] ) ) {
-			$classes[] = 'NavAccordion_Item-Active';
+			$classes[] = 'nav-accordion__item--active';
 		}
 	}
 	return $classes;
@@ -123,7 +123,7 @@ function nav_accordion_item_class( $classes, $item, $args ) {
 function nav_accordion_link_attributes( $atts, $item, $args ) {
 	if ( 'nav-primary' === $args->theme_location ) {
 		$atts['class'] = isset( $atts['class'] ) ? $atts['class'] : '';
-		$atts['class'] .= ' NavAccordion_Anchor';
+		$atts['class'] .= ' nav-accordion__anchor';
 	}
 	return $atts;
 }
@@ -141,7 +141,7 @@ function nav_accordion_link_attributes( $atts, $item, $args ) {
  */
 function nav_private_item_class( $classes, $item, $args ) {
 	if ( ! empty( $item->object_id ) && 'private' === get_post_status( $item->object_id ) ) {
-		$classes[] = 'Nav_Item-Private';
+		$classes[] = 'nav-accordion__item--private';
 	}
 	return $classes;
 }

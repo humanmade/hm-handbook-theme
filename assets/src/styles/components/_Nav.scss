@@ -1,4 +1,4 @@
-.Nav_Item-Private a:before {
+.nav-accordion__item--private a:before {
 	$iconSrc: iconSrc( "lock" );
 	content: " ";
 	display: inline-block;
