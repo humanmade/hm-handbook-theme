@@ -100,8 +100,8 @@ add_action( 'login_enqueue_scripts', function() {
  */
 function enqueue_scripts() {
 
-	wp_enqueue_script( 'hm-handbook', get_theme_file_uri( 'assets/dist/scripts/theme.js' ), [], '1.0', true );
-	wp_enqueue_style( 'hm-handbook', get_theme_file_uri( 'assets/dist/styles/theme.css' ), [], '1.0' );
+	wp_enqueue_script( 'hm-handbook', get_theme_file_uri( 'assets/dist/scripts/theme.js' ), [], '1.0.1', true );
+	wp_enqueue_style( 'hm-handbook', get_theme_file_uri( 'assets/dist/styles/theme.css' ), [], '1.0.1' );
 
 	add_action( 'wp_head', function() {
 		echo '<script src="https://use.typekit.net/qly7hgx.js"></script>';
