@@ -99,9 +99,10 @@ add_action( 'login_enqueue_scripts', function() {
  * Enqueue all theme scripts.
  */
 function enqueue_scripts() {
+	$version = defined( 'HM_DEPLOYMENT_REVISION' ) ? HM_DEPLOYMENT_REVISION : handbook_get_theme_version();
 
-	wp_enqueue_script( 'hm-handbook', get_theme_file_uri( 'assets/dist/scripts/theme.js' ), [], '1.0.1', true );
-	wp_enqueue_style( 'hm-handbook', get_theme_file_uri( 'assets/dist/styles/theme.css' ), [], '1.0.1' );
+	wp_enqueue_script( 'hm-handbook', get_theme_file_uri( 'assets/dist/scripts/theme.js' ), [], $version, true );
+	wp_enqueue_style( 'hm-handbook', get_theme_file_uri( 'assets/dist/styles/theme.css' ), [], $version );
 
 	add_action( 'wp_head', function() {
 		echo '<script src="https://use.typekit.net/qly7hgx.js"></script>';
@@ -111,7 +112,20 @@ function enqueue_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+}
 
+/**
+ * Get the theme version.
+ * Return version defined in style.css
+ *
+ * @return string version.
+ * @since 0.1.0
+ */
+function handbook_get_theme_version() {
+	$theme   = wp_get_theme( basename( get_bloginfo( 'stylesheet_directory' ) ) );
+	$version = $theme->version;
+
+	return apply_filters( 'handbook_get_theme_version', $version );
 }
 
 /**
