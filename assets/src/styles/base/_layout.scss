@@ -56,6 +56,12 @@ body {
 	@media #{ $mq-lg-up } {
 		padding-right: $gutter-width * 2;
 	}
+
+	.page-template-template-full-content &,
+	.cpt_feature_requests-template & {
+		width: 100%;
+		padding-right: 0;
+	}
 }
 
 .site-content-sidebar {
