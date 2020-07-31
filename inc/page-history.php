@@ -43,7 +43,7 @@ function get_supported_post_types() {
  */
 function localize_script() {
 
-	if ( ! is_singular( get_supported_post_types() ) ) {
+	if ( ! is_singular( get_supported_post_types() ) || is_page_template( 'template-full-content.php' ) ) {
 		return;
 	}
 

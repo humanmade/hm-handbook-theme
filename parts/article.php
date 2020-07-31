@@ -13,19 +13,23 @@ namespace HM_Handbook;
 
 <article <?php post_class( 'article' ); ?>>
 
-	<?php if ( is_singular() ) : ?>
+	<?php if ( ! is_page_template( 'template-full-content.php' ) ) : ?>
 
-		<h1 class="article-title">
-			<?php the_title(); ?>
-		</h1>
+		<?php if ( is_singular() ) : ?>
 
-	<?php else : ?>
-
-		<h2 class="article-title">
-			<a href="<?php the_permalink(); ?>">
+			<h1 class="article-title">
 				<?php the_title(); ?>
-			</a>
-		</h2>
+			</h1>
+
+		<?php else : ?>
+
+			<h2 class="article-title">
+				<a href="<?php the_permalink(); ?>">
+					<?php the_title(); ?>
+				</a>
+			</h2>
+
+		<?php endif; ?>
 
 	<?php endif; ?>
 
