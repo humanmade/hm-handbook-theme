@@ -9,7 +9,14 @@ namespace HM_Handbook;
  */
 function display_latest( $latest = 'posts' ) {
 
-	$args = [ 'post_type' => 'page' ];
+	if ( is_user_logged_in() ) {
+		$args = array(
+			'post_status' => array( 'publish', 'private' ),
+			'post_type'   => 'page'
+		);
+	} else {
+		$args = [ 'post_type' => 'page' ];
+	}
 
 	if ( 'edits' === $latest ) {
 		$args = array_merge( $args, [ 'orderby' => 'modified', 'suppress_filters' => false ] );
