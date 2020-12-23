@@ -12,6 +12,7 @@ function display_latest( $latest = 'posts' ) {
 	if ( is_user_logged_in() ) {
 		$args = array(
 			'post_status' => array( 'publish', 'private' ),
+			'perm'        => 'readable',
 			'post_type'   => 'page'
 		);
 	} else {
