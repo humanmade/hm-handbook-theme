@@ -8,4 +8,4 @@ export NVM_DIR="$HOME/.nvm"
 nvm install 12
 
 npm ci
-node_modules/gulp-cli/bin/gulp.js
+npm run build

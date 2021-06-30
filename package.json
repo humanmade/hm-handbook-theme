@@ -29,5 +29,8 @@
     "sass": "^1.34.1",
     "webpack": "^1.13.1",
     "whatwg-fetch": "^1.0.0"
+  },
+  "scripts": {
+    "build": "gulp"
   }
 }
