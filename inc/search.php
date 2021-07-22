@@ -110,7 +110,7 @@ function fallback_search_request( $query ) {
 	];
 
 	if ( is_user_logged_in() ) {
-		$search_query_argsp['post_status'][] = 'private';
+		$search_query_args['post_status'][] = 'private';
 	}
 
 	$search_query = new WP_Query( $search_query_args );
