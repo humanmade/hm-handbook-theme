@@ -90,7 +90,7 @@
 
 	> ul {
 		overflow: hidden;
-		margin-left: $gutter-width / 2;
+		margin-left: $gutter-width * 0.5;
 	}
 
 }
@@ -119,7 +119,7 @@
 
 	.NavAccordion_Anchor:after {
 		content: " ";
-		width: $gutter-width / 2;
+		width: $gutter-width * 0.5;
 		border-bottom: 1px solid $border-color;
 		position: absolute;
 		top: 19px;

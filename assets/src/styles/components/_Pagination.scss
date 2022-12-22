@@ -25,20 +25,20 @@
 		@extend .btn;
 		@extend .btn--small;
 		@extend .btn--tertiary;
-		margin-right: $gutter-width / 4;
+		margin-right: $gutter-width * 0.25;
 	}
 
 	.Pagination-Current {
 		@extend .btn;
 		@extend .btn--small;
 		@extend .btn--secondary;
-		margin-right: $gutter-width / 4;
+		margin-right: $gutter-width * 0.25;
 		pointer-events: none;
 	}
 
 	.Pagination-Label {
 		line-height: 2.25rem;
-		margin-right: $gutter-width / 4;
+		margin-right: $gutter-width * 0.25;
 		display: inline-block;
 		vertical-align: middle;
 		margin-bottom: .75rem;

@@ -1,4 +1,6 @@
 
+@use "sass:math";
+
 .PageHistory_Diff-Added {
 	background: $color-success;
 	text-decoration: none;
@@ -13,7 +15,7 @@
 	width: 100%;
 	position: relative;
 	margin: $base-line-height 0;
-	padding: #{ $base-line-height / 2 } #{ $gutter-width };
+	padding: #{ $base-line-height * 0.5 } #{ $gutter-width };
 	background: $color-pagehistory-background;
 	border-radius: 2px;
 
@@ -84,17 +86,17 @@
 	color: $color-pagehistory-list;
 	list-style: none;
 	position: relative;
-	margin: #{ $base-line-height / 4 } 0;
-	padding-left: #{ $gutter-width / 2 };
+	margin: #{ $base-line-height * 0.25 } 0;
+	padding-left: #{ $gutter-width * 0.5 };
 
 	&:after {
 		content: " ";
 		display: block;
 		border-left: 1px solid $border-color-darken;
 		position: absolute;
-		top: $base-line-height / 2;
-		bottom: calc( #{ $base-line-height / 2 } + 2px );
-		left: $gutter-width / 4 - 1px;
+		top: $base-line-height * 0.5;
+		bottom: calc( #{ $base-line-height * 0.5 } + 2px );
+		left: $gutter-width * 0.25 - 1px;
 	}
 
 	& + .btn {
@@ -107,10 +109,10 @@
 .PageHistory_List_Item {
 
 	position: relative;
-	padding: 0 0 0 #{ $gutter-width / 2 };
+	padding: 0 0 0 #{ $gutter-width * 0.5 };
 
 	a {
-		padding: #{ $base-line-height / 8 } 0;
+		padding: #{ $base-line-height * 0.125 } 0;
 		display: block;
 	}
 
@@ -135,8 +137,8 @@
 		background: $border-color-darken;
 		border-radius: 100%;
 		position: absolute;
-		left: $gutter-width / -4 - 3px;
-		top: $base-line-height / 2;
+		left: math.div($gutter-width, -4) - 3px;
+		top: $base-line-height * 0.5;
 		margin-top: 0;
 		z-index: 1;
 	}
@@ -146,7 +148,7 @@
 		width: 9px;
 		height: 9px;
 		margin-top: -3px;
-		left: $gutter-width / -4 - 5px;
+		left: math.div($gutter-width, -4) - 5px;
 	}
 
 	&.PageHistory_List_Item-Active:after {
@@ -163,7 +165,7 @@
 	display: none; // Only shown when active.
 	white-space: pre-wrap;
 	background: $color-pagehistory-background;
-	padding: $base-line-height / 2 $gutter-width / 2;
+	padding: $base-line-height * 0.5 $gutter-width * 0.5;
 	font-family: $font-family-code;
 	word-wrap: break-word;
 }

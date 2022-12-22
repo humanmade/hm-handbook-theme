@@ -26,7 +26,7 @@ html {
 
 .login #backtoblog,
 .login #nav {
-	margin: $base-line-height / 2 auto;
+	margin: $base-line-height * 0.5 auto;
 	a {
 		color: $white;
 		@include text-sm;
@@ -67,7 +67,7 @@ html {
 	background-color: $login-form-background;
 	width: 100%;
 	border: none;
-	padding: $base-line-height / 2 $gutter-width;
+	padding: $base-line-height * 0.5 $gutter-width;
 	border-radius: 2px;
 }
 

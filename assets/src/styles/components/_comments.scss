@@ -88,7 +88,7 @@
 .comment-awaiting-moderation {
 	background: $hm-light-grey;
 	border-radius: 2px;
-	padding: $base-line-height / 2 $gutter-width;
+	padding: $base-line-height * 0.5 $gutter-width;
 	margin-left: calc( ( -1 * $comment_avatar_width ) - #{ $gutter-width } );
 	clear: both;
 }
@@ -99,7 +99,7 @@
 
 		background: $hm-light-grey;
 		border-radius: 2px;
-		padding: $base-line-height / 2 $gutter-width;
+		padding: $base-line-height * 0.5 $gutter-width;
 
 		a {
 			color: inherit;
@@ -110,7 +110,7 @@
 		@include font-heading;
 		color: $hm-dark-grey;
 		@include text-sm;
-		margin-top: $base-line-height / 2;
+		margin-top: $base-line-height * 0.5;
 		margin-bottom: 0;
 	}
 
