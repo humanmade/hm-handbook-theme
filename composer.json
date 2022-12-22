@@ -1,0 +1,12 @@
+{
+    "name": "humanmade/hm-handbook-theme",
+    "version": "0.0.1",
+    "description": "The theme for the public Human Made handbook.",
+    "minimum-stability": "stable",
+    "type": "wordpress-theme",
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    }
+}
