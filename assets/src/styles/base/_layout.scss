@@ -20,7 +20,6 @@ body {
 .site-sidebar {
 
 	padding: $margin-vertical-sm $gutter-width * 2;
-	min-height: calc( 100vh - 6rem ); // For IE11 & 10
 
 	@media #{ $mq-md-up } {
 		width: 300px;
