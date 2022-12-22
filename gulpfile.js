@@ -1,11 +1,11 @@
 const gulp         = require( 'gulp' );
 const webpack      = require( 'webpack' );
 const sourcemaps   = require( 'gulp-sourcemaps' );
-const watch        = require( 'gulp-watch' );
 const postcss      = require( 'gulp-postcss' );
 const autoprefixer = require( 'autoprefixer' );
-const sass         = require( 'gulp-sass' );
+const sass         = require( 'gulp-sass' )( require( 'sass' ) );
 const sassLint     = require( 'gulp-sass-lint' );
+const Fiber        = require( 'fibers' );
 
 // All the configs for different tasks.
 const config = {
@@ -23,21 +23,22 @@ const config = {
 	postcss: [
 		autoprefixer( { browsers: ['last 3 versions'] } ),
 	],
+	compiler: require('sass'),
+	fiber: Fiber,
 };
 
 // Compile and minify CSS.
-gulp.task( 'styles', () => {
-	gulp.src( './assets/src/styles/*.scss' )
-		.pipe( sourcemaps.init() )
-		.pipe( sass( config.sass ).on( 'error', sass.logError ) )
-		.pipe( postcss( config.postcss ))
-		.pipe( sourcemaps.write('.') )
-		.pipe( gulp.dest('./assets/dist/styles') );
-});
+function styles() {
+	return gulp.src('./assets/src/styles/*.scss')
+		.pipe(sourcemaps.init())
+		.pipe(sass(config.sass).on('error', sass.logError))
+		.pipe(postcss(config.postcss))
+		.pipe(sourcemaps.write('.'))
+		.pipe(gulp.dest('./assets/dist/styles'));
+}
 
 // Bundle JS.
-gulp.task( 'js', function( callback ) {
-
+function js( callback ) {
 	// Set production environment to ensure webpack dev version isn't used.
 	// Change to dev during developemnt to get more useful errors.
 	config.webpack.plugins.push( new webpack.DefinePlugin({
@@ -58,20 +59,25 @@ gulp.task( 'js', function( callback ) {
 			callback();
 		}
 	);
-});
+}
 
-gulp.task( 'lint-sass', function () {
+function lintSass() {
   return gulp.src( [ './assets/src/styles/**/*.s+(a|c)ss', '!./assets/src/styles/editor.scss', '!./assets/src/styles/login.scss' ] )
 	.pipe( sassLint( { configFile: '.sass-lint.yml' } ) )
 	.pipe( sassLint.format() )
 	.pipe( sassLint.failOnError() )
-});
+}
 
 // Watch for changes in JS/CSS.
-gulp.task('watch', function() {
-	gulp.watch( 'assets/src/styles/**/*.scss', ['styles', 'lint-sass' ] );
-	gulp.watch( [ 'assets/src/scripts/**/*.js', 'assets/src/scripts/**/*.jsx' ], ['js'] );
-});
+function watch() {
+	gulp.watch('assets/src/styles/**/*.scss', ['styles', 'lint-sass']);
+	gulp.watch(['assets/src/scripts/**/*.js', 'assets/src/scripts/**/*.jsx'], ['js']);
+}
 
-// Tasks
-gulp.task( 'default', [ 'styles', 'js', 'lint-sass' ] );
+module.exports = {
+	styles,
+	js,
+	lintSass,
+	watch,
+	default: gulp.parallel(styles, js, lintSass),
+}

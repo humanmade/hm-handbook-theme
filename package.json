@@ -15,17 +15,22 @@
     "classnames": "^2.2.5",
     "diff-match-patch": "^1.0.0",
     "exports-loader": "^0.6.3",
-    "gulp": "^3.9.0",
-    "gulp-cli": "^1.4.0",
-    "gulp-postcss": "^6.1.0",
-    "gulp-sass": "^3.1.0",
-    "gulp-sass-lint": "^1.2.0",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-watch": "^4.3.5",
+    "fibers": "^5.0.0",
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.3.0",
+    "gulp-postcss": "^9.0.1",
+    "gulp-sass": "^5.1.0",
+    "gulp-sass-lint": "^1.4.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-watch": "^5.0.1",
+    "postcss": "^8.3.1",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
+    "sass": "^1.49.11",
     "webpack": "^1.13.1",
     "whatwg-fetch": "^1.0.0"
   },
-  "dependencies": {}
+  "scripts": {
+    "build": "gulp"
+  }
 }
