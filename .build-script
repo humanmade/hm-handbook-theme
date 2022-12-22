@@ -1,11 +1,21 @@
 #!/bin/sh
 
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
+
+if [ -d "$HOME/.nvm" ]; then
+    export NVM_DIR="$HOME/.nvm"
+else
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
+fi
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+NODE_VERSION=`nvm current`
 
-#install latest version of node
-nvm install 12
+# Use the version of node specified in .nvmrc
+nvm use || nvm install $(cat .nvmrc) && nvm use
 
 npm ci
 npm run build
+
+# Restore prior version of Node
+nvm use $NODE_VERSION
