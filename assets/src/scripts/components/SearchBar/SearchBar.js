@@ -21,7 +21,7 @@ export default class SearchBar extends Component {
 		let searchBarClassNames = classNames({
 			'search-bar':              true,
 			'search-bar--focused':     this.state.focused,
-			'search-bar--has-results': this.state.focused,
+			'search-bar--has-results': this.state.results.length,
 			'search-bar--loading':     this.state.loading,
 		});
 
