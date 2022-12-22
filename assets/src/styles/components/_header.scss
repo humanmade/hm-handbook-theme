@@ -116,8 +116,9 @@
 			border-color: rgba( 255, 255, 255, 0.8 );
 			background: transparent;
 
-			.search-bar__submit:after {
+			+ .search-bar__submit::after {
 				$iconSrc: iconSrc( "search", "white" );
+				background: url( $iconSrc ) center center no-repeat;
 			}
 		}
 
@@ -128,6 +129,11 @@
 
 			&::placeholder {
 				color: var( --hm-dark-grey );
+			}
+
+			+ .search-bar__submit::after {
+				$iconSrc: iconSrc( "search", "black" );
+				background: url( $iconSrc ) center center no-repeat;
 			}
 		}
 	}
@@ -147,7 +153,7 @@
 		overflow: hidden;
 		opacity: .75;
 
-		&:after {
+		&::after {
 			$iconSrc: iconSrc( "search", "black" );
 			background: url( $iconSrc ) center center no-repeat;
 			content: " ";
@@ -161,7 +167,7 @@
 
 		&:hover,
 		&:focus {
-			background: rgba( 0, 0, 0, 0.1 );
+			background: none;
 			border: none;
 		}
 	}
