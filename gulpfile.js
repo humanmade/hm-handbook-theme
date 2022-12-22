@@ -3,7 +3,7 @@ const webpack      = require( 'webpack' );
 const sourcemaps   = require( 'gulp-sourcemaps' );
 const postcss      = require( 'gulp-postcss' );
 const autoprefixer = require( 'autoprefixer' );
-const sass         = require( 'gulp-sass' );
+const sass         = require( 'gulp-sass' )( require( 'sass' ) );
 const sassLint     = require( 'gulp-sass-lint' );
 const Fiber        = require( 'fibers' );
 
