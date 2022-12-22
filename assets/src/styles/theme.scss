@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $images-path: "./../../../vendor/hm-pattern-library/assets/images" !default;
 
 // External
@@ -42,8 +44,8 @@ $images-path: "./../../../vendor/hm-pattern-library/assets/images" !default;
 			position: absolute;
 			top: 50%;
 			left: 50%;
-			margin-top: $base-line-height / -2;
-			margin-left: $base-line-height / -2;
+			margin-top: math.div($base-line-height, -2);
+			margin-left: math.div($base-line-height, -2);
 		}
 
 		&:after {
@@ -53,9 +55,9 @@ $images-path: "./../../../vendor/hm-pattern-library/assets/images" !default;
 	}
 
 	.search-bar_Results-Info {
-		margin: 0 #{ $gutter-width / 2 } #{ $base-line-height / 2 } #{ $gutter-width / 2 };
+		margin: 0 #{ $gutter-width * 0.5 } #{ $base-line-height * 0.5 } #{ $gutter-width * 0.5 };
 		border-top: 1px solid desaturate( $color-primary, 5% );
-		padding-top: $base-line-height / 2;
+		padding-top: $base-line-height * 0.5;
 		font-size: 1rem;
 		line-height: $base-line-height;
 		color: #FFF;

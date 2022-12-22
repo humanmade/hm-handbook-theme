@@ -25,7 +25,7 @@
 		width: 210px;
 		height: 40px;
 		margin: calc( ( #{ $base-line-height * 2 } - 40px ) / 2 ) auto;
-		margin-top: calc( #{ $base-line-height / 2 } + ( ( #{ $base-line-height * 2 } - 40px ) / 2 ) );
+		margin-top: calc( #{ $base-line-height * 0.5 } + ( ( #{ $base-line-height * 2 } - 40px ) / 2 ) );
 
 		&:hover {
 			border: none;
@@ -98,22 +98,43 @@
 	}
 
 	.search-bar__field {
-		border: 2px solid rgba( 255, 255, 255, 0.8 );
-		background: none;
-		color: #FFF;
+		border-color: var( --hm-dark-grey );
+		background: var( --hm-light-grey );
+		color: var( --hm-dark-grey );
 		float: right;
 		margin: 0;
 		padding-right: 0;
 		width: 100%;
 		height: $base-line-height * 2;
+		transition: color .2s, border-color .2s, background .2s;
 
 		&::placeholder {
-			color: rgba( #FFF, 1 );
+			color: white;
 		}
 
-		&:hover,
+		&:placeholder-shown {
+			border-color: rgba( 255, 255, 255, 0.8 );
+			background: transparent;
+
+			+ .search-bar__submit::after {
+				$iconSrc: iconSrc( "search", "white" );
+				background: url( $iconSrc ) center center no-repeat;
+			}
+		}
+
 		&:focus {
-			border: 2px solid rgba( 255, 255, 255, 1 );
+			background: var( --hm-light-grey );
+			border-color: var( --hm-dark-grey );
+			color: var( --hm-dark-grey );
+
+			&::placeholder {
+				color: var( --hm-dark-grey );
+			}
+
+			+ .search-bar__submit::after {
+				$iconSrc: iconSrc( "search", "black" );
+				background: url( $iconSrc ) center center no-repeat;
+			}
 		}
 	}
 
@@ -132,8 +153,8 @@
 		overflow: hidden;
 		opacity: .75;
 
-		&:after {
-			$iconSrc: iconSrc( "search", "white" );
+		&::after {
+			$iconSrc: iconSrc( "search", "black" );
 			background: url( $iconSrc ) center center no-repeat;
 			content: " ";
 			display: block;
@@ -146,10 +167,9 @@
 
 		&:hover,
 		&:focus {
-			background: rgba( 0, 0, 0, 0.2 );
+			background: none;
 			border: none;
 		}
-
 	}
 
 	.search-bar__results {
@@ -158,24 +178,16 @@
 		top: 100%;
 		left: 0;
 		right: 0;
-		border: 2px solid $white;
-		border-top: none;
-		background: $color-primary;
+		border: 2px solid var( --hm-dark-grey );
+		border-top-color: transparent;
+		background: var( --hm-light-grey );
 		padding: 0;
 		border-radius: 0 0 2px 2px;
-		color: #FFF;
+		color: var( --hm-dark-grey );
 		margin: 0;
 		list-style: none;
 		z-index: 50;
 		overflow-x: hidden;
-	}
-
-	&.search-bar--has-results {
-		.search-bar__field {
-			border-bottom: none;
-			border-bottom-left-radius: 0;
-			border-bottom-right-radius: 0;
-		}
 	}
 
 	.search-bar__result {
@@ -185,51 +197,48 @@
 		padding: 0;
 		margin: 0;
 
-		a:link,
-		a:visited,
-		a:hover,
-		a:focus {
-			color: #FFF;
-			text-decoration: none;
+		a {
 			border: none;
+			text-decoration: none;
 		}
 
 		a:link {
-			padding: #{ $base-line-height / 2 } #{ $gutter-width };
+			padding: #{ $base-line-height * 0.5 } #{ $gutter-width };
 			margin: 0;
-			border-top: 1px solid rgba( $white, 0.5 );
 			display: block;
 
 			&:focus,
 			&:hover {
-				background: rgba( 255, 255, 255, .2 );
-				border-top: 1px solid rgba( $white, 0.8 );
-				border-bottom: 1px solid rgba( $white, 0.8 );
-				margin-bottom: -1px;
+				background: rgba( 0, 0, 0, .1 );
 				outline: none;
 				transition: none;
 			}
 		}
 	}
 
+	.search-bar__result + .search-bar__result {
+		border-top: 1px solid var( --hm-dark-grey );
+	}
+
 	.search-bar__results__info,
 	.search-bar__result__title,
 	.search-bar__result__text {
 		@include text-sm;
-		color: #FFF;
+		color: var( --hm-dark-grey );
 		margin: 0;
 	}
 
 	.search-bar__results__info {
-		border-top: 1px solid rgba( $white, 0.8 );
-		padding: #{ $base-line-height / 2 } #{ $gutter-width };
+		border-top: 1px solid var( --hm-dark-grey );
+		padding: #{ $base-line-height * 0.5 } #{ $gutter-width };
 	}
 
 	.search-bar__result__title {
-		margin: 0 0 #{ $gutter-width / 2 } 0;
+		margin: 0 0 #{ $gutter-width * 0.5 } 0;
 	}
 
-	&.search-bar--focused {
+	&.search-bar--focused,
+	&.search-bar--has-results:focus-within {
 
 		@media #{ $mq-md-up } {
 			.search-bar__container {
@@ -237,10 +246,17 @@
 				transition: width ease-in-out .1s;
 			}
 		}
+	}
 
-		&.search-bar--has-results .search-bar__results {
-			display: block;
+	&.search-bar--has-results:focus-within {
+		.search-bar__field {
+			border-bottom: none;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
 		}
 
+		.search-bar__results {
+			display: block;
+		}
 	}
 }

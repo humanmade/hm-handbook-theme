@@ -1,9 +1,14 @@
 .site-sidebar {
 
-	background-color: $color-sidebar-background;
+	background-color: var( --hm-light-blue );
+	color: var( --hm-dark-grey );
 	padding: $base-line-height $gutter-width * 2;
 
 	ul {
 		margin: 0;
+	}
+
+	a:hover {
+		text-decoration: underline;
 	}
 }
