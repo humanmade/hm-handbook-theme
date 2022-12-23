@@ -26,6 +26,12 @@ $images-path: "./../../../vendor/hm-pattern-library/assets/images" !default;
 // Plugins
 @import "components/feature-requests";
 
+// Global font override
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-weight: 400;
+}
+
 .article {
 	position: relative;
 }
