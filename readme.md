@@ -11,6 +11,10 @@ The theme uses [gulp](http://gulpjs.com) to run various tasks such as compiling 
 * All compiled/proccessed assets are be kept in `assets/dist`. 
 * Always load assets from `assets/dist`, you probably shouldn't be loading anything from `assets/src`.
 
+### Releasing a new version.
+
+It is essential that whenever a new version is released, we increment the version number in the theme stylesheet ([`style.css`](https://github.com/humanmade/hm-handbook-theme/blob/main/style.css)). This is used to version all theme assets, and bumping this is necessary to ensure nobody gets cached files. This also includes the cached asset integrity hash used by the Altis browser security module, and without the change, assets may fail to load.
+
 ### Dev Setup
 
 **Dependencies**
