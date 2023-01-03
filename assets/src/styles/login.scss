@@ -88,6 +88,7 @@ html {
 
 .login form .forgetmenot label {
 	@include font-body;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	display: inline-block;
 	margin-top: .75 * $base-line-height;
 }
