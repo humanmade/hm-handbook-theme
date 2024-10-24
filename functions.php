@@ -88,20 +88,28 @@ function setup_admin() {
 
 }
 
+function get_asset_version() {
+	if ( wp_get_environment_type() === 'local' ) {
+		return filemtime( __DIR__ . '/assets/dist/styles/theme.css' );
+	}
+
+	return wp_get_theme()->Version;
+}
+
 /**
  * Add login Styling
  */
 add_action( 'login_enqueue_scripts', function() {
-	wp_enqueue_style( 'hm-login', get_theme_file_uri( 'assets/dist/styles/login.css' ), [], wp_get_theme()->Version );
+	wp_enqueue_style( 'hm-login', get_theme_file_uri( 'assets/dist/styles/login.css' ), [], get_asset_version() );
 } );
 
 /**
  * Enqueue all theme scripts.
  */
 function enqueue_scripts() {
-	$theme = wp_get_theme();
-	wp_enqueue_script( 'hm-handbook', get_theme_file_uri( 'assets/dist/scripts/theme.js' ), [], $theme->Version, true );
-	wp_enqueue_style( 'hm-handbook', get_theme_file_uri( 'assets/dist/styles/theme.css' ), [], $theme->Version );
+	$version = get_asset_version();
+	wp_enqueue_script( 'hm-handbook', get_theme_file_uri( 'assets/dist/scripts/theme.js' ), [], $version, true );
+	wp_enqueue_style( 'hm-handbook', get_theme_file_uri( 'assets/dist/styles/theme.css' ), [], $version );
 
 	add_action( 'wp_head', function() {
 		echo '<script src="https://use.typekit.net/qly7hgx.js"></script>';
