@@ -12,8 +12,13 @@
 
 namespace HM_Handbook;
 
+$current_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
 ?>
 
+			<div class="site-print-footer">
+				Accessed <?php the_date( 'r' ) ?> from <code><?php echo esc_url( $current_url ) ?></code>
+			</div>
 			<div class="site-footer Footer">
 
 				<p><span class="hm-logo hm-logo--tiny hm-logo--red"></span> <a href="https://hmn.md" class="hm-link">Made by Humans</a></p>
