@@ -238,3 +238,22 @@ function redirect_private_pages_to_join_page() {
 }
 
 add_action( 'template_redirect', __NAMESPACE__ . '\\redirect_private_pages_to_join_page' );
+
+/**
+ * Add id attribute to <h1>, <h2>, <h3>, <h4>, <h5> tags
+ *
+ * @param string $content Content of the current post.
+ *
+ * @return string $content The filtered post content.
+ */
+function anchor_content_headings( $content ) {
+    $content = preg_replace_callback( "/\<h([1|2|3|4|5])\>(.*?)\<\/h([1|2|3|4|5])\>/", function ( $matches ) {
+      $hTag = $matches[1];
+      $title = $matches[2];
+      $slug = sanitize_title_with_dashes( $title );
+      return '<a href="#'. $slug .'"><h'. $hTag .' id="' . $slug . '">' . $title . '</h'. $hTag .'></a>';
+    }, $content );
+
+    return $content;
+}
+  add_filter( 'the_content', __NAMESPACE__ . '\\anchor_content_headings' );
