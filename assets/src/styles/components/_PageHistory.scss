@@ -229,3 +229,18 @@
 	}
 
 }
+
+.btn--print {
+	display: flex;
+	align-items: center;
+
+	> svg {
+		width: 18px;
+		height: 18px;
+		margin-right: 0.5em;
+	}
+
+	@media print {
+		display: none;
+	}
+}

@@ -9,5 +9,16 @@
 
 	}
 
+	@media print {
+		display: none;
+	}
+}
+
+.site-print-footer {
+	display: none;
+
+	@media print {
+		display: block;
+	}
 }
 

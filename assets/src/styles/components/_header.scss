@@ -50,6 +50,16 @@
 		width: 300px;
 	}
 
+	@media print {
+		display: flex;
+		align-items: center;
+
+		.hm-logo {
+			margin: 1em 0 1em 2em;
+			height: 1.4em;
+			width: auto;
+		}
+	}
 }
 
 .site-search {
@@ -72,6 +82,10 @@
 		@media #{ $mq-md-down } {
 			padding-top: 1rem;
 		}
+	}
+
+	@media print {
+		display: none;
 	}
 
 }

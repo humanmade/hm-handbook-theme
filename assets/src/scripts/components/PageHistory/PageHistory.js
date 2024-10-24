@@ -22,7 +22,7 @@ export default class PageHistory extends React.Component {
 
 		var actions = {
 			onSelectRevision: ( revision ) => { this.onSelectRevision( revision ) },
-			onFetchRevisions: () => { this.onfetchRevisions() },
+			onFetchRevisions: () => this.onfetchRevisions(),
 			onClearDiff:      () => { this.onClearDiff() },
 		};
 
@@ -50,7 +50,7 @@ export default class PageHistory extends React.Component {
 			})
 		});
 
-		fetch( request ).then( response => {
+		return fetch( request ).then( response => {
 			if ( response.ok ) {
 				return response.json();
 			}
