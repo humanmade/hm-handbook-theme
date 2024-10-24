@@ -16,7 +16,7 @@ $current_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
 ?>
 
-			<div class="site-print-footer">
+			<div class="site-print-footer text-sm">
 				Accessed <?php the_date( 'r' ) ?> from <code><?php echo esc_url( $current_url ) ?></code>
 			</div>
 			<div class="site-footer Footer">
