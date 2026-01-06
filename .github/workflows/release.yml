@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - add-build-action
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref_name }}
@@ -16,7 +15,7 @@ jobs:
     uses: humanmade/hm-github-actions/.github/workflows/build-and-release-node.yml@04c32a93e52ae987095f144105745a501d6207c8 # v0.2.0
     with:
       node_version: 12
-      source_branch: add-build-action
+      source_branch: main
       release_branch: release
       built_asset_paths: assets/dist
       build_script: |
