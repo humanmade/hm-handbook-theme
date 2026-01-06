@@ -1,0 +1,25 @@
+name: Build to Release branch
+
+on:
+  push:
+    branches:
+      - main
+      - add-build-action
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  release:
+    name: "Build to release branch"
+    uses: humanmade/hm-github-actions/.github/workflows/build-and-release-node.yml@04c32a93e52ae987095f144105745a501d6207c8 # v0.2.0
+    with:
+      node_version: 12
+      source_branch: add-build-action
+      release_branch: release
+      built_asset_paths: assets/dist
+      build_script: |
+        git submodule update --init vendor/hm-pattern-library
+        npm ci --legacy-peer-deps
+        npm run build
