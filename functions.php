@@ -231,10 +231,23 @@ function redirect_private_pages_to_join_page() {
 			'private' === $queried_object->post_status &&
 			! is_user_logged_in()
 		) {
-			wp_safe_redirect( home_url( '/join-human-made/' ) );
-			exit();
+			// Use WP-CLI to configure this option, which should be a URL where
+			// anonymous visitors are sent if they try to view a private page.
+			$redirect_url = get_option( 'hm_private_link_redirect_target' );
+			if ( empty( $redirect_url ) || filter_var( $redirect_url, FILTER_VALIDATE_URL ) === false ) {
+				// By default, direct to the login page.
+				$redirect_url = wp_login_url( $_SERVER['REQUEST_URI'] );
+			}
+			wp_safe_redirect( $redirect_url, 302 );
+			exit;
 		}
 	}
 }
 
 add_action( 'template_redirect', __NAMESPACE__ . '\\redirect_private_pages_to_join_page' );
+
+// Allow redirects to main HM site.
+add_filter( 'allowed_redirect_hosts', function ( $allowed_hosts ) {
+	$allowed_hosts[] = 'www.humanmade.com';
+	return $allowed_hosts;
+} );
