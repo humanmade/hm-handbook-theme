@@ -34,4 +34,4 @@ It is essential that whenever a new version is released, we increment the versio
 
 ### Updating HM Pattern Library
 
-The [pattern library](https://github.com/humanmade/hm-pattern-library/) is pinned at v3.0, and relevant files are copied directly from the built `assets/` folder into [lib/hm-pattern-library](./lib/hm-pattern-library/).
+The [pattern library](https://github.com/humanmade/hm-pattern-library/) is pinned at v3.0, and relevant files are copied directly from the built `assets/` folder into [assets/lib/hm-pattern-library](./assets/lib/hm-pattern-library/).
