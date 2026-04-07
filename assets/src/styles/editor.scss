@@ -1,7 +1,5 @@
-$images-path: "./../../../vendor/hm-pattern-library/assets/images" !default;
-
 // External
-@import "./../../../vendor/hm-pattern-library/assets/sass/juniper.scss";
+@import "../../lib/hm-pattern-library/sass/juniper.scss";
 
 // Base
 @import "base/variables";

@@ -4,6 +4,7 @@ files:
   ignore:
     - 'dist/**/*'
     - 'assets/src/styles/vendor/**/*'
+    - 'lib/**/*'
 rules:
   no-ids: 2
   no-important: 2
