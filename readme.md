@@ -34,10 +34,4 @@ It is essential that whenever a new version is released, we increment the versio
 
 ### Updating HM Pattern Library
 
-The pattern library is a submodule checked out to `/vendor/hm-pattern-library`. We are using the compiled version of this so you should check out either a tagged release or the `gh-pages` branch when updating.
-
-Example of what needs to be done: 
-
-1. `cd vendor/hm-pattern-library`
-1. `git fetch --tags && git checkout 1.0` or `git checkout gh-pages && git pull`
-1. `cd ../../ && git add vendor/hm-pattern-library && commit -m 'Update HM Pattern Library'`
+The [pattern library](https://github.com/humanmade/hm-pattern-library/) is pinned at v3.0, and relevant files are copied directly from the built `assets/` folder into [assets/lib/hm-pattern-library](./assets/lib/hm-pattern-library/).

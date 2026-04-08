@@ -1,7 +1,5 @@
-$images-path: "./../../../vendor/hm-pattern-library/assets/images" !default;
-
 // External
-@import "./../../../vendor/hm-pattern-library/assets/sass/juniper.scss";
+@import "../../lib/hm-pattern-library/sass/juniper.scss";
 
 // Base
 @import "base/variables";
@@ -54,7 +52,7 @@ html {
 	margin-bottom: $base-line-height;
 
 	a {
-		background-image: url( $login-logo-image );
+		background-image: url( "../../lib/hm-pattern-library/images/logos/logo-white.svg" );
 		background-size: 100%;
 		background-position: center center;
 		margin: 0 auto;

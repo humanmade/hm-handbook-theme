@@ -39,7 +39,7 @@
 
 .PageHistory_List_Container {
 	.PageHistory_List + .btn .Loading {
-		background-image: url( "#{ $images-path }/icons/icon-spinner-black.svg" );
+		background-image: url( "../../../lib/hm-pattern-library/images/icons/icon-spinner-black.svg" );
 		background-size: 50%;
 		margin-right: 7px;
 		opacity: 0.3;
@@ -201,7 +201,7 @@
 	&:after {
 		position: absolute;
 		content: " ";
-		background: url( "#{ $images-path }/icons/icon-plus-alt-black.svg" ) no-repeat center center;
+		background: url( "../../../lib/hm-pattern-library/images/icons/icon-plus-alt-black.svg" ) no-repeat center center;
 		background-size: 100% 100%;
 		top: 50%;
 		left: 50%;
@@ -225,7 +225,7 @@
 
 
 	&.btn--state-expanded:after {
-		background-image: url( "#{ $images-path }/icons/icon-minus-alt-black.svg" );
+		background-image: url( "../../../lib/hm-pattern-library/images/icons/icon-minus-alt-black.svg" );
 	}
 
 }
