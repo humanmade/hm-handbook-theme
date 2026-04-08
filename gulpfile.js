@@ -61,6 +61,11 @@ function js( callback ) {
 	);
 }
 
+function images() {
+	return gulp.src('./assets/lib/hm-pattern-library/images/**/*')
+		.pipe(gulp.dest('./assets/dist/images'));
+}
+
 function lintSass() {
   return gulp.src( [ './assets/src/styles/**/*.s+(a|c)ss', '!./assets/src/styles/editor.scss', '!./assets/src/styles/login.scss' ] )
 	.pipe( sassLint( { configFile: '.sass-lint.yml' } ) )
@@ -77,7 +82,8 @@ function watch() {
 module.exports = {
 	styles,
 	js,
+	images,
 	lintSass,
 	watch,
-	default: gulp.parallel(styles, js, lintSass),
+	default: gulp.parallel(styles, js, images, lintSass),
 }

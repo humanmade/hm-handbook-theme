@@ -1,0 +1,47 @@
+// Brand Colours.
+$hm-red:         #FF424A;
+$hm-blue:        #7DC9DA;
+$hm-warm-grey:   #504C4C;
+$hm-dark-grey:   #353535;
+$hm-beige:       #F4EFE6;
+$hm-medium-grey: #737373;
+$hm-light-grey:  #f7f7f7;
+$hm-brown:       #4F4641;
+$hm-vibrant-blue: #4668DF;
+$hm-deep-blue:   #203657;
+$hm-mint:        #00D2B7;
+$hm-ash-grey:    #717171;
+$hm-dark-red:    #CC343B;
+$hm-light-blue:  #eff2ff;
+$hm-dark-vibrant-blue: #3853B2;
+
+// Alternate versions of main colors. Used for borders, backgrounds etc.
+$hm-red-light: saturate( lighten( $hm-red, 10% ), 5 );
+$hm-red-dark:  desaturate( darken( $hm-red, 6% ), 8 );
+
+// Deprecated.
+$hm-red-accessible: $hm-red !default;
+
+/*
+ * CSS Variables
+ * To be used in projects that do not use SASS, for example.
+ */
+
+:root {
+	--hm-red:          #{$hm-red};
+	--hm-blue:         #{$hm-blue};
+	--hm-warm-grey:    #{$hm-warm-grey};
+	--hm-dark-grey:    #{$hm-dark-grey};
+	--hm-beige:        #{$hm-beige};
+	--hm-medium-grey:  #{$hm-medium-grey};
+	--hm-light-grey:   #{$hm-light-grey};
+	--hm-brown:        #{$hm-brown};
+	--hm-red-light:    #{$hm-red-light};
+	--hm-red-dark:     #{$hm-red-dark};
+	--hm-vibrant-blue: #{$hm-vibrant-blue};
+	--hm-deep-blue:    #{$hm-deep-blue};
+	--hm-light-blue:   #{$hm-light-blue};
+	--hm-mint:         #{$hm-mint};
+	--hm-ash-grey:     #{$hm-ash-grey};
+	--hm-dark-vibrant-blue: #{$hm-dark-vibrant-blue};
+}
